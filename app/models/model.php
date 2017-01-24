@@ -42,9 +42,14 @@ class Model {
         return null;
     }
 
-    function execQuery($nameSql) {
+    function execSQL($nameSql, $data) {
         $conn = $this->getConn();
-        return $conn->query($this->getSQL()[$nameSql]);
+        if ($data == null) {
+            return $conn->query($this->getSQL()[$nameSql]);
+        } else {
+            $sth = $conn->prepare($this->getSQL()[$nameSql]);
+            return $sth->execute($data);
+        }
     }
 
 }

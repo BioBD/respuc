@@ -116,7 +116,7 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a class="active" href="index.php?page=home">Home</a></li>
-                                <li><a href="index.php?ctrl=voluntario&pg=voluntarios">Voluntários</a></li>
+                                <li><a href="index.php?ctrl=voluntario&cmd=listar">Voluntários</a></li>
                                 <li><a href="index.php?page=instituicoes">Instituições</a></li>
                                 <li><a href="index.php?page=atividades">Atividades</a></li>
                                 <li><a href="index.php?page=estagios">Estágios</a></li>

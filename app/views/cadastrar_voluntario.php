@@ -7,7 +7,7 @@
                 <h1>Cadastrar Novo Voluntário</h1>
             </div>
         </div>
-        <form method="post" action="../controllers/controller_voluntarios.php">
+        <form method="post" action="index.php?ctrl=voluntario&cmd=cadastrar">
             <div class="col-md-4">
                 <label for="matricula">Matricula:</label><br>
                 <input type="text" name="matricula" id="matricula" class="col-md-12">
@@ -15,6 +15,9 @@
             <div class="col-md-8">
                 <label for="nome">Nome:</label><br>
                 <input type="text" name="nome" id="nome" class="col-md-12">
+            </div>
+            <div class="col-md-12">
+                <input type="submit" value="Salvar">
             </div>
             <div class="col-md-12">
                 <br>

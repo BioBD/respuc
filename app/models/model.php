@@ -3,11 +3,13 @@
 class Model {
 
     private static $conn;
+    private static $sql;
+    private static $config;
 
     private function getConn() {
         try {
             if (!isset($this->conn)) {
-                $this->conn = new PDO("pgsql:host=localhost;port=5432;dbname=respuc;user=postgres;password=postgres");
+                $this->conn = new PDO($this->getConfig()["stringConexao"]);
             }
             return $this->conn;
         } catch (PDOException $e) {
@@ -16,10 +18,33 @@ class Model {
         return null;
     }
 
-    function execSQL($nameSql) {
+    private function getSQL() {
+        try {
+            if (!isset($this->sql)) {
+                $this->sql = parse_ini_file("config/sql.properties");
+            }
+            return $this->sql;
+        } catch (PDOException $e) {
+            echo "Error: " . $e;
+        }
+        return null;
+    }
+
+    private function getConfig() {
+        try {
+            if (!isset($this->config)) {
+                $this->config = parse_ini_file("config/configuration.properties");
+            }
+            return $this->config;
+        } catch (PDOException $e) {
+            echo "Error: " . $e;
+        }
+        return null;
+    }
+
+    function execQuery($nameSql) {
         $conn = $this->getConn();
-        $sql = 'SELECT * FROM voluntarios';
-        return $conn->query($sql);
+        return $conn->query($this->getSQL()[$nameSql]);
     }
 
 }

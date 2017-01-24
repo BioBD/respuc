@@ -6,7 +6,7 @@ class ControllerVoluntario {
 
     function voluntarios() {
         $voluntario = new Voluntario();
-        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->execSQL("todosVoluntarios");
+        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->execQuery("todosVoluntarios");
         include "views/voluntarios.php";
     }
 

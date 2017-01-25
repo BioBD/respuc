@@ -78,7 +78,7 @@ website:    http://www.themepunch.com
 /* =  Header
 /*-------------------------------------------------*/
 .navbar-default {
-  background: #0a287e;
+  background: orange;
   border: none;
   transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -1599,7 +1599,7 @@ section.services-section .services-box .services-post:hover .services-content h2
 /* =  Footer
 /*-------------------------------------------------*/
 footer {
-  background: #0a087e;
+  background: orange;
   padding: 50px 0;
 }
 footer .contact-info h2 {
@@ -1761,4 +1761,35 @@ footer .contact-info p {
   .blog-section .blog-box .autor-post .autor-content {
     margin-left: 0;
   }
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 5%;
+}
+
+.social-icons li a {
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  font-size: 25px;
+  color: black;
+}
+
+.footer-menu{
+  text-decoration: none;
+  list-style: none;
+}
+
+.footer-menu a{
+  color: white;
+  text-decoration: none;
+}
+
+.footer-menu a:hover{
+  color: navy;
+  text-decoration: none;
 }

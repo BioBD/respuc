@@ -23,8 +23,8 @@
                 <div class="contact-info">
                     <h2><i class="fa fa-clock-o"></i> Acompanhe A Gente</h2>
                     <ul class="social-icons">
-                        <li><a class="facebook" href="https://www.facebook.com/RESPUCRio/"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="youtube" href="https://www.youtube.com/channel/UC7b0zU4S41LxtIkfZ_e_kWw"><i class="fa fa-youtube"></i></a></li>
+                        <li><a class="facebook" href="https://www.facebook.com/RESPUCRio/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="youtube" href="https://www.youtube.com/channel/UC7b0zU4S41LxtIkfZ_e_kWw" target="_blank"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
             </div>

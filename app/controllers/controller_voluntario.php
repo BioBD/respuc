@@ -28,3 +28,4 @@ if (isset($_GET['cmd'])) {
 } else {
     print_r($_GET);
 }
+?>

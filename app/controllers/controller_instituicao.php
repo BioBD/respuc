@@ -6,8 +6,8 @@ class ControllerInstituicao extends Controller {
 
     function listar() {
         $instituicao = new Instituicao();
-        $_SESSION["ControllerInstituicao"]["Instituicoes"] = $instituicao->listar();
-        include "views/voluntarios.php";
+        $_SESSION["ControllerInstituicao"]["instituicoes"] = $instituicao->listar();
+        include "views/instituicoes.php";
     }
 
     function cadastrar() {
@@ -27,6 +27,4 @@ if (isset($_GET['cmd'])) {
 } else {
     print_r($_GET);
 }
-
-
 ?>

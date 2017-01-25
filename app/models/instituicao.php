@@ -6,11 +6,16 @@ class Instituicao extends Model {
 
     function cadastrar($dataIn) {
         if ($this->valida($dataIn)) {
-            $dataOut = array($dataIn["nome_fantasia"],
+            $dataOut = array(
                 $dataIn["razao_social"],
+                $dataIn["nome_fantasia"],
                 $dataIn["ano_de_fundacao"],
-                $dataIn["nome_contato"],
-                $dataIn["email"],
+                $dataIn["website"],
+                $dataIn["vinculo"],
+                $dataIn["qtd_membros"],
+                $dataIn["email_instituicao"],                                
+                $dataIn["relacoes_publicas"],
+                $dataIn["email_relacoes_publicas"],
                 $dataIn["rua"],
                 $dataIn["complemento"],
                 $dataIn["bairro"],

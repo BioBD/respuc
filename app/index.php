@@ -94,7 +94,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a class="active" href="index.php?page=home">Home</a></li>
                                 <li><a href="index.php?ctrl=voluntario&cmd=listar">Voluntários</a></li>
-                                <li><a href="index.php?page=instituicoes">Instituições</a></li>
+                                <li><a href="index.php?ctrl=instituicao&cmd=listar">Instituições</a></li>
                                 <li><a href="index.php?page=atividades">Atividades</a></li>
                                 <li><a href="index.php?page=estagios">Estágios</a></li>
                                 <li class="search"><a href="#" class="open-search"><i class="fa fa-search"></i></a>

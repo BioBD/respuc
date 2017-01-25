@@ -21,8 +21,8 @@
                 <input class="form-control" type="text" name="cpf" id="cpf" class="col-md-12">
             </div>
             <div class="col-md-6">
-                <label for="dt_nasc">Data de Nascimento:</label><br>
-                <input class="form-control" type="text" name="dt_nasc" id="dt_nasc" class="col-md-12">
+                <label for="data_nascimento">Data de Nascimento:</label><br>
+                <input class="form-control" type="text" name="data_nascimento" id="data_nascimento" class="col-md-12">
             </div>
             <div class="col-md-6">
                 <label for="genero">Gênero:</label><br>
@@ -45,7 +45,7 @@
                     <option value="Español">Español</option>
                     <option value="Français">Français</option>
                 </select>
-            </div>                                    
+            </div>
             <div class="col-md-6">
                 <label for="email">E-mail:</label><br>
                 <input class="form-control" type="text" name="email" id="email" class="col-md-12">
@@ -114,6 +114,14 @@
             <div class="col-md-6">
                 <label for="celular">Celular:</label><br>
                 <input class="form-control" type="text" name="celular" id="celular" class="col-md-12">
+            </div>
+            <div class="col-md-6">
+                <label for="identidade">Identidade:</label><br>
+                <input class="form-control" type="text" name="identidade" id="identidade" class="col-md-12">
+            </div>
+            <div class="col-md-6">
+                <label for="orgao_emissor">Orgão Emissor:</label><br>
+                <input class="form-control" type="text" name="orgao_emissor" id="orgao_emissor" class="col-md-12">
             </div>
             <div class="col-md-12">
                 <input type="submit" value="Salvar">

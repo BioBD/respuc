@@ -7,22 +7,25 @@ class Voluntario extends Model {
     function cadastrar($dataIn) {
         if ($this->valida($dataIn)) {
             $dataOut = array($dataIn["matricula"],
-                         $dataIn["nome"], 
-                         $dataIn["cpf"], 
-                         $dataIn["dt_nasc"], 
-                         $dataIn["genero"], 
-                         $dataIn["periodo"], 
-                         $dataIn["idioma"], 
-                         $dataIn["email"], 
-                         $dataIn["nome_curso"], 
-                         $dataIn["rua"], 
-                         $dataIn["complemento"], 
-                         $dataIn["bairro"], 
-                         $dataIn["cidade"], 
-                         $dataIn["uf"], 
-                         $dataIn["cep"], 
-                         $dataIn["telefone_fixo"], 
-                         $dataIn["celular"]);
+                $dataIn["nome"],
+                $dataIn["cpf"],
+                $dataIn["identidade"],
+                $dataIn["orgao_emissor"],
+                $dataIn["genero"],
+                $dataIn["periodo"],
+                $dataIn["data_nascimento"],
+                $dataIn["idioma"],
+                $dataIn["nome_curso"],
+                $dataIn["rua"],
+                $dataIn["complemento"],
+                $dataIn["bairro"],
+                $dataIn["cidade"],
+                $dataIn["uf"],
+                $dataIn["cep"],
+                $dataIn["telefone_fixo"],
+                $dataIn["celular"],
+                $dataIn["email"]);
+
             return $this->execSQL("insertVoluntario", $dataOut);
         } else {
             return null;
@@ -31,100 +34,99 @@ class Voluntario extends Model {
 
     function valida($data) {
 
-        if(empty($data["matricula"])){
+        if (empty($data["matricula"])) {
             //tratar erro para campo matricula vazio.
-        } else if(is_nan($data["matricula"])){
+        } else if (isset($data["matricula"])) {
             //tratar erro variavel matricula nao eh um numero
-        } else{
+        } else {
             //variavel OK
         }
-        if(empty($data["nome"])){
+        if (empty($data["nome"])) {
             //tratar erro para campo nome vazio.
-        } else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["cpf"])){
+        if (empty($data["cpf"])) {
             //tratar erro para campo cpf vazio.
-        } else if(is_nan($data["cpf"])){
+        } else if (is_nan($data["cpf"])) {
             //Tratar erro variavel cpf nao eh um numero
-        } else{
+        } else {
             //Variavel OK.
         }
-        if(empty($data["dt_nasc"])){
+        if (empty($data["dt_nasc"])) {
             //tratar erro para campo dt_nasc vazio.
-        } else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["genero"])){
+        if (empty($data["genero"])) {
             //tratar erro para campo genero vazio.
-        } else{
+        } else {
             //variavel OK.
-        }    
-        if(empty($data["periodo"])){
+        }
+        if (empty($data["periodo"])) {
             //tratar erro para campo periodo vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["idioma"])){
+        if (empty($data["idioma"])) {
             //tratar erro para campo idioma vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["email"])){
+        if (empty($data["email"])) {
             //tratar erro para campo email vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["nome_curso"])){
+        if (empty($data["nome_curso"])) {
             //tratar erro para campo nome_curso vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["rua"])){
+        if (empty($data["rua"])) {
             //tratar erro para campo rua vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["complemento"])){
+        if (empty($data["complemento"])) {
             //tratar erro para campo complemento vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["bairro"])){
+        if (empty($data["bairro"])) {
             //tratar erro para campo bairro vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["cidade"])){
+        if (empty($data["cidade"])) {
             //tratar erro para campo cidade vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["uf"])){
+        if (empty($data["uf"])) {
             //tratar erro para campo uf vazio.
-        }else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["cep"])){
+        if (empty($data["cep"])) {
             //tratar erro para campo cep vazio.
-        }else{
-            //variavel OK.            
+        } else {
+            //variavel OK.
         }
-        if(empty($data["telefone_fixo"])){
-          //tratar erro para campo telefone_fixo vazio.
-        } else if(is_nan($data["telefone_fixo"])){
+        if (empty($data["telefone_fixo"])) {
+            //tratar erro para campo telefone_fixo vazio.
+        } else if (is_nan($data["telefone_fixo"])) {
             //tratar erro para campo telefone_fixo nao eh numero.
-        } else{
+        } else {
             //variavel OK.
         }
-        if(empty($data["celular"])){
+        if (empty($data["celular"])) {
 
-        } else if(is_nan($data["celular"])){
+        } else if (is_nan($data["celular"])) {
             //tratar erro para campo celular nao eh numero.
-        } else{
+        } else {
             //variavel OK.
         }
-
         return true;
     }
 

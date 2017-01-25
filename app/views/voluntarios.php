@@ -13,7 +13,7 @@
                 <li>Matricula:<?= $voluntario["matricula"] ?></li>
                 <li>Nome:<?= $voluntario["nome"] ?></li>
                 <li>CPF:<?= $voluntario["cpf"] ?></li>
-                <li>Data de Nascimento:<?= $voluntario["dt_nasc"] ?></li>
+                <li>Data de Nascimento:<?= $voluntario["data_nascimento"] ?></li>
                 <li>Genero:<?= $voluntario["genero"] ?></li>
                 <li>Período:<?= $voluntario["periodo"] ?></li>
                 <li>Idioma:<?= $voluntario["idioma"] ?></li>

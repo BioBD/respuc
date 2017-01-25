@@ -59,3 +59,15 @@ celular  CHAR(14),
 CONSTRAINT chk_qtd_membros CHECK((qtd_membros > 0)),
 CONSTRAINT pk_razaosocial PRIMARY KEY (razao_social)
 );
+
+
+CREATE OR REPLACE FUNCTION remove_acento(text) 
+RETURNS text AS 
+$BODY$ 
+SELECT TRANSLATE($1,'áàãâäÁÀÃÂÄéèêëÉÈÊËíìîïÍÌÎÏóòõôöÓÒÕÔÖúùûüÚÙÛÜñÑçÇÿýÝ','aaaaaAAAAAeeeeEEEEiiiiIIIIoooooOOOOOuuuuUUUUnNcCyyY') 
+$BODY$ 
+LANGUAGE sql IMMUTABLE STRICT 
+COST 100; 
+ALTER FUNCTION remove_acento(text) 
+OWNER TO postgres; 
+COMMENT ON FUNCTION remove_acento(text) IS 'Remove letras com acentuação'; 

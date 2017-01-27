@@ -357,14 +357,13 @@
         </div><!-- END REVOLUTION SLIDER -->
     </div>
 </section>
-
 <!-- banner-section
         ================================================== -->
-<section class="banner-section">
+<!-- <section class="banner-section">
     <div class="container">
         <h2>Help turn tears to smiles. !!!<a href="contact.html" class="button-one">Contact</a></h2>
     </div>
-</section>
+</section> -->
 <!-- End banner section -->
 
 <!-- consulting-section
@@ -376,7 +375,6 @@
         </div>
         <div class="consulting-box">
             <div class="row">
-
                 <div class="col-md-4">
                     <div class="consulting-post">
                         <a href="#"><i class="fa fa-heart"></i></a>
@@ -441,17 +439,16 @@
     <div class="services-box">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-4">
                     <div class="services-post">
                         <img src="views/upload/others/1.jpg" alt="">
                         <div class="services-content">
-                            <h2><a href="services-single.html">Help & Support</a></h2>
+                            <h2><a href="services-single.html">Colabore</a></h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat.</p>
                             <ul class="serv-links">
-                                <li><a href="#">Aliquam tincidunt mauris eu risus</a></li>
-                                <li><a href="#">Vestibulum auctor</a></li>
-                                <li><a href="#">Nunc dignissim risus id metus</a></li>
+                                <li><a href="#">Como Colaborar</a></li>
+                                <li><a href="#">O Valor de sua Ação</a></li>
+                                <li><a href="#">Seja um Doador</a></li>
                             </ul>
                         </div>
                     </div>
@@ -461,35 +458,32 @@
                     <div class="services-post">
                         <img src="views/upload/others/2.jpg" alt="">
                         <div class="services-content">
-                            <h2><a href="services-single.html">Adoption</a></h2>
+                            <h2><a href="services-single.html">Parceiros</a></h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat.</p>
                             <ul class="serv-links">
-                                <li><a href="#">Aliquam tincidunt mauris eu risus</a></li>
-                                <li><a href="#">Vestibulum auctor</a></li>
-                                <li><a href="#">Nunc dignissim risus id metus</a></li>
+                                <li><a href="#">Internos</a></li>
+                                <li><a href="#">Externos</a></li>
+                                <li><a href="#">Como ser um parceiro</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="services-post">
                         <img src="views/upload/others/3.jpg" alt="">
                         <div class="services-content">
-                            <h2><a href="services-single.html">Volunteering</a></h2>
+                            <h2><a href="services-single.html">Seja um Voluntário</a></h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer adipiscing erat eget risus sollicitudin pellentesque et non erat.</p>
                             <ul class="serv-links">
-                                <li><a href="#">Aliquam tincidunt mauris eu risus</a></li>
-                                <li><a href="#">Vestibulum auctor</a></li>
+                                <li><a href="#">Como ser um voluntário</a></li>
+                                <li><a href="#">Cadastra-se</a></li>
                                 <li><a href="#">Nunc dignissim risus id metus</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </section>
 <!-- End services section -->
@@ -500,28 +494,22 @@
     <div class="container">
         <div class="statistic-box">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="10000"></span></p>
-                        <h2>Charity fund</h2>
+                        <h2>Voluntários Ativos</h2>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="500"></span></p>
-                        <h2>Membership</h2>
+                        <h2>Parceiros</h2>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="542"></span></p>
-                        <h2>Happy Client</h2>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="statistic-post">
-                        <p><span class="timer" data-from="0" data-to="1630"></span></p>
-                        <h2>People get help</h2>
+                        <h2>Pessoas Atendidas</h2>
                     </div>
                 </div>
             </div>
@@ -538,7 +526,7 @@
             <div class="col-md-6">
 
                 <div class="accordion-box">
-                    <h1>Why choose us ?</h1>
+                    <h1>Quem Somos Nós</h1>
                     <p>Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. </p>
                     <div class="accord-elem active">
                         <div class="accord-title">
@@ -586,7 +574,7 @@
 <section class="news-section">
     <div class="container">
         <div class="title-section">
-            <h1>Latest News</h1>
+            <h1>Últimas Notícias</h1>
             <p>Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.</p>
         </div>
         <div class="news-box">
@@ -672,12 +660,12 @@
 <section class="subcribe-section">
     <div class="container">
         <div class="title-section white">
-            <h1>Subscribe to our news letter</h1>
+            <h1>Fique por dentro das novidades</h1>
         </div>
         <form class="subscribe">
-            <input type="text" name="name-subs" id="name-subs" placeholder="name"/>
-            <input type="text" name="email-subs" id="email-subs" placeholder="your email address"/>
-            <input type="submit" id="submit-subscribe" value="subscribe"/>
+            <input type="text" name="name-subs" id="name-subs" placeholder="nome"/>
+            <input type="text" name="email-subs" id="email-subs" placeholder="e-mail"/>
+            <input type="submit" id="submit-subscribe" value="Inscreva-se"/>
         </form>
         <p>Please contact us if you want to do charity through the mailbox.</p>
     </div>

@@ -9,7 +9,7 @@
         ?>
         <h3><?= $voluntario["matricula"] ?> - <?= $voluntario["nome"] ?></h3>
         <div>
-            <ul>
+            <ul class="list-unstyled">
                 <li>Matricula:<?= $voluntario["matricula"] ?></li>
                 <li>Nome:<?= $voluntario["nome"] ?></li>
                 <li>CPF:<?= $voluntario["cpf"] ?></li>

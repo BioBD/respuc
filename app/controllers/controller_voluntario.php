@@ -13,13 +13,16 @@ class ControllerVoluntario extends Controller {
 
     function cadastrar() {
         $voluntario = new Voluntario();
-        if ($voluntario->cadastrar($_POST) == null) {
-            include "views/erro.php";
-        } else {
-            $this->listar();
-        }
+        if(!isset($_POST) || empty($_POST)){
+            /****** Erro: $_POST = vazia ********/
+        } else{
+            if ($voluntario->cadastrar($_POST) == null) {
+                include "views/erro.php";
+            } else {
+                $this->listar();
+            }
+        } 
     }
-
 }
 
 if (isset($_GET['cmd'])) {

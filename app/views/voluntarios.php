@@ -1,5 +1,13 @@
-<div id="botoes">
-    <a href="index.php?page=cadastrar_voluntario"> <i class="fa fa-users">Novo Voluntário</i></a>
+<div class="row form-group text-center" id="pequisar">
+    <form method="post" action="index.php?ctrl=voluntario&cmd=consultar">
+        <div class="row">
+            <input class="" type="search" name="Pesquisar Voluntário">
+            <input class="btn btn-success" type="submit" value="Pesquisar">
+        </div>
+    </form>   
+</div>
+<div class="text-right" id="botoes">
+    <a class="btn btn-info" href="index.php?page=cadastrar_voluntario">Novo Voluntário</a>
 </div>
 
 <div id="accordion">
@@ -27,6 +35,10 @@
                 <li>CEP:<?= $voluntario["cep"] ?></li>
                 <li>Telefone Fixo:<?= $voluntario["telefone_fixo"] ?></li>
                 <li>Celular:<?= $voluntario["celular"] ?></li>
+                <div class="row text-right" id="">
+                    <a class="btn btn-warning" href="index.php?ctrl=voluntario&cmd=alterar">Editar</a>
+                    <a class="btn btn-danger" href="index.php?ctrl=voluntario&cmd=excluir">Excluir</a>
+                </div>
             </ul>
         </div>
     <?php } ?>

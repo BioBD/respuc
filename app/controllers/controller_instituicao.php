@@ -19,6 +19,18 @@ class ControllerInstituicao extends Controller {
         }
     }
 
+    function alterar() {
+
+    }
+
+    function excluir() {
+
+    }
+
+    function consultar() {
+
+    }
+
 }
 
 if (isset($_GET['cmd'])) {

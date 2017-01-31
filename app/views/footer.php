@@ -9,7 +9,8 @@
                         <p><a href="index.php?ctrl=voluntario&cmd=pstar">Voluntários</a></p>
                         <p><a href="index.php?page=instituicoes">Instituições</a></p>
                         <p><a href="index.php?page=atividades">Atividades</a></p>
-                        <p><a href="index.php?page=estagios">Estágios</a></p>
+                        <p><a href="index.php?page=doacao">Doação</a></p>
+                        <p><a href="index.php?page=contato">Contato</a></p>
                     </div>
                 </div>
             </div>

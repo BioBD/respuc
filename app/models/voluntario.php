@@ -14,6 +14,29 @@ class Voluntario extends Model {
         }
     }
 
+    function alterar($dataIn) {
+        return $this->execSQL("updateVoluntario", null);
+    }
+
+    function excluir() {
+        return $this->execSQL("deleteVoluntario", null);
+    }
+
+      function consultar() {
+        return $this->execSQL("selectVoluntario", null);
+    }
+
+    function listar() {
+        return $this->execSQL("todosVoluntarios", null);
+    }
+
+    function imprimeErros($errors) {
+        /*** Teste para saber se tá funcionando todos os erros***/
+        foreach ($errors as $error) {
+            echo $error."\n<br>";
+        }
+    }
+
     function valida($data) {
 
         $errors = array();
@@ -192,17 +215,6 @@ class Voluntario extends Model {
         }
 
         return $errors;
-    }
-
-    function listar() {
-        return $this->execSQL("todosVoluntarios", null);
-    }
-
-    function imprimeErros($errors){
-        /*** Teste para saber se tá funcionando todos os erros***/
-        foreach ($errors as $error) {
-            echo $error."\n<br>";
-        }
     }
 
 }

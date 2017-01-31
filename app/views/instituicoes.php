@@ -1,5 +1,13 @@
-<div id="botoes">
-    <a href="index.php?page=cadastrar_instituicao"> <i class="fa fa-users">Nova Instituição</i></a>
+<div class="row form-group text-center" id="pequisar">
+    <form method="post" action="index.php?ctrl=instituicao&cmd=consultar">
+        <div class="row">
+            <input class="" type="search" name="Pesquisar Instituição">
+            <input class="btn btn-success" type="submit" value="Pesquisar">
+        </div>
+    </form>   
+</div>
+<div class="text-right" id="botoes">
+    <a class="btn btn-info" href="index.php?page=cadastrar_instituicao">Nova Instituição</a>
 </div>
 
 <div id="accordion">
@@ -27,6 +35,10 @@
                 <li>CEP:<?= $instituicao["cep"] ?></li>
                 <li>Telefone Fixo:<?= $instituicao["telefone_fixo"] ?></li>
                 <li>Celular:<?= $instituicao["celular"] ?></li>
+                <div class="row text-right">
+                    <a class="btn btn-warning" href="index.php?ctrl=instituicao&cmd=alterar">Editar</a>
+                    <a class="btn btn-danger" href="index.php?ctrl=instituicao&cmd=excluir">Excluir</a>
+                </div>
             </ul>
         </div>
     <?php } ?>

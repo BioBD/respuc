@@ -97,14 +97,8 @@
                                 <li><a href="index.php?ctrl=instituicao&cmd=listar">Instituições</a></li>
                                 <li><a href="index.php?page=atividades">Atividades</a></li>
                                 <li><a href="index.php?page=estagios">Estágios</a></li>
-                                <li class="search"><a href="#" class="open-search"><i class="fa fa-search"></i></a>
-                                    <form class="form-search">
-                                        <input type="search" placeholder="Search:"/>
-                                        <button type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </form>
-                                </li>
+                                <li><a href="index.php?page=doacao">Doação</a></li>
+                                <li><a href="index.php?page=contato">Contato</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->

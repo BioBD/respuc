@@ -160,6 +160,18 @@
                     <input class="form-control" type="text" name="celular" id="celular" class="col-md-12">
                 </div>
             </div>
+            </fieldset>
+            <fieldset class="col-md-12"><legend>Inscrição</legend>
+             <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="nome_instituicao">Nome da Instituição:</label><br>
+                    <select class="form-control" name="nome_instituicao" id="nome_instituicao">
+                        <option value="">Selecione</option>
+                        <option value="Museu da Favela">Museu da Favela</option>
+                    </select>
+                </div>
+            </div>
+            </fieldset>
             <div class="row">
                 <div class="col-md-12">
                     <input type="submit" class="btn btn-success" value="Enviar">
@@ -168,7 +180,6 @@
             <div class="col-md-12">
                 <br>
             </div>
-            </fieldset>
         </form>
     </div>
 </div>

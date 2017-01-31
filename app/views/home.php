@@ -448,7 +448,7 @@
                             <ul class="serv-links">
                                 <li><a href="#">Como Colaborar</a></li>
                                 <li><a href="#">O Valor de sua Ação</a></li>
-                                <li><a href="#">Seja um Doador</a></li>
+                                <li><a href="#">Faça sua Doação</a></li>
                             </ul>
                         </div>
                     </div>
@@ -463,7 +463,8 @@
                             <ul class="serv-links">
                                 <li><a href="#">Internos</a></li>
                                 <li><a href="#">Externos</a></li>
-                                <li><a href="#">Como ser um parceiro</a></li>
+                                <li><a href="#">Independentes</a></li>
+                                <li><a href="#">Como ser um Parceiro?</a></li>
                             </ul>
                         </div>
                     </div>
@@ -494,19 +495,25 @@
     <div class="container">
         <div class="statistic-box">
             <div class="row">
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="10000"></span></p>
                         <h2>Voluntários Ativos</h2>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="500"></span></p>
                         <h2>Parceiros</h2>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
+                    <div class="statistic-post">
+                        <p><span class="timer" data-from="0" data-to="200"></span></p>
+                        <h2>Atividades</h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
                     <div class="statistic-post">
                         <p><span class="timer" data-from="0" data-to="542"></span></p>
                         <h2>Pessoas Atendidas</h2>
@@ -660,7 +667,7 @@
 <section class="subcribe-section">
     <div class="container">
         <div class="title-section white">
-            <h1>Fique por dentro das novidades</h1>
+            <h1>Fique por dentro de nossas novidades</h1>
         </div>
         <form class="subscribe">
             <input type="text" name="name-subs" id="name-subs" placeholder="nome"/>

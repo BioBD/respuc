@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="title-section">
-                <h1>Cadastrar Novo Voluntário</h1>
+                <h1>Cadastrar Nova Instuição</h1>
             </div>
         </div>
         <form method="post" action="index.php?ctrl=instituicao&cmd=cadastrar">
@@ -101,11 +101,13 @@
                 <label for="celular">Celular:</label><br>
                 <input class="form-control" type="text" name="celular" id="celular" class="col-md-12">
             </div>
-            <div class="col-md-12">
-                <input type="submit" value="Salvar">
-            </div>
-            <div class="col-md-12">
-                <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <input class="btn btn-success" type="submit" value="Salvar">
+                </div>
+                <div class="col-md-12">
+                    <br>
+                </div>
             </div>
         </form>
     </div>

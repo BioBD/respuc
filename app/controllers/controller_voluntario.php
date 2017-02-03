@@ -13,7 +13,7 @@ class ControllerVoluntario extends Controller {
 
     function editar(){ //Exibe somente um voluntário especifico
         $voluntario = new Voluntario();
-        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_GET['matricula']);
+        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_GET['valor']);
         include "views/editar_voluntario.php";
     }
 
@@ -62,10 +62,11 @@ class ControllerVoluntario extends Controller {
         if(!isset($_POST) || empty($_POST)){
             /***** Erro: $_POST = vazia *******/
         } else{
-            if($voluntario->consultar($_POST['matricula']) == null){
+            $voluntarioConsultado = $voluntario->consultar($_POST['matricula']);
+            if($voluntarioConsultado  == null){
                 include "views/erro.php";
             } else{
-                $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_POST['matricula']);
+                $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntarioConsultado;
                 include "views/voluntarios.php";
             }
         }

@@ -1,27 +1,7 @@
 <!-- http://www.w3schools.com/jquerymobile/jquerymobile_form_basic.asp -->
 <?php
-$voluntarios = $_SESSION["ControllerVoluntario"]["voluntarios"];
-var_dump($voluntarios);
-die();
-/*
-$editar_voluntario['matricula'] = 1211971; 
-$editar_voluntario['nome'] = "Fernando Homem da Costa";
-$editar_voluntario['cpf'] = 123456789;
-$editar_voluntario['data_nascimento'] = "02051993";
-$editar_voluntario['genero'] = "Masculino";
-$editar_voluntario['email'] = "fernandohome@aluno.puc-rio.br";
-$editar_voluntario['nome_curso'] = "Engenharia da Computação";
-$editar_voluntario['periodo'] = 8;
-$editar_voluntario['idioma'] = "English";
-$editar_voluntario['rua'] = "teste";
-$editar_voluntario['complemento'] = "teste";
-$editar_voluntario['bairro'] = "teste";
-$editar_voluntario['cidade'] = "teste";
-$editar_voluntario['uf'] = "RJ";
-$editar_voluntario['cep'] = "22430000";
-$editar_voluntario['telefone_fixo'] = "11111111111";
-$editar_voluntario['celular'] = "11111111111";
-$editar_voluntario['nome']*/
+$editar_voluntarios = $_SESSION["ControllerVoluntario"]["voluntarios"];
+foreach($editar_voluntarios as $editar_voluntario){
 ?>
 <div class="container">
     <div class="row">
@@ -56,7 +36,7 @@ $editar_voluntario['nome']*/
                 <div class="col-xs-4 form-group">
                     <label for="genero">Gênero:</label><br>
                     <select class="form-control" name="genero" id="genero">
-                        <option value="">Selecione</option>
+                        <option value="<?php echo $editar_voluntario['genero']?>" selected ><?php echo $editar_voluntario['genero']?></option>
                         <option value="Masculino">Masculino</option>
                         <option value="Feminino">Feminino</option>
                         <option value="Outro">Outro</option>
@@ -73,14 +53,14 @@ $editar_voluntario['nome']*/
                 <div class="col-xs-4 form-group">
                     <label for="nome_curso">Nome do Curso:</label><br>
                     <select class="form-control" name="nome_curso" id="nome_curso">
-                        <option value="">Selecione</option>
+                        <option value="<?php echo $editar_voluntario['nome_curso']?>" selected ><?php echo $editar_voluntario['nome_curso']?></option>
                         <option value="Administração">Administração</option>
                     </select>
                 </div>
                 <div class="col-xs-4 form-group">
                     <label for="periodo">Período:</label><br>
                     <select class="form-control" name="periodo" id="periodo">
-                        <option value="">Selecione</option>
+                        <option value="<?php echo $editar_voluntario['periodo']?>" selected><?php echo $editar_voluntario['periodo']?></option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -105,7 +85,7 @@ $editar_voluntario['nome']*/
                 <div class="col-xs-4 form-group">
                     <label for="idioma">Idioma:</label><br>
                     <select class="form-control" name="idioma" id="idioma">
-                        <option value="">Selecione</option>
+                        <option value="<?php echo $editar_voluntario['idioma']?>" selected><?php echo $editar_voluntario['idioma']?></option>
                         <option value="English">English</option>
                         <option value="Español">Español</option>
                         <option value="Français">Français</option>
@@ -136,7 +116,7 @@ $editar_voluntario['nome']*/
                 <div class="col-md-4 form-group">
                     <label for="uf">UF:</label><br>
                     <select class="form-control" name="uf" id="uf">
-                        <option value="">Selecione</option>
+                        <option value="<?php echo $editar_voluntario['uf']?>"><?php echo $editar_voluntario['uf']?></option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -204,5 +184,6 @@ $editar_voluntario['nome']*/
                 <br>
             </div>
         </form>
+        <?php }?>
     </div>
 </div>

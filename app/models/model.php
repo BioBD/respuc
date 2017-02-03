@@ -49,7 +49,7 @@ class Model {
         } else {
             $sth = $conn->prepare($this->getSQL()[$nameSql]);
             $sth->execute($data);
-            return  $sth->fetchAll();
+            return $sth->fetchAll();
         }
     }
 

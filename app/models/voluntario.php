@@ -15,7 +15,13 @@ class Voluntario extends Model {
     }
 
     function alterar($dataIn) {
-        return $this->execSQL("updateVoluntario", null);
+        $dataOut = recuperaForm($dataIn);
+        $errors = $this->valida($dataOut);
+        if ($errors == null) {
+            return $this->execSQL("updateVoluntario", $dataOut);
+        } else {
+            $this->imprimeErros($errors);
+        }
     }
 
     function excluir($dataIn) {

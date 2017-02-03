@@ -18,12 +18,12 @@ class Voluntario extends Model {
         return $this->execSQL("updateVoluntario", null);
     }
 
-    function excluir() {
-        return $this->execSQL("deleteVoluntario", null);
+    function excluir($dataIn) {
+        return $this->execSQL("deleteVoluntario", array($dataIn));
     }
 
-      function consultar() {
-        return $this->execSQL("selectVoluntario", null);
+      function consultar($dataIn) {
+        return $this->execSQL("selectVoluntario", array($dataIn));
     }
 
     function listar() {

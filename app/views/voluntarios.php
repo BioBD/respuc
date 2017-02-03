@@ -1,7 +1,7 @@
 <div class="row form-group text-center" id="pequisar">
     <form method="post" action="index.php?ctrl=voluntario&cmd=consultar">
         <div class="row">
-            <input class="" type="search" name="Pesquisar Voluntário">
+            <input class="" type="search" name="matricula" type="text" placeholder="Pesquisar por matrícula..">
             <input class="btn btn-success" type="submit" value="Pesquisar">
         </div>
     </form>   
@@ -36,8 +36,8 @@
                 <li>Telefone Fixo:<?= $voluntario["telefone_fixo"] ?></li>
                 <li>Celular:<?= $voluntario["celular"] ?></li>
                 <div class="row text-right" id="">
-                    <a class="btn btn-warning" href="index.php?ctrl=voluntario&cmd=alterar">Editar</a>
-                    <a class="btn btn-danger" href="index.php?ctrl=voluntario&cmd=excluir">Excluir</a>
+                    <a class="btn btn-warning" href="index.php?ctrl=voluntario&cmd=editar&valor=<?php echo $voluntario['matricula']?>">Editar</a>
+                    <a class="btn btn-danger" href="index.php?ctrl=voluntario&cmd=editar&valor=<?php echo $voluntario['matricula']?>">Excluir</a>
                 </div>
             </ul>
         </div>

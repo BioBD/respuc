@@ -13,7 +13,7 @@ class ControllerVoluntario extends Controller {
 
     function editar(){ //Exibe somente um voluntário especifico
         $voluntario = new Voluntario();
-        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_GET['valor']);
+        $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_GET['matricula']);
         include "views/editar_voluntario.php";
     }
 
@@ -65,6 +65,7 @@ class ControllerVoluntario extends Controller {
             if($voluntario->consultar($_POST['matricula']) == null){
                 include "views/erro.php";
             } else{
+                $_SESSION["ControllerVoluntario"]["voluntarios"] = $voluntario->consultar($_POST['matricula']);
                 include "views/voluntarios.php";
             }
         }

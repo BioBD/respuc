@@ -1,7 +1,5 @@
 <?php
- 
-require_once(APPPATH.'core/ModelException.php');
- 
+  
  // RESPUC/NEAM Model -> RN_Model
 class RN_Model extends CI_Model {
     protected $Logger;

@@ -1,8 +1,6 @@
 <?php
 
-include_once APPPATH . 'core/personuser.php';
-include_once APPPATH . 'core/event.php';
-include_once APPPATH . 'core/donation.php';
+include_once APPPATH . 'core/person.php';
 include_once APPPATH . 'libraries/logger.php';
 include_once APPPATH . 'libraries/csv.php';
 

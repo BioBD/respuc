@@ -10,7 +10,7 @@
 		public static function createPersonObject($resultRow){
 			return new Person(
 				$resultRow->person_id, 
-				$resultRow->fullname,
+				$resultRow->fullname
 			);
 		}
 

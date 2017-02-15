@@ -8,6 +8,7 @@ class Welcome extends RN_Controller {
 
     public function __construct() {
     	//Aqui é necessário inicializar todos os modelos usados nesse controlador
+        parent::__construct();
 
         $this->load->model('person_model');
 

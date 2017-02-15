@@ -4,8 +4,8 @@
         echo "<br>";
         echo "Mostrar a pessoa:";
         var_dump($person);
-        echo "ID: ". str($person->getPersonId());
-        echo "Nome: ". str($person->getFullname());
+        echo "ID: {$person->getPersonId()}";
+        echo "Nome: {$person->getFullname()}";
         echo "<br>";
     }
 ?>

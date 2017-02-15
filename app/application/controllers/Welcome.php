@@ -19,28 +19,28 @@ class Welcome extends RN_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('welcome/welcome_message');
 	}
 
 	public function getPerson()
 	{
 
 		$person_id = $this->input->get('person_id');
-		$data["person"] = $this->person_model->getPerson();
-		$this->load->view('show_person',$data);
+		$data["person"] = $this->person_model->getPerson($person_id);
+		$this->load->view('welcome/show_person',$data);
 	}
 
 	public function getPersons()
 	{
 		$data["persons"] = $this->person_model->getPersons();
-		$this->load->view('show_persons',$data);
+		$this->load->view('welcome/show_persons',$data);
 	}
 
 	public function insertPerson()
 	{
-		$name = $this->input->get('name');
+		$person_name = $this->input->get('name');
 		$data["id"] = $this->person_model->insertNewPerson($person_name);
-		$this->load->view('show_id',$data);
+		$this->load->view('welcome/show_id',$data);
 	}
 
 

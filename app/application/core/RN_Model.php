@@ -3,7 +3,7 @@
 require_once(APPPATH.'core/ModelException.php');
  
  // RESPUC/NEAM Model -> RN_Model
-class CK_Model extends CI_Model {
+class RN_Model extends CI_Model {
     protected $Logger;
  
     protected $errorPrefix= 'G';

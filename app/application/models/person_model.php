@@ -1,9 +1,9 @@
 <?php
 
 require_once APPPATH . 'core/RN_Model.php';
-require_once APPPATH . 'core/Person.php';
+require_once APPPATH . 'core/person.php';
 
-class person_model extends RN_Model {
+class Person_model extends RN_Model {
 
     public function __construct() {
         parent::__construct();

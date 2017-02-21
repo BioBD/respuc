@@ -11,12 +11,10 @@ class Instituicao_model extends RN_Model {
 
     public function insertNewInstituicao($dataIn) {
         $this->Logger->info("Running: " . __METHOD__);
-
-        $sql = 'INSERT INTO instituicao (nome, telefone) VALUES (?,?)';
-        $returnId = $this->execute($this->db, $sql, array($dataIn['nome'], $dataIn['telefone']));
-        if ($returnId)
-            return $returnId;
-
+        $instituicao = Instituicao::createObjectInstituicao($dataIn);
+        if(isset($instituicao)){
+			$this->execute($this->db, $instituicao->getSqlInsert(), $instituicao->getDataToSave());
+   		}
         return false;
     }
 }

@@ -11,19 +11,21 @@ class Instituicao {
 	protected $telefone_resposanvel;
 	/*Links fica fora por enquanto*/
 
-	public function __construct(){
+	public function __construct($nome, $telefone){
 		$this->nome = $nome;
 		$this->telefone = $telefone;
-		$this->celular = $celular;
-		$this->email = $email;
-		$this->vinculo = $vinculo;
-		$this->nome_responsavel = $nome_responsavel;
-		$this->email_responsavel = $email_responsavel;
-		$this->telefone_resposanvel = $telefone_resposanvel;
 	}
 
 	public static function createObjectInstituicao($resultRow){
-		return new Instituicao($nome, $telefone, $celular, $email, $vinculo, $nome_responsavel, $email_responsavel, $telefone_resposanvel);
+		return new Instituicao($resultRow['nome'], $resultRow['telefone']);
+	}
+
+	public function getDataToSave(){
+		return array($this->getNome(), $this->getTelefone());
+	}
+
+	public function getSqlToInsert(){
+		return 'INSERT INTO instituicao (nome, telefone) VALUES (?,?)';
 	}
 
 	public function getNome(){

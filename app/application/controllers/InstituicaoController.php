@@ -15,7 +15,6 @@ class InstituicaoController extends RN_Controller {
 
         $this->instituicao_model->setLogger($this->Logger);
 
-
 	}
 
 	public function inserir()

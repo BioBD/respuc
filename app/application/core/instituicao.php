@@ -120,6 +120,10 @@ class Instituicao {
             return true;
         }
 
+        foreach ($errors as $error) {
+        	echo $error;
+        }
+        die();
         return false;
     }
 

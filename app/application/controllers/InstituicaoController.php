@@ -24,8 +24,12 @@ class InstituicaoController extends RN_Controller {
 
 	public function salvar(){
 		$dataIn = $this->input->post();
-		$data["id"] = $this->instituicao_model->insertNewInstituicao($dataIn);
-		$this->loadView('welcome/show_id',$data);
+		$return = $this->instituicao_model->insertNewInstituicao($dataIn);
+		$this->loadView('instituicao/cadastrosucesso');
+	}
+
+	public function listar(){
+		
 	}
 }
 

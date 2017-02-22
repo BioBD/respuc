@@ -35,29 +35,18 @@ CONSTRAINT pk_nome PRIMARY KEY (nome),
 CONSTRAINT ck_qtd_alunos CHECK (qtd_alunos > 0)
 );
 
-drop TABLE instituicoes;
+drop TABLE instituicao;
 
-CREATE TABLE instituicoes(
-razao_social  VARCHAR(150) Not Null,
-nome_fantasia VARCHAR(100) Not Null,
-ano_de_fundacao CHAR(4) Not Null,
-site VARCHAR(60),
-vinculo VARCHAR(150) Not Null,
-qtd_membros  integer Not Null,
-email_instituicao CHAR(60) Not Null,
-relacoes_publicas VARCHAR(50),
-email_relacoes_publicas VARCHAR(60),
-rua VARCHAR(60) Not Null,
-complemento CHAR(15) Not Null,
-bairro VARCHAR(20) Not Null,
-cidade VARCHAR(20) Not Null,
-uf VARCHAR(2) Not Null,
-cep CHAR(9) Not Null,
-telefone_fixo CHAR(14) Not Null,
-celular  CHAR(14),
-
-CONSTRAINT chk_qtd_membros CHECK((qtd_membros > 0)),
-CONSTRAINT pk_razaosocial PRIMARY KEY (razao_social)
+CREATE TABLE instituicao(
+    nome character varying(1024) NOT NULL,
+    telefone character varying(16) NOT NULL,
+    celular character varying(16) NOT NULL,
+    email character varying(1024) NOT NULL,
+    vinculo character varying(1024) NOT NULL,
+    nome_responsavel character varying(1024) NOT NULL,
+    email_responsavel character varying(1024) NOT NULL,
+    telefone_responsavel character varying(16) NOT NULL,
+    CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
 );
 
 drop TABLE escola;

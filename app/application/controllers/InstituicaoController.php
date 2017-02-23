@@ -17,19 +17,31 @@ class InstituicaoController extends RN_Controller {
 
 	}
 
-	public function inserir()
+	public function insert()
 	{
-		$this->loadView('instituicao/inserir');
+		$this->loadView('instituicao/insert');
 	}
 
-	public function salvar(){
+	public function save(){
 		$dataIn = $this->input->post();
 		$return = $this->instituicao_model->insertNewInstituicao($dataIn);
 		$this->loadView('instituicao/cadastrosucesso');
 	}
 
-	public function listar(){
+	public function list(){
 		
+	}
+
+	public function update()
+	{
+		$this->loadView('instituicao/update');
+	}
+
+	public function delete()
+	{
+		$dataIn = $this->input->post();
+		$return = $this->instituicao_model->deleteInstituicao($dataIn);
+		$this->loadView('instituicao/excluidosucesso');
 	}
 }
 

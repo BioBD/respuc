@@ -39,6 +39,17 @@ class Instituicao {
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
 	}
 
+	public function getSqlToUpdate(){
+		return 'UPDATE instituicao
+	SET nome=?, telefone=?, celular=?, email=?, vinculo=?, nome_responsavel=?, email_responsavel=?, telefone_responsavel
+	WHERE <condition>;';
+	}
+
+	public function getSqlToDelete(){
+		return 'DELETE FROM instituicao
+	WHERE <condition>;';
+
+	}
 	public function getNome(){
 		return $this->nome;
 	}

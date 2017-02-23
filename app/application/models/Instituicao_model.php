@@ -17,5 +17,24 @@ class Instituicao_model extends RN_Model {
    		}
         return false;
     }
+    public function updateInstituicao($info){
+        $this->Logger->info("Running: " . __METHOD__);
+        $instituicao = Instituicao::createObjectInstituicao($info);
+        if(isset($instituicao)){
+            $this->execute($this->db, $instituicao->getSqlToUpdate(), $instituicao->getDataToSave());
+        }
+        return false;
+    }
+    
+    public function deleteInstituicao($info){
+        $this->Logger->info("Running: " . __METHOD__);
+        $instituicao = Instituicao::createObjectInstituicao($info);
+        if(isset($instituicao)){
+            $this->execute($this->db, $instituicao->getSqlToDelete(), $instituicao->getName());
+        }
+        return false;
+    }
+
+    
 }
 ?>

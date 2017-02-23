@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<form method="post" action="salvar" enctype="multipart/form-data">
+<form method="post" action="save" enctype="multipart/form-data">
 	<br>
  	Nome:
   <input type="text" name="nome"><br><br>

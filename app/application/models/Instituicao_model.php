@@ -35,6 +35,22 @@ class Instituicao_model extends RN_Model {
         return false;
     }
 
-    
+    public function selectOneInstituicao($dataIn){
+        $this->Logger->info("Running: " . __METHOD__);
+        $result = $this->executeRow($this->db, Instituicao::getSqlToSelect(), $dataIn);
+        if ($result)
+            return Person::createPersonObject($result);
+        return null;
+        
+    }
+
+    public function selectAllInstituicao(){
+        $this->Logger->info("Running: " . __METHOD__);
+        $result = $this->executeRows($this->db, Instituicao::getSqlToSelectAll());
+        $return_array = array();
+        foreach($result as $row)
+            $return_array[] = Instituicao::createObjectInstituicao(json_decode(json_encode($row), true));
+        return $return_array;
+    }    
 }
 ?>

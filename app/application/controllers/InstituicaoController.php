@@ -29,11 +29,22 @@ class InstituicaoController extends RN_Controller {
 	}
 
 	public function list(){
-		
+		$return = $this->instituicao_model->selectAllInstituicao();
+		foreach ($return as $object) {
+			echo $object->getNome()."<br>";
+			echo $object->getTelefone()."<br>";
+			echo $object->getCelular()."<br>";
+			echo $object->getEmail()."<br>";
+			echo $object->getVinculo()."<br>";
+			echo $object->getNomeResponsavel()."<br>";
+			echo $object->getEmailResponsavel()."<br>";
+			echo $object->getTelefoneResponsavel()."<br>";
+		}
+		die();
+		$this->loadView('instituicao/listall');
 	}
 
-	public function update()
-	{
+	public function update(){
 		$this->loadView('instituicao/update');
 	}
 

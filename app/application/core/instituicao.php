@@ -8,18 +8,18 @@ class Instituicao {
 	protected $vinculo;
 	protected $nome_responsavel;
 	protected $email_responsavel;
-	protected $telefone_resposanvel;
+	protected $telefone_responsavel;
 	/*Links fica fora por enquanto*/
 
-	public function __construct($nome, $telefone, $celular, $email, $vinculo, $nome_responsavel, $email_responsavel, $telefone_resposanvel){
-		$this->nome = $nome;
-		$this->telefone = $telefone;
-		$this->celular = $celular;
-		$this->email = $email;
-		$this->vinculo = $vinculo;
-		$this->nome_responsavel = $nome_responsavel;
-		$this->email_responsavel = $email_responsavel;
-		$this->telefone_resposanvel = $telefone_resposanvel;
+	public function __construct($nome, $telefone, $celular, $email, $vinculo, $nome_responsavel, $email_responsavel, $telefone_responsavel){
+		$this->nome = trim(strip_tags($nome));
+		$this->telefone = trim(strip_tags($telefone));
+		$this->celular = trim(strip_tags($celular));
+		$this->email = trim(strip_tags($email));
+		$this->vinculo = trim(strip_tags($vinculo));
+		$this->nome_responsavel = trim(strip_tags($nome_responsavel));
+		$this->email_responsavel = trim(strip_tags($email_responsavel));
+		$this->telefone_resposanvel = trim(strip_tags($telefone_responsavel));
 	}
 
 	public static function createObjectInstituicao($resultRow){
@@ -42,14 +42,23 @@ class Instituicao {
 	public function getSqlToUpdate(){
 		return 'UPDATE instituicao
 	SET nome=?, telefone=?, celular=?, email=?, vinculo=?, nome_responsavel=?, email_responsavel=?, telefone_responsavel
-	WHERE <condition>;';
+	WHERE nome=?;';
 	}
 
 	public function getSqlToDelete(){
 		return 'DELETE FROM instituicao
-	WHERE <condition>;';
+	WHERE nome=?;';
 
 	}
+
+	public function getSqlToSelect(){
+		return 'SELECT * FROM instituicao WHERE nome=?;';
+	}
+
+	public static function getSqlToSelectAll(){
+		return 'SELECT * FROM instituicao;';
+	}
+
 	public function getNome(){
 		return $this->nome;
 	}

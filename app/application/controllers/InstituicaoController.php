@@ -48,8 +48,7 @@ class InstituicaoController extends RN_Controller {
 		$this->loadView('instituicao/update');
 	}
 
-	public function delete()
-	{
+	public function delete(){
 		$dataIn = $this->input->post();
 		$return = $this->instituicao_model->deleteInstituicao($dataIn);
 		$this->loadView('instituicao/excluidosucesso');

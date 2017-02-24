@@ -39,7 +39,7 @@ class Instituicao_model extends RN_Model {
         $this->Logger->info("Running: " . __METHOD__);
         $result = $this->executeRow($this->db, Instituicao::getSqlToSelect(), $dataIn);
         if ($result)
-            return Person::createPersonObject($result);
+            return Instituicao::createObjectInstituicao($result);
         return null;
         
     }

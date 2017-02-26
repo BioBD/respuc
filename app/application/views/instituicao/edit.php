@@ -1,0 +1,23 @@
+<?php
+?>
+
+<form method="post" action="update" enctype="multipart/form-data">
+	<br>
+ 	Nome:
+  <input type="text" name="nome" value="<?php echo $instituicao->getNome()?>"><br><br>
+	Telefone:
+  <input type="text" name="telefone" value="<?php echo $instituicao->getTelefone()?>"><br><br>
+	Celular:
+  <input type="text" name="celular" value="<?php echo $instituicao->getCelular()?>"><br><br>
+	E-mail:
+  <input type="text" name="email" value="<?php echo $instituicao->getVinculo()?>"><br><br>
+	Vínculo:
+  <input type="text" name="vinculo" value="<?php echo $instituicao->getNomeResponsavel()?>"><br><br>
+	Nome do Responsável:
+  <input type="text" name="nome_responsavel" value="<?php echo $instituicao->getEmailResponsavel()?>"><br><br>
+	E-mail do Responsável:
+  <input type="text" name="email_responsavel" value="<?php echo $instituicao->getTelefoneResponsavel()?>"><br><br>
+  	Telefone do Responsável:
+  <input type="text" name="telefone_responsavel" value=""><br><br>
+  <input type="submit" value="Submit">
+</form>

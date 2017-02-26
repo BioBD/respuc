@@ -19,7 +19,7 @@ class Instituicao {
 		$this->vinculo = trim(strip_tags($vinculo));
 		$this->nome_responsavel = trim(strip_tags($nome_responsavel));
 		$this->email_responsavel = trim(strip_tags($email_responsavel));
-		$this->telefone_resposanvel = trim(strip_tags($telefone_responsavel));
+		$this->telefone_responsavel = trim(strip_tags($telefone_responsavel));
 	}
 
 	public static function createObjectInstituicao($resultRow){
@@ -51,7 +51,7 @@ class Instituicao {
 
 	}
 
-	public function getSqlToSelect(){
+	public static function getSqlToSelect(){
 		return 'SELECT * FROM instituicao WHERE nome=?;';
 	}
 
@@ -116,7 +116,7 @@ class Instituicao {
 	}
 
 	public function getTelefoneResponsavel(){
-		return $this->telefone_resposanvel;
+		return $this->telefone_responsavel;
 	}
 
 	public function setTelefoneResponsavel($newTelephoneResponavel){
@@ -132,7 +132,7 @@ class Instituicao {
         //$errors = validaWebsite($data["website"], $errors);
         $errors = self::validaVinculo($data['vinculo'], $errors);
         $errors = self::validaEmail($data['email'], $errors);
-        $errors = self::validaNomeResponavel($data['nome_responsavel'], $errors);
+        $errors = self::validaNomeResponsavel($data['nome_responsavel'], $errors);
         $errors = self::validaEmailResponsavel($data['email_responsavel'], $errors);
         $errors = self::validaTelefoneResponsavel($data['telefone_responsavel'], $errors);
 
@@ -198,7 +198,7 @@ class Instituicao {
         return $errors;
     }
 
-	private static function validaNomeResponavel($data, $errors){
+	private static function validaNomeResponsavel($data, $errors){
         if (empty($data)) {
             //tratar erro para campo relacoes publicas vazio.
             $errors['nome_responsavel'] = "O campo Nome do Responsável não pode estar vazio!";

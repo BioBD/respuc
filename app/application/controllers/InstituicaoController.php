@@ -17,9 +17,16 @@ class InstituicaoController extends RN_Controller {
 
 	}
 
-	public function insert()
-	{
+	public function insert(){
 		$this->loadView('instituicao/insert');
+	}
+
+	public function search(){
+		$this->loadView('instituicao/search');
+	}
+
+	public function edit(){
+		$this->loadView('instituicao/edit');
 	}
 
 	public function save(){
@@ -28,24 +35,20 @@ class InstituicaoController extends RN_Controller {
 		$this->loadView('instituicao/cadastrosucesso');
 	}
 
-	public function list(){
-		$return = $this->instituicao_model->selectAllInstituicao();
-		foreach ($return as $object) {
-			echo $object->getNome()."<br>";
-			echo $object->getTelefone()."<br>";
-			echo $object->getCelular()."<br>";
-			echo $object->getEmail()."<br>";
-			echo $object->getVinculo()."<br>";
-			echo $object->getNomeResponsavel()."<br>";
-			echo $object->getEmailResponsavel()."<br>";
-			echo $object->getTelefoneResponsavel()."<br>";
-		}
-		die();
-		$this->loadView('instituicao/listall');
+	public function update(){
+		$dataIn = $this->input->post();
+		$return = $this->instituicao_model->updateInstituicao($dataIn);
 	}
 
-	public function update(){
-		$this->loadView('instituicao/update');
+	public function list(){
+		$data['instituicoes'] = $this->instituicao_model->selectAllInstituicao();
+		$this->loadView('instituicao/show_instituicoes', $data);
+	}
+
+	public function find(){
+		$dataIn = $this->input->post();
+		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($dataIn);
+		$this->loadView('instituicao/show_instituicao', $data);
 	}
 
 	public function delete(){

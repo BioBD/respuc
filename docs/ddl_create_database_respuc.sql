@@ -1,3 +1,81 @@
+drop TABLE aprendiz;
+
+CREATE TABLE aprendiz(
+CPF INTEGER Not Null,
+RG INTEGER Not Null,
+Naturalidade CHAR(50) Not Null,
+Email VARCHAR(60) Not Null,
+Nome VARCHAR(70) Not Null,
+Data_Nascimento DATE Not Null,
+Telefone INTEGER Not Null,
+Celular INTEGER Not Null,
+Endereco VARCHAR(100) Not Null,
+Numero INTEGER Not Null,
+Complemento CHAR(50) Not Null,
+Bairro VARCHAR(20) Not Null,
+Cidade VARCHAR(20) Not Null,
+CEP CHAR(9) Not Null,
+
+CONSTRAINT aprendiz_chk_cpf CHECK(CPF > 0),
+CONSTRAINT aprendiz_chk_rg CHECK(RG > 0),
+CONSTRAINT aprendiz_chk_naturalidade CHECK(length(trim(Naturalidade)) > 0),
+CONSTRAINT aprendiz_chk_email CHECK(length(trim(Email)) > 0),
+CONSTRAINT aprendiz_chk_nome CHECK(length(trim(Nome)) > 0),
+CONSTRAINT aprendiz_chk_telefone CHECK(Telefone > 0),
+CONSTRAINT aprendiz_chk_celular CHECK(Celular > 0),
+CONSTRAINT aprendiz_chk_endereco CHECK(length(trim(Endereco)) > 0),
+CONSTRAINT aprendiz_chk_numero CHECK(Numero > 0),
+CONSTRAINT aprendiz_chk_complemento CHECK(length(trim(Complemento)) > 0),
+CONSTRAINT aprendiz_chk_bairro CHECK(length(trim(Bairro)) > 0),
+CONSTRAINT aprendiz_chk_cidade CHECK(length(trim(Cidade)) > 0),
+CONSTRAINT aprendiz_chk_cep CHECK(length(trim(CEP)) = 9),
+CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
+);
+
+drop TABLE evento;
+
+CREATE TABLE evento (
+   Nome        char(20)    Not Null,
+   Presencas   integer     Null,
+   DataEvento  date        Not Null,
+   Descricao   char(200)   Null,
+   CONSTRAINT evento_pk PRIMARY KEY (Nome, DataEvento),
+   CONSTRAINT evento_chk_nome CHECK (length(trim(Nome)) > 0),
+   CONSTRAINT evento_chk_presencas CHECK (Presencas > 0),
+   CONSTRAINT evento_chk_dataevento CHECK (isfinite(DataEvento)),
+   CONSTRAINT evento_chk_descricao CHECK ((Descricao IS NULL) OR (length(trim(Descricao)) > 0))
+)
+
+drop TABLE dificuldade;
+
+CREATE TABLE dificuldade (
+   Materia     char(20)    Not Null,
+   CPF         integer     Not Null,
+   CONSTRAINT dificuldade_pk PRIMARY KEY (CPF, Materia),
+   CONSTRAINT dificuldade_chk_cpf CHECK (CPF > 0),
+   CONSTRAINT dificuldade_materia CHECK (length(trim(Materia)) > 0)
+)
+
+drop TABLE apoio;
+
+CREATE TABLE apoio (
+   Materia     char(20)    Not Null,
+   CPF         integer     Not Null,
+   CONSTRAINT apoio_pk PRIMARY KEY (CPF, Materia),
+   CONSTRAINT apoio_chk_cpf CHECK (CPF > 0),
+   CONSTRAINT apoio_materia CHECK (length(trim(Materia)) > 0)
+)
+
+drop TABLE escola;
+
+CREATE TABLE escola(
+   nome  VARCHAR(150) Not Null,
+   telefone_contato INTEGER Not Null,
+
+   CONSTRAINT chk_telefone_contato CHECK((telefone_contato > 0)),
+   CONSTRAINT pk_escola_nome PRIMARY KEY (nome)
+);
+
 drop TABLE voluntarios;
 
 CREATE TABLE voluntarios( 
@@ -35,9 +113,9 @@ CONSTRAINT pk_nome PRIMARY KEY (nome),
 CONSTRAINT ck_qtd_alunos CHECK (qtd_alunos > 0)
 );
 
-drop TABLE instituicoes;
+drop TABLE instituicao;
 
-CREATE TABLE instituicoes(
+CREATE TABLE instituicao(
 razao_social  VARCHAR(150) Not Null,
 nome_fantasia VARCHAR(100) Not Null,
 ano_de_fundacao CHAR(4) Not Null,
@@ -58,50 +136,6 @@ celular  CHAR(14),
 
 CONSTRAINT chk_qtd_membros CHECK((qtd_membros > 0)),
 CONSTRAINT pk_razaosocial PRIMARY KEY (razao_social)
-);
-
-drop TABLE escola;
-
-CREATE TABLE escola(
-nome  VARCHAR(150) Not Null,
-telefone_contato INTEGER Not Null,
-
-CONSTRAINT chk_telefone_contato CHECK((telefone_contato > 0)),
-CONSTRAINT pk_escola_nome PRIMARY KEY (nome)
-);
-
-drop TABLE aprendiz;
-
-CREATE TABLE aprendiz(
-CPF INTEGER Not Null,
-RG INTEGER Not Null,
-Naturalidade CHAR(50) Not Null,
-Email VARCHAR(60) Not Null,
-Nome VARCHAR(70) Not Null,
-Data_Nascimento DATE Not Null,
-Telefone INTEGER Not Null,
-Celular INTEGER Not Null,
-Endereco VARCHAR(100) Not Null,
-Numero INTEGER Not Null,
-Complemento CHAR(50) Not Null,
-Bairro VARCHAR(20) Not Null,
-Cidade VARCHAR(20) Not Null,
-CEP CHAR(9) Not Null,
-
-CONSTRAINT chk_cpf CHECK((CPF > 0)),
-CONSTRAINT chk_rg CHECK((RG > 0)),
-CONSTRAINT chk_naturalidade CHECK((length(trim(Naturalidade)) > 0)),
-CONSTRAINT chk_email CHECK((length(trim(Email)) > 0)),
-CONSTRAINT chk_nome CHECK((length(trim(Nome)) > 0)),
-CONSTRAINT chk_telefone CHECK((Telefone > 0)),
-CONSTRAINT chk_celular CHECK((Celular > 0)),
-CONSTRAINT chk_endereco CHECK((length(trim(Endereco)) > 0)),
-CONSTRAINT chk_numero CHECK((Numero > 0)),
-CONSTRAINT chk_complemento CHECK((length(trim(Complemento)) > 0)),
-CONSTRAINT chk_bairro CHECK((length(trim(Bairro)) > 0)),
-CONSTRAINT chk_cidade CHECK((length(trim(Cidade)) > 0)),
-CONSTRAINT chk_cep CHECK((length(trim(CEP)) = 9)),
-CONSTRAINT pk_cpf PRIMARY KEY (CPF)
 );
 
 

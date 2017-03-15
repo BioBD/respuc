@@ -71,45 +71,44 @@ class Escola
 	{
 		$this->telefone = $newTelephone;
 	}
+
+	private static function valida ($data) 
+	{
+	    $errors = array();
+	    $errors = self::validaNome($data['nome'], $errors);
+	    $errors = self::validaTelefone($data['telefone'], $errors);
+
+	    if($errors == null)
+	    {
+	        return true;
+	    }
+
+	    foreach ($errors as $error) 
+	    {
+	    	echo $error;
+	    }
+	    die();
+	    return false;
+	}
+
+	private static function validaNome($data, $errors)
+	{
+	    if (empty($data)) 
+	    {
+	        //tratar erro para campo nome vazio.
+	        $errors['nome'] = "O campo Nome não pode estar vazio!";
+	    } 
+	    return $errors;
+	}
+
+	private static function validaTelefone($data, $errors)
+	{
+	    if (empty($data)) 
+	    {
+	        //tratar erro para campo vinculo vazio.
+	        $errors['telefone'] = "O campo Telefone não pode estar vazio!";
+	    } 
+	    return $errors;
+	}
 }
-
-private static function valida ($data) 
-{
-    $errors = array();
-    $errors = self::validaNome($data['nome'], $errors);
-    $errors = self::validaTelefone($data['telefone'], $errors);
-
-    if($errors == null)
-    {
-        return true;
-    }
-
-    foreach ($errors as $error) 
-    {
-    	echo $error;
-    }
-    die();
-    return false;
-}
-
-private static function validaNome($data, $errors)
-{
-    if (empty($data)) 
-    {
-        //tratar erro para campo nome vazio.
-        $errors['nome'] = "O campo Nome não pode estar vazio!";
-    } 
-    return $errors;
-}
-
-private static function validaTelefone($data, $errors)
-{
-    if (empty($data)) 
-    {
-        //tratar erro para campo vinculo vazio.
-        $errors['telefone'] = "O campo Telefone não pode estar vazio!";
-    } 
-    return $errors;
-}
-
 ?>

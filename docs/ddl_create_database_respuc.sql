@@ -113,6 +113,28 @@ CONSTRAINT pk_nome PRIMARY KEY (nome),
 CONSTRAINT ck_qtd_alunos CHECK (qtd_alunos > 0)
 );
 
+drop TABLE estagio;
+
+CREATE TABLE estagio(
+   cpf INTEGER Not Null,
+   estagio VARCHAR(50) Not Null,
+   
+   CONSTRAINT pk_estagio PRIMARY KEY (cpf, estagio),
+   CONSTRAINT ck_cpf CHECK(cpf > 0),
+   CONSTRAINT ck_estagio CHECK (length(trim(estagio)) > 0)
+)
+
+drop TABLE trabalho
+
+CREATE TABLE trabalho(
+   cpf INTEGER Not Null,
+   trabalho VARCHAR(50),
+   
+   CONSTRAINT pk_estagio PRIMARY KEY (cpf, trabalho),
+   CONSTRAINT ck_cpf CHECK(cpf > 0),
+   CONSTRAINT ck_estagio CHECK (length(trim(trabalho)) > 0)
+)
+
 drop TABLE instituicao;
 
 CREATE TABLE instituicao(

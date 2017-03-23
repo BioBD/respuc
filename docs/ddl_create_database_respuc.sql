@@ -32,6 +32,40 @@ CONSTRAINT aprendiz_chk_cep CHECK(length(trim(CEP)) = 9),
 CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
 );
 
+drop TABLE aluno;
+
+CREATE TABLE aluno(
+   CPF INTEGER NOT NULL,
+   RG INTEGER NOT NULL,
+   Naturalidade CHAR(50) NOT NULL,
+   Email VARCHAR(60) NOT NULL,
+   Nome VARCHAR(70) NOT NULL,
+   Data_Nascimento DATE NOT NULL,
+   Telefone INTEGER NOT NULL,
+   Celular INTEGER NOT NULL,
+   Endereco VARCHAR(100) NOT NULL,
+   Numero INTEGER NOT NULL,
+   Complemento CHAR(50) NOT NULL,
+   Bairro VARCHAR(20) NOT NULL,
+   Cidade VARCHAR(20) NOT NULL,
+   CEP CHAR(9) NOT NULL,
+   
+   CONSTRAINT aluno_chk_cpf CHECK(CPF > 0),
+   CONSTRAINT aluno_chk_rg CHECK(RG > 0),
+   CONSTRAINT aluno_chk_naturalidade CHECK(length(trim(Naturalidade)) > 0),
+   CONSTRAINT aluno_chk_email CHECK(length(trim(Email)) > 0),
+   CONSTRAINT aluno_chk_nome CHECK(length(trim(Nome)) > 0),
+   CONSTRAINT aluno_chk_telefone CHECK(Telefone > 0),
+   CONSTRAINT aluno_chk_celular CHECK(Celular > 0),
+   CONSTRAINT aluno_chk_endereco CHECK(length(trim(Endereco)) > 0),
+   CONSTRAINT aluno_chk_numero CHECK(Numero > 0),
+   CONSTRAINT aluno_chk_complemento CHECK(length(trim(Complemento)) > 0),
+   CONSTRAINT aluno_chk_bairro CHECK(length(trim(Bairro)) > 0),
+   CONSTRAINT aluno_chk_cidade CHECK(length(trim(Cidade)) > 0),
+   CONSTRAINT aluno_chk_cep CHECK(length(trim(CEP)) = 9),
+   CONSTRAINT aluno_pk PRIMARY KEY (CPF)
+)
+
 drop TABLE evento;
 
 CREATE TABLE evento (
@@ -130,7 +164,7 @@ CREATE TABLE trabalho(
    cpf INTEGER Not Null,
    trabalho VARCHAR(50),
    
-   CONSTRAINT pk_estagio PRIMARY KEY (cpf, trabalho),
+   CONSTRAINT pk_trabalho PRIMARY KEY (cpf, trabalho),
    CONSTRAINT ck_cpf CHECK(cpf > 0),
    CONSTRAINT ck_estagio CHECK (length(trim(trabalho)) > 0)
 )

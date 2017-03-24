@@ -26,13 +26,10 @@ class Instituicao_model extends RN_Model {
         return false;
     }
     
-    public function deleteInstituicao($info){
+    public function deleteInstituicao($nome){
         $this->Logger->info("Running: " . __METHOD__);
-        print_r($info);
-        die();
-        $instituicao = Instituicao::createObjectInstituicao($info);
-        if(isset($instituicao)){
-            $this->execute($this->db, $instituicao->getSqlToDelete(), $instituicao->getName());
+        if(isset($nome)){
+            return $this->execute($this->db, $instituicao->getSqlToDelete(), $nome);
         }
         return false;
     }

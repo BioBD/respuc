@@ -1,3 +1,4 @@
+
 <?php
 	foreach ($instituicoes as $instituicao) {
 			echo "<br>";
@@ -12,7 +13,12 @@
 			echo "Telefone do Responsável: ".$instituicao->getTelefoneResponsavel()."<br>";
 			echo '<form method="post" action="update" enctype="multipart/form-data">';
 			echo '<input type="submit" name="update-btn" value="Edit">';
-			echo "</form>";/* 			 Não está funcionando.
+			echo "</form>";
+			echo '<a href=<?$config["base_url"]?>index.php/instituicaocontroller/delete?nome='.$instituicao->getNome();
+			echo "DELETE";
+			echo "</a>";
+
+			/* 			 Não está funcionando.
 			echo '<form method="post" action="delete" enctype="multipart/form-data">';
 			echo '<input type="submit" name="delete-btn" value="Delete">';
 			echo "</form>";

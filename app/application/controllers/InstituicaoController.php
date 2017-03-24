@@ -52,8 +52,12 @@ class InstituicaoController extends RN_Controller {
 	}
 
 	public function delete(){
-		$dataIn = $this->input->post();
-		$return = $this->instituicao_model->deleteInstituicao($dataIn);
+		$dataIn = $this->input->get();
+		if(isset($dataIn["nome"]))
+			$nome = $dataIn["nome"]
+		else
+			$nome = '';
+		$return = $this->instituicao_model->deleteInstituicao($nome);
 		$this->loadView('instituicao/excluidosucesso');
 	}
 }

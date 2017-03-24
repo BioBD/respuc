@@ -48,6 +48,7 @@ class Escola_model extends RN_Model
     public function selectOneEscola($dataIn)
     {
         $this->Logger->info("Running: " . __METHOD__);
+        var_dump($dataIn);
         $result = $this->executeRow($this->db, Escola::getSqlToSelect(), $dataIn);
         if ($result)
             return Escola::createObjectEscola(json_decode(json_encode($result), true));

@@ -27,8 +27,12 @@ class EscolaController extends RN_Controller {
 	}
 
 	public function edit(){
-		$dataIn = $this->input->post();
-		$data['escola'] = $this->escola_model->selectOneEscola($dataIn);
+		$dataIn = $this->input->get(	);
+		if(isset($dataIn["nome"]))
+			$nome = $dataIn["nome"];
+		else
+			$nome = "";
+		$data['escola'] = $this->escola_model->selectOneEscola($nome);
 		$this->loadView('escola/edit',$data);
 	}
 

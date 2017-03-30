@@ -112,7 +112,7 @@ class Instituicao {
 	}
 
 	public function setEmailResponsavel($newEmailResponsavel){
-		return $this->email_responsavel = $newEmailResponsavel;
+		$this->email_responsavel = $newEmailResponsavel;
 	}
 
 	public function getTelefoneResponsavel(){
@@ -120,7 +120,7 @@ class Instituicao {
 	}
 
 	public function setTelefoneResponsavel($newTelephoneResponavel){
-		return $this->telefone_resposanvel = $newTelephoneResponavel;
+		$this->telefone_resposanvel = $newTelephoneResponavel;
 	}
 
 	private static function valida($data) {

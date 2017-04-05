@@ -1,4 +1,4 @@
-drop TABLE aprendiz;
+drop table if Exists aprendiz;
 
 CREATE TABLE aprendiz(
 CPF INTEGER Not Null,
@@ -32,7 +32,7 @@ CONSTRAINT aprendiz_chk_cep CHECK(length(trim(CEP)) = 9),
 CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
 );
 
-drop TABLE aluno;
+drop table if Exists aluno;
 
 CREATE TABLE aluno(
    CPF INTEGER NOT NULL,
@@ -64,9 +64,9 @@ CREATE TABLE aluno(
    CONSTRAINT aluno_chk_cidade CHECK(length(trim(Cidade)) > 0),
    CONSTRAINT aluno_chk_cep CHECK(length(trim(CEP)) = 9),
    CONSTRAINT aluno_pk PRIMARY KEY (CPF)
-)
+);
 
-drop TABLE evento;
+drop table if Exists evento;
 
 CREATE TABLE evento (
    Nome        char(20)    Not Null,
@@ -78,9 +78,9 @@ CREATE TABLE evento (
    CONSTRAINT evento_chk_presencas CHECK (Presencas > 0),
    CONSTRAINT evento_chk_dataevento CHECK (isfinite(DataEvento)),
    CONSTRAINT evento_chk_descricao CHECK ((Descricao IS NULL) OR (length(trim(Descricao)) > 0))
-)
+);
 
-drop TABLE dificuldade;
+drop table if Exists dificuldade;
 
 CREATE TABLE dificuldade (
    Materia     char(20)    Not Null,
@@ -88,9 +88,9 @@ CREATE TABLE dificuldade (
    CONSTRAINT dificuldade_pk PRIMARY KEY (CPF, Materia),
    CONSTRAINT dificuldade_chk_cpf CHECK (CPF > 0),
    CONSTRAINT dificuldade_materia CHECK (length(trim(Materia)) > 0)
-)
+);
 
-drop TABLE apoio;
+drop table if Exists apoio;
 
 CREATE TABLE apoio (
    Materia     char(20)    Not Null,
@@ -98,9 +98,9 @@ CREATE TABLE apoio (
    CONSTRAINT apoio_pk PRIMARY KEY (CPF, Materia),
    CONSTRAINT apoio_chk_cpf CHECK (CPF > 0),
    CONSTRAINT apoio_materia CHECK (length(trim(Materia)) > 0)
-)
+);
 
-drop TABLE escola;
+drop table if Exists escola;
 
 CREATE TABLE escola(
    nome  VARCHAR(150) Not Null,
@@ -110,7 +110,7 @@ CREATE TABLE escola(
    CONSTRAINT pk_escola_nome PRIMARY KEY (nome)
 );
 
-drop TABLE voluntarios;
+drop table if Exists voluntarios;
 
 CREATE TABLE voluntarios( 
     matricula char(7) not null primary key,
@@ -134,7 +134,7 @@ CREATE TABLE voluntarios(
     email CHAR(60) Not Null
     );
 
-drop TABLE curso;
+drop table if Exists curso;
 
 CREATE TABLE curso(
 nome VARCHAR(80) Not Null,
@@ -147,7 +147,7 @@ CONSTRAINT pk_nome PRIMARY KEY (nome),
 CONSTRAINT ck_qtd_alunos CHECK (qtd_alunos > 0)
 );
 
-drop TABLE estagio;
+drop table if Exists estagio;
 
 CREATE TABLE estagio(
    cpf INTEGER Not Null,
@@ -156,9 +156,9 @@ CREATE TABLE estagio(
    CONSTRAINT pk_estagio PRIMARY KEY (cpf, estagio),
    CONSTRAINT ck_cpf CHECK(cpf > 0),
    CONSTRAINT ck_estagio CHECK (length(trim(estagio)) > 0)
-)
+);
 
-drop TABLE trabalho
+drop table if Exists trabalho;
 
 CREATE TABLE trabalho(
    cpf INTEGER Not Null,
@@ -167,9 +167,9 @@ CREATE TABLE trabalho(
    CONSTRAINT pk_trabalho PRIMARY KEY (cpf, trabalho),
    CONSTRAINT ck_cpf CHECK(cpf > 0),
    CONSTRAINT ck_estagio CHECK (length(trim(trabalho)) > 0)
-)
+);
 
-drop TABLE instituicao;
+drop table if Exists instituicao;
 
 CREATE TABLE instituicao(
 razao_social  VARCHAR(150) Not Null,
@@ -203,5 +203,5 @@ $BODY$
 LANGUAGE sql IMMUTABLE STRICT 
 COST 100; 
 ALTER FUNCTION remove_acento(text) 
-OWNER TO postgres; 
+OWNER TO app; 
 COMMENT ON FUNCTION remove_acento(text) IS 'Remove letras com acentuação'; 

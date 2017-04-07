@@ -67,5 +67,4 @@ class AprendizController extends RN_Controller {
 		$this->loadView('aprendiz/excluidosucesso');
 	}
 }
-
 ?>

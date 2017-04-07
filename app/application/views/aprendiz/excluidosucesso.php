@@ -1,3 +1,3 @@
 <?php
-	echo "Aprendiz excluído com sucesso!";
+	echo "Aprendiz excluído com sucesso !";
 ?>

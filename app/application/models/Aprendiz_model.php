@@ -70,6 +70,7 @@ class Aprendiz_model extends RN_Model
         return $return_array;
     }    
 }
+
 ?>
 
 

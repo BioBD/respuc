@@ -1,6 +1,5 @@
 <?php
 ?>
-
 <form method="post" action="find" enctype="multipart/form-data">
 	<br>
  	Nome:

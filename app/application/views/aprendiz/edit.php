@@ -1,6 +1,5 @@
 <?php
 ?>
-
 <form method="post" action="update" enctype="multipart/form-data">
 
   <br><br>

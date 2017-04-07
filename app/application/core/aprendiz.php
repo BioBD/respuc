@@ -118,162 +118,203 @@ class Aprendiz
 		return 'SELECT * FROM aprendiz;';
 	}
 
-	public function getNome(){
+	public function getNome()
+	{
 		return $this->nome;
 	}
 
-	public function setNome($newName){
+	public function setNome($newName)
+	{
 		$this->nome = $newName;
 	}
 
-	public function getCpf(){
+	public function getCpf()
+	{
 		return $this->cpf;
 	}
 
-	public function setCpf($newCpf){
+	public function setCpf($newCpf)
+	{
 		$this->cpf = $newCpf;
 	}
 
-	public function getRg(){
+	public function getRg()
+	{
 		return $this->rg;
 	}
 
-	public function setRg($newRg){
+	public function setRg($newRg)
+	{
 		$this->rg = $newRg;
 	}
 
-	public function getDataNascimento(){
+	public function getDataNascimento()
+	{
 		return $this->data_nascimento;
 	}
 
-	public function setDataNascimento($newDataNascimento){
+	public function setDataNascimento($newDataNascimento)
+	{
 		$this->data_nascimento = $newDataNascimento;
 	}
 
-	public function getNaturalidade(){
+	public function getNaturalidade()
+	{
 		return $this->naturalidade;
 	}
 
-	public function setNaturalidade($newNaturalidade){
+	public function setNaturalidade($newNaturalidade)
+	{
 		$this->naturalidade = $newNaturalidade;
 	}
 
-	public function getEmail(){
+	public function getEmail()
+	{
 		return $this->email;
 	}
 
-	public function setEmail($newEmail){
+	public function setEmail($newEmail)
+	{
 		$this->email = $newEmail;
 	}	
 
-	public function getTelefone(){
+	public function getTelefone()
+	{
 		return $this->telefone;
 	}
 
-	public function setTelefone($newTelephone){
+	public function setTelefone($newTelephone)
+	{
 		$this->telefone = $newTelephone;
 	}
 
-	public function getCelular(){
+	public function getCelular()
+	{
 		return $this->celular;
 	}
 
-	public function setCelular($newCelular){
+	public function setCelular($newCelular)
+	{
 		$this->celular = $newCelular;
 	}
 
-	public function getRua(){
+	public function getRua()
+	{
 		return $this->rua;
 	}
 
-	public function setRua($newRua){
+	public function setRua($newRua)
+	{
 		$this->rua = $newRua;
 	}
 
-	public function getNumero(){
+	public function getNumero()
+	{
 		return $this->numero;
 	}
 
-	public function setNumero($newNumero){
+	public function setNumero($newNumero)
+	{
 		$this->numero = $newNumero;
 	}
 
-	public function getComplemento(){
+	public function getComplemento()
+	{
 		return $this->complemento;
 	}
 
-	public function setComplemento($newComplemento){
+	public function setComplemento($newComplemento)
+	{
 		$this->complemento = $newComplemento;
 	}
 
-	public function getBairro(){
+	public function getBairro()
+	{
 		return $this->bairro;
 	}
 
-	public function setBairro($newBairro){
+	public function setBairro($newBairro)
+	{
 		$this->bairro = $newBairro;
 	}
 
-	public function getCidade(){
+	public function getCidade()
+	{
 		return $this->cidade;
 	}
 
-	public function setCidade($newCidade){
+	public function setCidade($newCidade)
+	{
 		$this->cidade = $newCidade;
 	}
 
-	public function getUf(){
+	public function getUf()
+	{
 		return $this->uf;
 	}
 
-	public function setUf($newUf){
+	public function setUf($newUf)
+	{
 		$this->uf = $newUf;
 	}
 
-	public function getCep(){
+	public function getCep()
+	{
 		return $this->cep;
 	}
 
-	public function setCep($newCep){
+	public function setCep($newCep)
+	{
 		$this->cep = $newCep;
 	}
 
-	public function getTrabalho(){
+	public function getTrabalho()
+	{
 		return $this->trabalho;
 	}
 
-	public function setTrabalho($newTrabalho){
+	public function setTrabalho($newTrabalho)
+	{
 		$this->trabalho = $newTrabalho;
-
-	public function getNomeResponsavel(){
+	}
+	
+	public function getNomeResponsavel()
+	{
 		return $this->nome_responsavel;
 	}
 
-	public function setNomeResponsavel($newNameResponsavel){
+	public function setNomeResponsavel($newNameResponsavel)
+	{
 		$this->nome_responsavel = $newNameResponsavel;
 	}
 
-	public function getTelefoneResponsavel(){
+	public function getTelefoneResponsavel()
+	{
 		return $this->telefone_responsavel;
 	}
 
-	public function setTelefoneResponsavel($newTelephoneResponavel){
+	public function setTelefoneResponsavel($newTelephoneResponavel)
+	{
 		$this->telefone_resposanvel = $newTelephoneResponavel;
 	}
 
-	public function getProfissaoResponsavel(){
+	public function getProfissaoResponsavel()
+	{
 		return $this->profissao_responsavel;
 	}
 
-	public function setProfissaoResponsavel($newProfissaoResponsavel){
+	public function setProfissaoResponsavel($newProfissaoResponsavel)
+	{
 		$this->profissao_responsavel = $newProfissaoResponsavel;
 	}
 
-	public function getCpfResponsavel(){
+	public function getCpfResponsavel()
+	{
 		return $this->cpf_responsavel;
 	}
 
-	public function setCpfResponsavel($newCpfResponsavel){
+	public function setCpfResponsavel($newCpfResponsavel)
+	{
 		$this->cpf_responsavel = $newCpfResponsavel;
 	}
 

@@ -32,6 +32,9 @@ class Instituicao {
 	public function getDataToSave(){
 		return array($this->getNome(), $this->getTelefone(), $this->getCelular(), $this->getEmail(), $this->getVinculo(), $this->getNomeResponsavel(), $this->getEmailResponsavel(), $this->getTelefoneResponsavel());
 	}
+		public function getDataToSave2(){
+		return array($this->getNome(), $this->getTelefone(), $this->getCelular(), $this->getEmail(), $this->getVinculo(), $this->getNomeResponsavel(), $this->getEmailResponsavel(), $this->getTelefoneResponsavel(), $this->getNome());
+	}
 
 	public function getSqlToInsert(){
 		return 'INSERT INTO instituicao(
@@ -40,12 +43,12 @@ class Instituicao {
 	}
 
 	public function getSqlToUpdate(){
-		return 'UPDATE instituicao
-	SET nome=?, telefone=?, celular=?, email=?, vinculo=?, nome_responsavel=?, email_responsavel=?, telefone_responsavel
+		return 'UPDATE public.instituicao
+	SET nome=?, telefone=?, celular=?, email=?, vinculo=?, nome_responsavel=?, email_responsavel=?, telefone_responsavel=?
 	WHERE nome=?;';
 	}
 
-	public function getSqlToDelete(){
+	public static function getSqlToDelete(){
 		return 'DELETE FROM instituicao
 	WHERE nome=?;';
 

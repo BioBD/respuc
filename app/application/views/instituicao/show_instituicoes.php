@@ -11,17 +11,10 @@
 			echo "Nome do Responsável: ".$instituicao->getNomeResponsavel()."<br>";
 			echo "E-mail do Responsável: ".$instituicao->getEmailResponsavel()."<br>";
 			echo "Telefone do Responsável: ".$instituicao->getTelefoneResponsavel()."<br>";
-			echo '<form method="post" action="update" enctype="multipart/form-data">';
-			echo '<input type="submit" name="update-btn" value="Edit">';
-			echo "</form>";
-			echo '<a href=<?$config["base_url"]?>index.php/instituicaocontroller/delete?nome='.$instituicao->getNome();
-			echo "DELETE";
-			echo "</a>";
-
-			/* 			 Não está funcionando.
-			echo '<form method="post" action="delete" enctype="multipart/form-data">';
-			echo '<input type="submit" name="delete-btn" value="Delete">';
-			echo "</form>";
-			*/
+			$String = "http://localhost/respuc/app/index.php/instituicaocontroller/edit?nome=".$instituicao->getNome();
+			$String2 = "http://localhost/respuc/app/index.php/instituicaocontroller/delete?nome=".$instituicao->getNome();
+			echo '<a href='.$String.">EDIT</a>";
+			echo "<br>";
+			echo '<a href='.$String2.">DELETE</a>";
 		}
 ?>

@@ -10,14 +10,14 @@
 	Celular:
   <input type="text" name="celular" value="<?php echo $instituicao->getCelular()?>"><br><br>
 	E-mail:
-  <input type="text" name="email" value="<?php echo $instituicao->getVinculo()?>"><br><br>
+  <input type="text" name="email" value="<?php echo $instituicao->getEmail()?>"><br><br>
 	Vínculo:
-  <input type="text" name="vinculo" value="<?php echo $instituicao->getNomeResponsavel()?>"><br><br>
+  <input type="text" name="vinculo" value="<?php echo $instituicao->getVinculo()?>"><br><br>
 	Nome do Responsável:
-  <input type="text" name="nome_responsavel" value="<?php echo $instituicao->getEmailResponsavel()?>"><br><br>
+  <input type="text" name="nome_responsavel" value="<?php echo $instituicao->getNomeResponsavel()?>"><br><br>
 	E-mail do Responsável:
-  <input type="text" name="email_responsavel" value="<?php echo $instituicao->getTelefoneResponsavel()?>"><br><br>
+  <input type="text" name="email_responsavel" value="<?php echo $instituicao->getEmailResponsavel()?>"><br><br>
   	Telefone do Responsável:
-  <input type="text" name="telefone_responsavel" value=""><br><br>
+  <input type="text" name="telefone_responsavel" value="<?php echo $instituicao->getTelefoneResponsavel()?>"><br><br>
   <input type="submit" value="Submit">
 </form>

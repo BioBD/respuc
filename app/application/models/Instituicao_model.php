@@ -21,7 +21,7 @@ class Instituicao_model extends RN_Model {
         $this->Logger->info("Running: " . __METHOD__);
         $instituicao = Instituicao::createObjectInstituicao($info);
         if(isset($instituicao)){
-            $this->execute($this->db, $instituicao->getSqlToUpdate(), $instituicao->getDataToSave());
+            $this->execute($this->db, $instituicao->getSqlToUpdate(), $instituicao->getDataToSave2());
         }
         return false;
     }
@@ -29,7 +29,7 @@ class Instituicao_model extends RN_Model {
     public function deleteInstituicao($nome){
         $this->Logger->info("Running: " . __METHOD__);
         if(isset($nome)){
-            return $this->execute($this->db, $instituicao->getSqlToDelete(), $nome);
+            return $this->execute($this->db, Instituicao::getSqlToDelete(), $nome);
         }
         return false;
     }

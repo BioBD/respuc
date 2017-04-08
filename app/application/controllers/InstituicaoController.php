@@ -26,7 +26,10 @@ class InstituicaoController extends RN_Controller {
 	}
 
 	public function edit(){
-		$this->loadView('instituicao/edit');
+		$dataIn = $this->input->get();
+		$nome = $dataIn["nome"];
+		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($nome);
+		$this->loadView('instituicao/edit', $data);
 	}
 
 	public function save(){
@@ -53,13 +56,14 @@ class InstituicaoController extends RN_Controller {
 
 	public function delete(){
 		$dataIn = $this->input->get();
-		if(isset($dataIn["nome"]))
-			$nome = $dataIn["nome"]
-		else
+		if(isset($dataIn["nome"])){
+			$nome = $dataIn["nome"];
+		}
+		else{
 			$nome = '';
+		}
 		$return = $this->instituicao_model->deleteInstituicao($nome);
-		$this->loadView('instituicao/excluidosucesso');
+		$this->loadView('instituicao/excluidosucesso', $return);
 	}
 }
-
 ?>

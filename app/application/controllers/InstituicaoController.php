@@ -41,6 +41,7 @@ class InstituicaoController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
 		$return = $this->instituicao_model->updateInstituicao($dataIn);
+		$this->loadView('instituicao/cadastrosucesso');
 	}
 
 	public function list(){
@@ -63,7 +64,7 @@ class InstituicaoController extends RN_Controller {
 			$nome = '';
 		}
 		$return = $this->instituicao_model->deleteInstituicao($nome);
-		$this->loadView('instituicao/excluidosucesso', $return);
+		$this->loadView('instituicao/excluidosucesso');
 	}
 }
 ?>

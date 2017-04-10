@@ -45,6 +45,7 @@ class EscolaController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
 		$return = $this->escola_model->updateEscola($dataIn);
+		$this->loadView('escola/cadastrosucesso');
 	}
 
 	public function list(){

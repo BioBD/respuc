@@ -5,12 +5,10 @@
 			echo "Nome: ".$escola->getNome()."<br>";
 			echo "Telefone: ".$escola->getTelefone()."<br>";
 	
-			echo '<form method="post" action="update" enctype="multipart/form-data">';
-			echo '<input type="submit" name="update-btn" value="Edit">';
-			echo "</form>";/* 			 Não está funcionando.
-			echo '<form method="post" action="delete" enctype="multipart/form-data">';
-			echo '<input type="submit" name="delete-btn" value="Delete">';
-			echo "</form>";
-			*/
+			$String = "http://localhost/respuc/app/index.php/escolacontroller/edit?nome=".$escola->getNome();
+			$String2 = "http://localhost/respuc/app/index.php/escolacontroller/delete?nome=".$escola->getNome();
+			echo '<a href='.$String.">EDIT</a>";
+			echo "<br>";
+			echo '<a href='.$String2.">DELETE</a>";
 		}
 ?>

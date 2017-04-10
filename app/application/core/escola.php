@@ -24,6 +24,11 @@ class Escola
 		return array($this->getNome(), $this->getTelefone());
 	}
 
+	public function getDataToSave2()
+	{
+		return array($this->getNome(), $this->getTelefone(), $this->getNome());
+	}
+
 	public function getSqlToInsert()
 	{
 		return 'INSERT INTO escola (nome, telefone) VALUES (?,?)';
@@ -31,12 +36,12 @@ class Escola
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE escola
+		return 'UPDATE public.escola
 				SET nome=?, telefone=?
 				WHERE nome=?;';
 	}
 
-	public function getSqlToDelete()
+	public static function getSqlToDelete()
 	{
 		return 'DELETE FROM escola
 				WHERE nome=?;';

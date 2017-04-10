@@ -28,7 +28,7 @@ class Escola_model extends RN_Model
         $escola = Escola::createObjectEscola($info);
         if(isset($escola))
         {
-            $this->execute($this->db, $escola->getSqlToUpdate(), $escola->getDataToSave());
+            $this->execute($this->db, $escola->getSqlToUpdate(), $escola->getDataToSave2());
         }
         return false;
     }
@@ -40,7 +40,7 @@ class Escola_model extends RN_Model
         die();
         $escola = Escola::createObjectEscola($info);
         if(isset($escola)){
-            $this->execute($this->db, $escola->getSqlToDelete(), $escola->getName());
+            $this->execute($this->db, Escola::getSqlToDelete(), $nome);
         }
         return false;
     }

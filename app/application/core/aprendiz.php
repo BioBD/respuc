@@ -79,6 +79,19 @@ class Aprendiz
 					$this->getCpfResponsavel());
 	}
 
+	public function getDataToSave2()
+	{
+		return array (
+					$this->getNome(), $this->getCpf(), $this->getRg(),
+					$this->getDataNascimento(), $this->getNaturalidade(), 
+					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
+					$this->getRua(), $this->getNumero(), $this->getComplemento(),
+					$this->getBairro(), $this->getCidade(), $this->getUf(), 
+					$this->getCep(), $this->getTrabalho(), $this->getNomeResponsavel(),
+					$this->getTelefoneResponsavel(), $this->getProfissaoResponsavel(),
+					$this->getCpfResponsavel(), $this->getNome());
+	}
+
 	public function getSqlToInsert()
 	{
 		return 'INSERT INTO aprendiz (
@@ -92,7 +105,7 @@ class Aprendiz
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE aprendiz SET   
+		return 'UPDATE public.aprendiz SET   
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
 									  rua=?, numero=?, complemento=?, bairro=?,
@@ -102,7 +115,7 @@ class Aprendiz
 		WHERE nome=?;';
 	}
 
-	public function getSqlToDelete()
+	public static function getSqlToDelete()
 	{
 		return 'DELETE FROM aprendiz
 		WHERE nome=?;';

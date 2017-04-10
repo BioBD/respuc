@@ -29,15 +29,10 @@
 			echo "Profissao do Responsável: ".$aprendiz->getProfissaoResponsavel()."<br>";
 			echo "CPF do Responsavel: ".$aprendiz->getCpfResponsavel()."<br>";
 
-			echo '<form method="post" action="update" enctype="multipart/form-data">';
-			echo '<input type="submit" name="update-btn" value="Edit">'; echo "</form>";
-			echo '<a href=<?$config["base_url"]?>index.php/AprendizController/delete?nome='.aprendiz->getNome();
-			echo "DELETE";
-			echo "</a>";
-
-			/* 	Não está funcionando.
-			echo '<form method="post" action="delete" enctype="multipart/form-data">';
-			echo '<input type="submit" name="delete-btn" value="Delete">';
-			echo "</form>";
-			*/
+			$String = "http://localhost/respuc/app/index.php/aprendizcontroller/edit?nome=".$aprendiz->getNome();
+			$String2 = "http://localhost/respuc/app/index.php/aprendizcontroller/delete?nome=".$aprendiz->getNome();
+			echo '<a href='.$String.">EDIT</a>";
+			echo "<br>";
+			echo '<a href='.$String2.">DELETE</a>";
+	}
 ?>

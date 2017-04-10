@@ -44,6 +44,7 @@ class AprendizController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
+		$this->loadView('aprendiz/cadastrosucesso');
 	}
 
 	public function list(){

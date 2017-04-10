@@ -28,7 +28,7 @@ class Aprendiz_model extends RN_Model
         $this->Logger->info("Running: " . __METHOD__);
         $aprendiz = Aprendiz::createObjectAprendiz($info);
         if(isset($aprendiz)){
-            $this->execute($this->db, $aprendiz->getSqlToUpdate(), $aprendiz->getDataToSave());
+            $this->execute($this->db, $aprendiz->getSqlToUpdate(), $aprendiz->getDataToSave2());
         }
         return false;
     }
@@ -38,8 +38,7 @@ class Aprendiz_model extends RN_Model
         $this->Logger->info("Running: " . __METHOD__);
         if(isset($nome))
         {
-            return $this->execute($this->db, $aprendiz->getSqlToDelete(), 
-            	$nome);
+            return $this->execute($this->db, Aprendiz::getSqlToDelete(), $nome);
         }
         return false;
     }

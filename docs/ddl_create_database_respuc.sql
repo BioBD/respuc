@@ -1,34 +1,39 @@
 drop table if Exists aprendiz;
 
 CREATE TABLE aprendiz(
-CPF INTEGER Not Null,
-RG INTEGER Not Null,
+CPF VARCHAR(11) Not Null,
+RG VARCHAR(12) Not Null,
 Naturalidade CHAR(50) Not Null,
 Email VARCHAR(60) Not Null,
 Nome VARCHAR(70) Not Null,
 Data_Nascimento DATE Not Null,
 Telefone INTEGER Not Null,
 Celular INTEGER Not Null,
-Endereco VARCHAR(100) Not Null,
-Numero INTEGER Not Null,
+Rua VARCHAR(100) Not Null,
+Numero Varchar(20) Not Null,
 Complemento CHAR(50) Not Null,
 Bairro VARCHAR(20) Not Null,
 Cidade VARCHAR(20) Not Null,
+uf VARCHAR(2) Not Null,
 CEP CHAR(9) Not Null,
+Trabalho VARCHAR(20) Not Null,
+Nome_Responsavel VARCHAR(200) Not Null,
+CPF_Responsavel VARCHAR(200) Not Null,
+Telefone_Responsavel VARCHAR(200) Not Null,
+Profissao_Responsavel VARCHAR(200) Not Null,
 
-CONSTRAINT aprendiz_chk_cpf CHECK(CPF > 0),
-CONSTRAINT aprendiz_chk_rg CHECK(RG > 0),
 CONSTRAINT aprendiz_chk_naturalidade CHECK(length(trim(Naturalidade)) > 0),
 CONSTRAINT aprendiz_chk_email CHECK(length(trim(Email)) > 0),
 CONSTRAINT aprendiz_chk_nome CHECK(length(trim(Nome)) > 0),
 CONSTRAINT aprendiz_chk_telefone CHECK(Telefone > 0),
 CONSTRAINT aprendiz_chk_celular CHECK(Celular > 0),
-CONSTRAINT aprendiz_chk_endereco CHECK(length(trim(Endereco)) > 0),
-CONSTRAINT aprendiz_chk_numero CHECK(Numero > 0),
+CONSTRAINT aprendiz_chk_rua CHECK(length(trim(Rua)) > 0),
 CONSTRAINT aprendiz_chk_complemento CHECK(length(trim(Complemento)) > 0),
 CONSTRAINT aprendiz_chk_bairro CHECK(length(trim(Bairro)) > 0),
 CONSTRAINT aprendiz_chk_cidade CHECK(length(trim(Cidade)) > 0),
 CONSTRAINT aprendiz_chk_cep CHECK(length(trim(CEP)) = 9),
+CONSTRAINT aprendiz_chk_uf CHECK(length(trim(uf)) = 2),
+CONSTRAINT aprendiz_chk_trabalho CHECK(length(trim(Trabalho)) > 0),
 CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
 );
 
@@ -104,9 +109,9 @@ drop table if Exists escola;
 
 CREATE TABLE escola(
    nome  VARCHAR(150) Not Null,
-   telefone_contato INTEGER Not Null,
+   telefone INTEGER Not Null,
 
-   CONSTRAINT chk_telefone_contato CHECK((telefone_contato > 0)),
+   CONSTRAINT chk_telefone CHECK((telefone > 0)),
    CONSTRAINT pk_escola_nome PRIMARY KEY (nome)
 );
 
@@ -172,28 +177,16 @@ CREATE TABLE trabalho(
 drop table if Exists instituicao;
 
 CREATE TABLE instituicao(
-razao_social  VARCHAR(150) Not Null,
-nome_fantasia VARCHAR(100) Not Null,
-ano_de_fundacao CHAR(4) Not Null,
-site VARCHAR(60),
-vinculo VARCHAR(150) Not Null,
-qtd_membros  integer Not Null,
-email_instituicao CHAR(60) Not Null,
-relacoes_publicas VARCHAR(50),
-email_relacoes_publicas VARCHAR(60),
-rua VARCHAR(60) Not Null,
-complemento CHAR(15) Not Null,
-bairro VARCHAR(20) Not Null,
-cidade VARCHAR(20) Not Null,
-uf VARCHAR(2) Not Null,
-cep CHAR(9) Not Null,
-telefone_fixo CHAR(14) Not Null,
-celular  CHAR(14),
-
-CONSTRAINT chk_qtd_membros CHECK((qtd_membros > 0)),
-CONSTRAINT pk_razaosocial PRIMARY KEY (razao_social)
-);
-
+     nome character varying(1024) NOT NULL,
+     telefone character varying(16) NOT NULL,
+     celular character varying(16) NOT NULL,
+     email character varying(1024) NOT NULL,
+     vinculo character varying(1024) NOT NULL,
+     nome_responsavel character varying(1024) NOT NULL,
+     email_responsavel character varying(1024) NOT NULL,
+     telefone_responsavel character varying(16) NOT NULL,
+     CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
+)
 
 CREATE OR REPLACE FUNCTION remove_acento(text) 
 RETURNS text AS 

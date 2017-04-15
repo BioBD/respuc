@@ -16,7 +16,7 @@ class Escola_model extends RN_Model
         $escola = Escola::createObjectEscola($dataIn);
         if(isset($escola))
         {
-			$this->execute($this->db, $escola->getSqlToInsert(), $escola->getDataToSave());
+			return $this->execute($this->db, $escola->getSqlToInsert(), $escola->getDataToSave());
    		}
 
         return false;

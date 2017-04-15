@@ -14,6 +14,8 @@ class InstituicaoController extends RN_Controller {
         $this->load->model('instituicao_model');
 
         $this->instituicao_model->setLogger($this->Logger);
+        $this->load->helper(array('form', 'url'));
+
 
 	}
 
@@ -68,5 +70,40 @@ class InstituicaoController extends RN_Controller {
 		$return = $this->instituicao_model->deleteInstituicao($nome);
 		$this->loadView('instituicao/excluidosucesso');
 	}
+
+    public function form_csv()
+    {
+            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+    }
+
+    public function upload_csv()
+    {
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'csv';
+            $config['max_size']             = 10000;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('userfile'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->load->view('instituicao/form_csv', $error);
+            }
+            else
+            {
+                    $data = $this->upload->data();
+
+                    var_dump($data["full_path"]);
+                    $file = fopen($data["full_path"],"r");
+                    while (($resource = fgetcsv($file,0,";")) !== FALSE) {
+	                    var_dump($resource);
+                    }
+                    die;
+            }
+    }
+
+
+
 }
 ?>

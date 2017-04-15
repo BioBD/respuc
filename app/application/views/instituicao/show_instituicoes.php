@@ -11,10 +11,10 @@
 			echo "Nome do Responsável: ".$instituicao->getNomeResponsavel()."<br>";
 			echo "E-mail do Responsável: ".$instituicao->getEmailResponsavel()."<br>";
 			echo "Telefone do Responsável: ".$instituicao->getTelefoneResponsavel()."<br>";
-			$String = "http://localhost/respuc/app/index.php/instituicaocontroller/edit?nome=".$instituicao->getNome();
-			$String2 = "http://localhost/respuc/app/index.php/instituicaocontroller/delete?nome=".$instituicao->getNome();
-			echo '<a href='.$String.">EDIT</a>";
+			$String = "{$this->config->item('base_url')}InstituicaoController/edit?nome=".$instituicao->getNome();
+			$String2 = "{$this->config->item('base_url')}InstituicaoController/delete?nome=".$instituicao->getNome();
+			echo '<a href="'.$String.'">EDIT</a>';
 			echo "<br>";
-			echo '<a href='.$String2.">DELETE</a>";
+			echo '<a href='.$String2.'">DELETE</a>';
 		}
 ?>

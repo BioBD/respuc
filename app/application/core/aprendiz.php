@@ -26,42 +26,42 @@ class Aprendiz
 	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $rua, $numero, $complemento, 
 		$bairro, $cidade, $uf, $cep, $trabalho, $nome_responsavel, $telefone_responsavel, $profissao_responsavel, $cpf_responsavel)
 	{
-		$this->nome = trim(strip_tags($nome));
-		$this->cpf = trim(strip_tags($cpf));
-		$this->rg = trim(strip_tags($rg));
-		$this->data_nascimento = trim(strip_tags($data_nascimento));
-		$this->naturalidade = trim(strip_tags($naturalidade));
-		$this->email = trim(strip_tags($email));
-		$this->telefone = trim(strip_tags($telefone));
-		$this->celular = trim(strip_tags($celular));
-		$this->rua = trim(strip_tags($rua));
-		$this->numero = trim(strip_tags($numero));
-		$this->complemento = trim(strip_tags($complemento));
-		$this->bairro = trim(strip_tags($bairro));
-		$this->cidade = trim(strip_tags($cidade));
-		$this->uf = trim(strip_tags($uf));
-		$this->cep = trim(strip_tags($cep));
-		$this->trabalho = trim(strip_tags($trabalho));
-		$this->nome_responsavel = trim(strip_tags($nome_responsavel));
-		$this->telefone_responsavel = trim(strip_tags($telefone_responsavel));
-		$this->profissao_responsavel = trim(strip_tags($profissao_responsavel));
-		$this->cpf_responsavel = trim(strip_tags($cpf_responsavel));
+		$this->nome = $nome;
+		$this->cpf = $cpf;
+		$this->rg = $rg;
+		$this->data_nascimento = $data_nascimento;
+		$this->naturalidade = $naturalidade;
+		$this->email = $email;
+		$this->telefone = $telefone;
+		$this->celular = $celular;
+		$this->rua = $rua;
+		$this->numero = $numero;
+		$this->complemento = $complemento;
+		$this->bairro = $bairro;
+		$this->cidade = $cidade;
+		$this->uf = $uf;
+		$this->cep = $cep;
+		$this->trabalho = $trabalho;
+		$this->nome_responsavel = $nome_responsavel;
+		$this->telefone_responsavel = $telefone_responsavel;
+		$this->profissao_responsavel = $profissao_responsavel;
+		$this->cpf_responsavel = $cpf_responsavel;
 	}
 
 	public static function createObjectAprendiz($resultRow)
 	{
 		if(self::valida($resultRow)){
 			return new Aprendiz (
-				$resultRow['nome'], $resultRow['cpf'],
-				$resultRow['rg'], $resultRow['data_nascimento'],
-				$resultRow['naturalidade'], $resultRow['email'],
-				$resultRow['telefone'], $resultRow['celular'],
-				$resultRow['rua'], $resultRow['numero'], 
-				$resultRow['complemento'], $resultRow['bairro'], 
-				$resultRow['cidade'], $resultRow['uf'], 
-				$resultRow['cep'], $resultRow['trabalho'], 
-				$resultRow['nome_responsavel'], $resultRow['telefone_responsavel'], 
-				$resultRow['profissao_responsavel'], $resultRow['cpf_responsavel']);
+				$resultRow->nome, $resultRow->cpf,
+				$resultRow->rg, $resultRow->data_nascimento,
+				$resultRow->naturalidade, $resultRow->email,
+				$resultRow->telefone, $resultRow->celular,
+				$resultRow->rua, $resultRow->numero, 
+				$resultRow->complemento, $resultRow->bairro, 
+				$resultRow->cidade, $resultRow->uf, 
+				$resultRow->cep, $resultRow->trabalho, 
+				$resultRow->nome_responsavel, $resultRow->telefone_responsavel, 
+				$resultRow->profissao_responsavel, $resultRow->cpf_responsavel);
 		}
 		return null;
 	}
@@ -77,19 +77,6 @@ class Aprendiz
 					$this->getCep(), $this->getTrabalho(), $this->getNomeResponsavel(),
 					$this->getTelefoneResponsavel(), $this->getProfissaoResponsavel(),
 					$this->getCpfResponsavel());
-	}
-
-	public function getDataToSave2()
-	{
-		return array (
-					$this->getNome(), $this->getCpf(), $this->getRg(),
-					$this->getDataNascimento(), $this->getNaturalidade(), 
-					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
-					$this->getRua(), $this->getNumero(), $this->getComplemento(),
-					$this->getBairro(), $this->getCidade(), $this->getUf(), 
-					$this->getCep(), $this->getTrabalho(), $this->getNomeResponsavel(),
-					$this->getTelefoneResponsavel(), $this->getProfissaoResponsavel(),
-					$this->getCpfResponsavel(), $this->getNome());
 	}
 
 	public function getSqlToInsert()
@@ -334,26 +321,26 @@ class Aprendiz
 	private static function valida ($data) 
 	{
         $errors = array();
-        $errors = self::validaNome($data['nome'], $errors);
-        $errors = self::validaCpf($data['cpf'], $errors);
-        $errors = self::validaRg($data['rg'], $errors);
-        $errors = self::validaDataNascimento($data['data_nascimento'], $errors);
-        $errors = self::validaNaturalidade($data['naturalidade'], $errors);
-        $errors = self::validaEmail($data['email'], $errors);
-        $errors = self::validaTelefone($data['telefone'], $errors);
-        $errors = self::validaCelular($data['celular'], $errors);
-        $errors = self::validaRua($data['rua'], $errors);
-        $errors = self::validaNumero($data['numero'], $errors);
-        $errors = self::validaComplemento($data['complemento'], $errors);
-        $errors = self::validaBairro($data['bairro'], $errors);
-        $errors = self::validaCidade($data['cidade'], $errors);
-        $errors = self::validaUf($data['uf'], $errors);
-        $errors = self::validaCep($data['cep'], $errors);
-        $errors = self::validaTrabalho($data['trabalho'], $errors);
-        $errors = self::validaNomeResponsavel($data['nome_responsavel'], $errors);
-        $errors = self::validaTelefoneResponsavel($data['telefone_responsavel'], $errors);
-        $errors = self::validaProfissaoResponsavel($data['profissao_responsavel'], $errors);
-        $errors = self::validaCpfResponsavel($data['cpf_responsavel'], $errors);
+        $errors = self::validaNome($data->nome, $errors);
+        $errors = self::validaCpf($data->cpf, $errors);
+        $errors = self::validaRg($data->rg, $errors);
+        $errors = self::validaDataNascimento($data->data_nascimento, $errors);
+        $errors = self::validaNaturalidade($data->naturalidade, $errors);
+        $errors = self::validaEmail($data->email, $errors);
+        $errors = self::validaTelefone($data->telefone, $errors);
+        $errors = self::validaCelular($data->celular, $errors);
+        $errors = self::validaRua($data->rua, $errors);
+        $errors = self::validaNumero($data->numero, $errors);
+        $errors = self::validaComplemento($data->complemento, $errors);
+        $errors = self::validaBairro($data->bairro, $errors);
+        $errors = self::validaCidade($data->cidade, $errors);
+        $errors = self::validaUf($data->uf, $errors);
+        $errors = self::validaCep($data->cep, $errors);
+        $errors = self::validaTrabalho($data->trabalho, $errors);
+        $errors = self::validaNomeResponsavel($data->nome_responsavel, $errors);
+        $errors = self::validaTelefoneResponsavel($data->telefone_responsavel, $errors);
+        $errors = self::validaProfissaoResponsavel($data->profissao_responsavel, $errors);
+        $errors = self::validaCpfResponsavel($data->cpf_responsavel, $errors);
 
         if($errors == null)
         {

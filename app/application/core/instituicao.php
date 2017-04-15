@@ -12,28 +12,25 @@ class Instituicao {
 	/*Links fica fora por enquanto*/
 
 	public function __construct($nome, $telefone, $celular, $email, $vinculo, $nome_responsavel, $email_responsavel, $telefone_responsavel){
-		$this->nome = trim(strip_tags($nome));
-		$this->telefone = trim(strip_tags($telefone));
-		$this->celular = trim(strip_tags($celular));
-		$this->email = trim(strip_tags($email));
-		$this->vinculo = trim(strip_tags($vinculo));
-		$this->nome_responsavel = trim(strip_tags($nome_responsavel));
-		$this->email_responsavel = trim(strip_tags($email_responsavel));
-		$this->telefone_responsavel = trim(strip_tags($telefone_responsavel));
+		$this->nome = $nome;
+		$this->telefone = $telefone;
+		$this->celular = $celular;
+		$this->email = $email;
+		$this->vinculo = $vinculo;
+		$this->nome_responsavel = $nome_responsavel;
+		$this->email_responsavel = $email_responsavel;
+		$this->telefone_responsavel = $telefone_responsavel;
 	}
 
 	public static function createObjectInstituicao($resultRow){
 		if(self::valida($resultRow)){
-			return new Instituicao($resultRow['nome'], $resultRow['telefone'], $resultRow['celular'], $resultRow['email'], $resultRow['vinculo'], $resultRow['nome_responsavel'], $resultRow['email_responsavel'], $resultRow['telefone_responsavel']);
+			return new Instituicao($resultRow->nome, $resultRow->telefone, $resultRow->celular, $resultRow->email, $resultRow->vinculo, $resultRow->nome_responsavel, $resultRow->email_responsavel, $resultRow->telefone_responsavel);
 		}
 		return null;
 	}
 
 	public function getDataToSave(){
 		return array($this->getNome(), $this->getTelefone(), $this->getCelular(), $this->getEmail(), $this->getVinculo(), $this->getNomeResponsavel(), $this->getEmailResponsavel(), $this->getTelefoneResponsavel());
-	}
-		public function getDataToSave2(){
-		return array($this->getNome(), $this->getTelefone(), $this->getCelular(), $this->getEmail(), $this->getVinculo(), $this->getNomeResponsavel(), $this->getEmailResponsavel(), $this->getTelefoneResponsavel(), $this->getNome());
 	}
 
 	public function getSqlToInsert(){
@@ -129,15 +126,14 @@ class Instituicao {
 	private static function valida($data) {
 		
         $errors = array();
-        $errors = self::validaNome($data['nome'], $errors);
-        $errors = self::validaTelefone($data['telefone'], $errors);
-        $errors = self::validaCelular($data['celular'], $errors);
-        //$errors = validaWebsite($data["website"], $errors);
-        $errors = self::validaVinculo($data['vinculo'], $errors);
-        $errors = self::validaEmail($data['email'], $errors);
-        $errors = self::validaNomeResponsavel($data['nome_responsavel'], $errors);
-        $errors = self::validaEmailResponsavel($data['email_responsavel'], $errors);
-        $errors = self::validaTelefoneResponsavel($data['telefone_responsavel'], $errors);
+        $errors = self::validaNome($data->nome, $errors);
+        $errors = self::validaTelefone($data->telefone, $errors);
+        $errors = self::validaCelular($data->celular, $errors);
+        $errors = self::validaVinculo($data->vinculo, $errors);
+        $errors = self::validaEmail($data->email, $errors);
+        $errors = self::validaNomeResponsavel($data->nome_responsavel, $errors);
+        $errors = self::validaEmailResponsavel($data->email_responsavel, $errors);
+        $errors = self::validaTelefoneResponsavel($data->telefone_responsavel, $errors);
 
         if($errors == null){
             return true;

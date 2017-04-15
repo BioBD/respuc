@@ -1,5 +1,5 @@
 <?php
 	echo "Aprendiz excluído com sucesso !";
 	echo "<br>";
-	echo '<a href="http://localhost/respuc/app/index.php/aprendizcontroller/list">Voltar</a>';
+	echo "<a href='{$this->config->item('base_url')}AprendizController/show'>Voltar</a>";
 ?>

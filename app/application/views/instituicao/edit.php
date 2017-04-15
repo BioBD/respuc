@@ -1,9 +1,7 @@
-<?php
-?>
-
-<form method="post" action="update" enctype="multipart/form-data">
+  <form method="post" action="update" enctype="multipart/form-data">
 	<br>
  	Nome:
+  <input type="hidden" name="old_nome" value="<?php echo $instituicao->getNome()?>"><br><br>
   <input type="text" name="nome" value="<?php echo $instituicao->getNome()?>"><br><br>
 	Telefone:
   <input type="text" name="telefone" value="<?php echo $instituicao->getTelefone()?>"><br><br>

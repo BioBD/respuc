@@ -27,8 +27,10 @@ class Aprendiz_model extends RN_Model
     {
         $this->Logger->info("Running: " . __METHOD__);
         $aprendiz = Aprendiz::createObjectAprendiz($info);
+        $resultArray = $aprendiz->getDataToSave();
+        $resultArray[] = $info->old_nome;
         if(isset($aprendiz)){
-            $this->execute($this->db, $aprendiz->getSqlToUpdate(), $aprendiz->getDataToSave2());
+            $this->execute($this->db, $aprendiz->getSqlToUpdate(), $resultArray);
         }
         return false;
     }
@@ -50,7 +52,7 @@ class Aprendiz_model extends RN_Model
         	Aprendiz::getSqlToSelect(), $dataIn);
 
         if ($result)
-            return Aprendiz::createObjectAprendiz (json_decode(json_encode($result), true));
+            return Aprendiz::createObjectAprendiz ($result, true);
 
         return null;  
     }
@@ -64,7 +66,7 @@ class Aprendiz_model extends RN_Model
         $return_array = array();
 
         foreach($result as $row)
-            $return_array[] = Aprendiz::createObjectAprendiz(json_decode(json_encode($row), true));
+            $return_array[] = Aprendiz::createObjectAprendiz($row, true);
 
         return $return_array;
     }    

@@ -29,10 +29,10 @@
 			echo "Profissao do Responsável: ".$aprendiz->getProfissaoResponsavel()."<br>";
 			echo "CPF do Responsavel: ".$aprendiz->getCpfResponsavel()."<br>";
 
-			$String = "http://localhost/respuc/app/index.php/aprendizcontroller/edit?nome=".$aprendiz->getNome();
-			$String2 = "http://localhost/respuc/app/index.php/aprendizcontroller/delete?nome=".$aprendiz->getNome();
-			echo '<a href='.$String.">EDIT</a>";
+			$String = "{$this->config->item('base_url')}AprendizController/edit?nome=".$aprendiz->getNome();
+			$String2 = "{$this->config->item('base_url')}AprendizController/delete?nome=".$aprendiz->getNome();
+			echo '<a href="'.$String.'">EDIT</a>';
 			echo "<br>";
-			echo '<a href='.$String2.">DELETE</a>";
+			echo '<a href="'.$String2.'">DELETE</a>';
 	}
 ?>

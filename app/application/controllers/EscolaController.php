@@ -27,7 +27,7 @@ class EscolaController extends RN_Controller {
 	}
 
 	public function edit(){
-		$dataIn = $this->input->get(	);
+		$dataIn = $this->input->get();
 		if(isset($dataIn["nome"]))
 			$nome = $dataIn["nome"];
 		else
@@ -38,19 +38,21 @@ class EscolaController extends RN_Controller {
 
 	public function save(){
 		$dataIn = $this->input->post();
+        $dataIn = (object) $dataIn;
 		$return = $this->escola_model->insertNewEscola($dataIn);
 		$this->loadView('escola/cadastrosucesso');
 	}
 
 	public function update(){
 		$dataIn = $this->input->post();
+        $dataIn = (object) $dataIn;
 		$return = $this->escola_model->updateEscola($dataIn);
 		$this->loadView('escola/cadastrosucesso');
 	}
 
-	public function list(){
-		$data['escola'] = $this->escola_model->selectAllEscola();
-		$this->loadView('escola/show_escola', $data);
+	public function show(){
+		$data['escolas'] = $this->escola_model->selectAllEscola();
+		$this->loadView('escola/show_escolas', $data);
 	}
 
 	public function find(){
@@ -60,8 +62,12 @@ class EscolaController extends RN_Controller {
 	}
 
 	public function delete(){
-		$dataIn = $this->input->post();
-		$return = $this->escola_model->deleteEscola($dataIn);
+		$dataIn = $this->input->get();
+		if(isset($dataIn["nome"]))
+			$nome = $dataIn["nome"];
+		else
+			$nome = "";
+		$return = $this->escola_model->deleteEscola($nome);
 		$this->loadView('escola/excluidosucesso');
 	}
 }

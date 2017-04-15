@@ -1,5 +1,5 @@
 <?php
 	echo "Instituição cadastrada com sucesso!";
 	echo "<br>";
-	echo '<a href="http://localhost/respuc/app/index.php/instituicaocontroller/list">Voltar</a>';
+	echo "<a href='{$this->config->item('base_url')}InstituicaoController/show'>Voltar</a>";
 ?>

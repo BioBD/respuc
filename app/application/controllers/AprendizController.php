@@ -26,7 +26,7 @@ class AprendizController extends RN_Controller {
 	}
 
 	public function edit(){
-		$dataIn = $this->input->get(	);
+		$dataIn = $this->input->get();
 		if(isset($dataIn["nome"]))
 			$nome = $dataIn["nome"];
 		else
@@ -37,19 +37,22 @@ class AprendizController extends RN_Controller {
 
 	public function save(){
 		$dataIn = $this->input->post();
+        $dataIn = (object) $dataIn;
+
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
 		$this->loadView('aprendiz/cadastrosucesso');
 	}
 
 	public function update(){
 		$dataIn = $this->input->post();
+        $dataIn = (object) $dataIn;
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
 		$this->loadView('aprendiz/cadastrosucesso');
 	}
 
-	public function list(){
-		$data['aprendiz'] = $this->aprendiz_model->selectAllAprendiz();
-		$this->loadView('aprendiz/show_aprendiz', $data);
+	public function show(){
+		$data['aprendizes'] = $this->aprendiz_model->selectAllAprendiz();
+		$this->loadView('aprendiz/show_aprendizes', $data);
 	}
 
 	public function find(){

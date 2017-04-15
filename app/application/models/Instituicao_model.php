@@ -20,8 +20,10 @@ class Instituicao_model extends RN_Model {
     public function updateInstituicao($info){
         $this->Logger->info("Running: " . __METHOD__);
         $instituicao = Instituicao::createObjectInstituicao($info);
+        $resultArray = $instituicao->getDataToSave();
+        $resultArray[] = $info->old_nome;
         if(isset($instituicao)){
-            $this->execute($this->db, $instituicao->getSqlToUpdate(), $instituicao->getDataToSave2());
+            $this->execute($this->db, $instituicao->getSqlToUpdate(), $resultArray);
         }
         return false;
     }
@@ -38,7 +40,7 @@ class Instituicao_model extends RN_Model {
         $this->Logger->info("Running: " . __METHOD__);
         $result = $this->executeRow($this->db, Instituicao::getSqlToSelect(), $dataIn);
         if ($result)
-            return Instituicao::createObjectInstituicao(json_decode(json_encode($result), true));
+            return Instituicao::createObjectInstituicao($result, true);
         return null;  
     }
 
@@ -47,7 +49,7 @@ class Instituicao_model extends RN_Model {
         $result = $this->executeRows($this->db, Instituicao::getSqlToSelectAll());
         $return_array = array();
         foreach($result as $row)
-            $return_array[] = Instituicao::createObjectInstituicao(json_decode(json_encode($row), true));
+            $return_array[] = Instituicao::createObjectInstituicao($row, true);
         return $return_array;
     }    
 }

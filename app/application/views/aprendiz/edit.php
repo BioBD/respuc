@@ -6,6 +6,7 @@
   Dados do Aprendiz:
   <br><br>
   Nome:
+  <input type="hidden" name="old_nome" value="<?php echo $aprendiz->getNome()?>"><br><br>
   <input type="text" name="nome" value="<?php echo $aprendiz->getNome()?>"><br><br>
   CPF:
   <input type="text" name="cpf" value="<?php echo $aprendiz->getCpf()?>"><br><br>

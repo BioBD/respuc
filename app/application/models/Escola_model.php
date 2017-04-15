@@ -26,32 +26,27 @@ class Escola_model extends RN_Model
     {
         $this->Logger->info("Running: " . __METHOD__);
         $escola = Escola::createObjectEscola($info);
+        $resultArray = $escola->getDataToSave();
+        $resultArray[] = $info->old_nome;
         if(isset($escola))
         {
-            $this->execute($this->db, $escola->getSqlToUpdate(), $escola->getDataToSave2());
+            $this->execute($this->db, $escola->getSqlToUpdate(), $resultArray);
         }
         return false;
     }
     
-    public function deleteEscola($info)
+    public function deleteEscola($nome)
     {
         $this->Logger->info("Running: " . __METHOD__);
-        print_r($info);
-        die();
-        $escola = Escola::createObjectEscola($info);
-        if(isset($escola)){
-            $this->execute($this->db, Escola::getSqlToDelete(), $nome);
-        }
-        return false;
+        return $this->execute($this->db, Escola::getSqlToDelete(), $nome);
     }
 
     public function selectOneEscola($dataIn)
     {
         $this->Logger->info("Running: " . __METHOD__);
-        var_dump($dataIn);
         $result = $this->executeRow($this->db, Escola::getSqlToSelect(), $dataIn);
         if ($result)
-            return Escola::createObjectEscola(json_decode(json_encode($result), true));
+            return Escola::createObjectEscola($result, true);
         return null;  
     }
 
@@ -61,7 +56,7 @@ class Escola_model extends RN_Model
         $result = $this->executeRows($this->db, Escola::getSqlToSelectAll());
         $return_array = array();
         foreach($result as $row)
-            $return_array[] = Escola::createObjectEscola(json_decode(json_encode($row), true));
+            $return_array[] = Escola::createObjectEscola($row, true);
         return $return_array;
     }    
 }

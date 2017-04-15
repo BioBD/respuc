@@ -7,14 +7,14 @@ class Escola
 	
 	public function __construct($nome, $telefone)
 	{
-		$this->nome = trim(strip_tags($nome));
-		$this->telefone = trim(strip_tags($telefone));
+		$this->nome = $nome;
+		$this->telefone = $telefone;
 	}
 
 	public static function createObjectEscola ($resultRow) // Criando o Objeto <<Escola>>
 	{
 		if(self::valida($resultRow)){
-			return new Escola($resultRow['nome'], $resultRow['telefone']);
+			return new Escola($resultRow->nome, $resultRow->telefone);
 		}
 		return null;
 	}
@@ -26,7 +26,7 @@ class Escola
 
 	public function getDataToSave2()
 	{
-		return array($this->getNome(), $this->getTelefone(), $this->getNome());
+		return array($this->getNome(), $this->getTelefone());
 	}
 
 	public function getSqlToInsert()
@@ -80,8 +80,8 @@ class Escola
 	private static function valida ($data) 
 	{
 	    $errors = array();
-	    $errors = self::validaNome($data['nome'], $errors);
-	    $errors = self::validaTelefone($data['telefone'], $errors);
+	    $errors = self::validaNome($data->nome, $errors);
+	    $errors = self::validaTelefone($data->telefone, $errors);
 
 	    if($errors == null)
 	    {

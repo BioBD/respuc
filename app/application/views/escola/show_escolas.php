@@ -5,10 +5,10 @@
 			echo "Nome: ".$escola->getNome()."<br>";
 			echo "Telefone: ".$escola->getTelefone()."<br>";
 	
-			$String = "http://localhost/respuc/app/index.php/escolacontroller/edit?nome=".$escola->getNome();
-			$String2 = "http://localhost/respuc/app/index.php/escolacontroller/delete?nome=".$escola->getNome();
-			echo '<a href='.$String.">EDIT</a>";
+			$String = "{$this->config->item('base_url')}EscolaController/edit?nome=".$escola->getNome();
+			$String2 = "{$this->config->item('base_url')}EscolaController/delete?nome=".$escola->getNome();
+			echo '<a href="'.$String.'">EDIT</a>';
 			echo "<br>";
-			echo '<a href='.$String2.">DELETE</a>";
+			echo '<a href="'.$String2.'">DELETE</a>';
 		}
 ?>

@@ -37,12 +37,18 @@ class RN_Model extends CI_Model {
             //$this->Logger->info("Rows affected:[".$conn->affected_rows()."]");
             $this->Logger->info('['.get_class($this).']Successfully executed');
             return true;
+        } catch (Error $e) {
+            $this->Logger->error('['.get_class($this).']Failed to execute');
+            $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
+            $this->Logger->error('['.get_class($this).']error[' . $e . ']');
+            $this->Logger->info('['.get_class($this).']End');
+            return false;
         } catch (Exception $e) {
             $this->Logger->error('['.get_class($this).']Failed to execute');
             $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
 
@@ -64,7 +70,7 @@ class RN_Model extends CI_Model {
             //$this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
 
@@ -93,7 +99,7 @@ class RN_Model extends CI_Model {
             $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
  
@@ -121,7 +127,7 @@ class RN_Model extends CI_Model {
             $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
  
@@ -151,7 +157,7 @@ class RN_Model extends CI_Model {
             $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
  
@@ -181,7 +187,7 @@ class RN_Model extends CI_Model {
             $this->Logger->debug('['.get_class($this).']query[' . $conn->last_query() . ']');
             $this->Logger->error('['.get_class($this).']error[' . $e . ']');
             $this->Logger->info('['.get_class($this).']End');
-            throw new ModelException($e->getMessage(),$e->getCode());
+            return false;
         }
     }
  
@@ -241,6 +247,22 @@ class RN_Model extends CI_Model {
         }
         return $this->errorPrefix.str_pad($pErrorCode, $this->errorPadding, '0', STR_PAD_LEFT);
     }
+
+    public function startTransaction(){
+        $this->Logger->info("[START TRANSACTION]");
+        $this->db->trans_start();
+    }
+
+    public function commitTransaction(){
+        $this->Logger->info("[COMMIT TRANSACTION]");
+        $this->db->trans_complete();
+    }
+
+    public function rollbackTransaction(){
+        $this->Logger->info("[ROLLBACK TRANSACTION]");
+        $this->db->trans_rollback();
+    }
+
 }
  
 ?>

@@ -38,6 +38,15 @@ class RN_Controller extends CI_Controller {
         $output .= $this->load->view('include/footer', $data, true);
         $this->output->set_output($output);
     }
+
+    public static function toYYYYMMDD($date) {
+        if ($date !== "" && $date !== FALSE && $date !== NULL) {
+            $date = explode("/", $date);
+            return $date[2] . "-" . $date[1] . "-" . $date[0];
+        }
+    }
+
+    
 }
 
 ?>

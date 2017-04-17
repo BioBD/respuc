@@ -4,7 +4,7 @@
 		<div class="container footer-section">
 			<div class="row">
 				<div class="col-lg-6">
-					<p>RESPUC NEAM</p>
+					<p>SISTEMA RESPUC NEAM</p>
 				</div>
 				<div class="col-lg-6">
 					<p align="right">

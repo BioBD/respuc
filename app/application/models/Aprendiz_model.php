@@ -17,7 +17,7 @@ class Aprendiz_model extends RN_Model
         $aprendiz = Aprendiz::createObjectAprendiz($dataIn);
         if(isset($aprendiz))
         {
-			$this->execute($this->db, $aprendiz->getSqlToInsert(), 
+			return $this->execute($this->db, $aprendiz->getSqlToInsert(), 
 				$aprendiz->getDataToSave());
    		}
         return false;

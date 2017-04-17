@@ -15,8 +15,6 @@ class InstituicaoController extends RN_Controller {
 
         $this->instituicao_model->setLogger($this->Logger);
         $this->load->helper(array('form', 'url'));
-
-
 	}
 
 	public function insert(){
@@ -26,6 +24,11 @@ class InstituicaoController extends RN_Controller {
 	public function search(){
 		$this->loadView('instituicao/search');
 	}
+
+    public function home(){
+        $this->loadView('instituicao/home');
+    }
+
 
 	public function edit(){
 		$dataIn = $this->input->get();
@@ -73,7 +76,7 @@ class InstituicaoController extends RN_Controller {
 
     public function form_csv()
     {
-            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -88,22 +91,100 @@ class InstituicaoController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('instituicao/form_csv', $error);
+                    $this->loadView('instituicao/form_csv', $error);
             }
             else
             {
                     $data = $this->upload->data();
-
-                    var_dump($data["full_path"]);
                     $file = fopen($data["full_path"],"r");
-                    while (($resource = fgetcsv($file,0,";")) !== FALSE) {
-	                    var_dump($resource);
+                    $firstRow = true;
+            		$this->instituicao_model->startTransaction();
+
+                    while (($resource = fgetcsv($file,0,";")) !== FALSE) 
+                    {
+                    	if($firstRow)
+                    	{
+                    		$firstRow = false;; 
+                    		if($resource[0] !== "Nome")
+                    		{
+                    			echo "<script> alert('A primeira coluna do csv de instituicao deve ser Nome!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[1] !== "Telefone")
+                    		{
+                    			echo "<script> alert('A segunda coluna do csv de instituicao deve ser Telefone');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[2] !== "Celular")
+                    		{
+                    			echo "<script> alert('A terceira coluna do csv de instituicao deve ser Celular');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[3] !== "Email")
+                    		{
+                    			echo "<script> alert('A quarta coluna do csv de instituicao deve ser Email');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[4] !== "Vinculo")
+                    		{
+                    			echo "<script> alert('A quinta coluna do csv de instituicao deve ser Vinculo!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[5] !== "Nome do Responsavel")
+                    		{
+                    			echo "<script> alert('A sexta coluna do csv de instituicao deve ser Nome do Responsavel!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[6] !== "Email do Responsavel")
+                    		{
+                    			echo "<script> alert('A setima coluna do csv de instituicao deve ser Email do Responsavel!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[7] !== "Telefone do Responsavel")
+                    		{
+                    			echo "<script> alert('A oitava coluna do csv de instituicao deve ser Telefone do Responsavel!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		
+                    		/* LINKS FICAM POR FORA POR ENQUANTO */
+
+                    	}
+                    	else
+                    	{
+                    		$local_data = (object) array(    
+								"nome" => $resource[0],
+								"telefone" => $resource[1],
+								"celular" => $resource[2],
+								"email" => $resource[3],
+								"vinculo" => $resource[4],
+								"nome_responsavel" => $resource[5],
+								"email_responsavel" => $resource[6],
+								"telefone_responsavel" => $resource[7]
+							    );
+
+            				$return = $this->instituicao_model->insertNewInstituicao($local_data	);
+            				if(!$return)
+            				{
+			            		$this->instituicao_model->rollbackTransaction();
+                    			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
+			                    return;
+
+            				}
+                    	}
                     }
-                    die;
+            	$this->instituicao_model->commitTransaction();
+        		echo "<script> alert('Load do csv de instituicao feito com sucesso!');</script>";
+        		$this->show();
             }
     }
-
-
-
 }
 ?>

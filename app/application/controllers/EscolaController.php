@@ -139,8 +139,5 @@ class EscolaController extends RN_Controller {
         		$this->show();
             }
     }
-
-
 }
-
 ?>

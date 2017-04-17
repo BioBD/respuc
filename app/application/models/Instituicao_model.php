@@ -13,7 +13,7 @@ class Instituicao_model extends RN_Model {
         $this->Logger->info("Running: " . __METHOD__);
         $instituicao = Instituicao::createObjectInstituicao($dataIn);
         if(isset($instituicao)){
-			$this->execute($this->db, $instituicao->getSqlToInsert(), $instituicao->getDataToSave());
+			return $this->execute($this->db, $instituicao->getSqlToInsert(), $instituicao->getDataToSave());
    		}
         return false;
     }

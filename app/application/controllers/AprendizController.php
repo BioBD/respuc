@@ -38,6 +38,7 @@ class AprendizController extends RN_Controller {
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
 
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
 		$this->loadView('aprendiz/cadastrosucesso');
@@ -46,6 +47,7 @@ class AprendizController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
 		$this->loadView('aprendiz/cadastrosucesso');
 	}
@@ -230,7 +232,7 @@ class AprendizController extends RN_Controller {
 							    "nome" => $resource[0],
 								"cpf" => $resource[1],
 								"rg" => $resource[2],
-								"data_nascimento" => $resource[3],
+								"data_nascimento" => $this->toYYYYMMDD($resource[3]),
 								"naturalidade" => $resource[4],
 								"email" => $resource[5],
 								"telefone" => $resource[6],

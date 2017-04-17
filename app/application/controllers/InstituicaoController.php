@@ -76,7 +76,7 @@ class InstituicaoController extends RN_Controller {
 
     public function form_csv()
     {
-            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -91,7 +91,7 @@ class InstituicaoController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('instituicao/form_csv', $error);
+                    $this->loadView('instituicao/form_csv', $error);
             }
             else
             {
@@ -108,49 +108,49 @@ class InstituicaoController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeira coluna do csv de instituicao deve ser Nome!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "Telefone")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de instituicao deve ser Telefone');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[2] !== "Celular")
                     		{
                     			echo "<script> alert('A terceira coluna do csv de instituicao deve ser Celular');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[3] !== "Email")
                     		{
                     			echo "<script> alert('A quarta coluna do csv de instituicao deve ser Email');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[4] !== "Vinculo")
                     		{
                     			echo "<script> alert('A quinta coluna do csv de instituicao deve ser Vinculo!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[5] !== "Nome do Responsavel")
                     		{
                     			echo "<script> alert('A sexta coluna do csv de instituicao deve ser Nome do Responsavel!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[6] !== "Email do Responsavel")
                     		{
                     			echo "<script> alert('A setima coluna do csv de instituicao deve ser Email do Responsavel!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[7] !== "Telefone do Responsavel")
                     		{
                     			echo "<script> alert('A oitava coluna do csv de instituicao deve ser Telefone do Responsavel!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		
@@ -175,7 +175,7 @@ class InstituicaoController extends RN_Controller {
             				{
 			            		$this->instituicao_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('instituicao/form_csv', array('error' => ' ' ));
+					            $this->loadView('instituicao/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

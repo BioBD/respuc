@@ -25,6 +25,11 @@ class InstituicaoController extends RN_Controller {
 		$this->loadView('instituicao/search');
 	}
 
+    public function home(){
+        $this->loadView('instituicao/home');
+    }
+
+
 	public function edit(){
 		$dataIn = $this->input->get();
 		$nome = $dataIn["nome"];

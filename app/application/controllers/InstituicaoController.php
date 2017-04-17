@@ -155,14 +155,14 @@ class InstituicaoController extends RN_Controller {
                     	else
                     	{
                     		$local_data = (object) array(    
-								"nome" => $resourse[0],
-								"telefone" => $resourse[1],
-								"celular" => $resourse[2],
-								"email" => $resourse[3],
-								"vinculo" => $resourse[4],
-								"nome_responsavel" => $resourse[5],
-								"email_responsavel" => $resourse[6],
-								"telefone_responsavel" => $resourse[7]
+								"nome" => $resource[0],
+								"telefone" => $resource[1],
+								"celular" => $resource[2],
+								"email" => $resource[3],
+								"vinculo" => $resource[4],
+								"nome_responsavel" => $resource[5],
+								"email_responsavel" => $resource[6],
+								"telefone_responsavel" => $resource[7]
 							    );
 
             				$return = $this->instituicao_model->insertNewInstituicao($local_data	);

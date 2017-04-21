@@ -186,6 +186,28 @@ CREATE TABLE instituicao(
      CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
 )
 
+drop table if Exists atividade;
+
+CREATE TABLE atividade(
+      nome character varying(50) NOT NULL,
+      CONSTRAINT ch_nome CHECK (length(trim(nome)) > 0),
+      CONSTRAINT pk_atividade PRIMARY KEY (nome)
+)
+
+drop table if Exists funcionario;
+
+CREATE TABLE funcionario(
+   CPF INTEGER NOT NULL,
+   RG INTEGER NOT NULL,
+   Naturalidade CHAR(50) NOT NULL,
+   Email VARCHAR(60) NOT NULL,
+   Nome VARCHAR(70) NOT NULL,
+   Data_Nascimento DATE NOT NULL,
+   Telefone INTEGER NOT NULL,
+   Celular INTEGER NOT NULL,
+   CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
+)
+
 CREATE OR REPLACE FUNCTION remove_acento(text) 
 RETURNS text AS 
 $BODY$ 

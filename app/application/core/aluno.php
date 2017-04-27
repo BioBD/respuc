@@ -46,9 +46,9 @@ class Aluno{
 		$this->cpf_responsavel = $cpf_responsavel;
 	}
 
-	public static function createObjectAprendiz($resultRow){
+	public static function createObjectAluno($resultRow){
 		if(self::valida($resultRow)){
-			return new Aprendiz (	$resultRow->nome, 
+			return new Aluno (	$resultRow->nome, 
 									$resultRow->cpf,
 									$resultRow->rg, 
 									$resultRow->data_nascimento, 

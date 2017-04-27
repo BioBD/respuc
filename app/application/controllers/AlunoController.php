@@ -38,7 +38,7 @@ class AlunoController extends RN_Controller {
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aluno_model->insertNewAluno($dataIn);
 		$this->loadView('aluno/cadastrosucesso');
@@ -47,7 +47,7 @@ class AlunoController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aluno_model->updateAluno($dataIn);
 		$this->loadView('aluno/cadastrosucesso');
 	}

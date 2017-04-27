@@ -254,7 +254,7 @@ class Aluno{
 		return $this->cursos;
 	}
 
-	public function setTrabalho($newCursos){
+	public function setCursos($newCursos){
 		$this->cursos = $newCursos;
 	}
 	

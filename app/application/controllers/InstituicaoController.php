@@ -186,5 +186,10 @@ class InstituicaoController extends RN_Controller {
         		$this->show();
             }
     }
+
+	public function admin(){
+		$data['instituicoes'] = $this->instituicao_model->selectAllInstituicao();
+		$this->loadView('instituicao/admin', $data);
+	}
 }
 ?>

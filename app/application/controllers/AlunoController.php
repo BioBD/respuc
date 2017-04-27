@@ -13,7 +13,7 @@ class AlunoController extends RN_Controller {
 
         $this->load->model('aluno_model');
 
-        $this->aprendiz_model->setLogger($this->Logger);
+        $this->aluno_model->setLogger($this->Logger);
         $this->load->helper(array('form', 'url'));
 	}
 

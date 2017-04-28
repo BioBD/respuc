@@ -21,8 +21,7 @@
   <input type="text" name="telefone"><br><br>
   Celular:
   <input type="text" name="celular"><br><br>
- 	Rua:
+ 	Funcao:
   <input type="text" name="funcao"><br><br>
-  <br><br>
   <input type="submit" value="Submit">
 </form>

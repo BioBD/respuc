@@ -30,7 +30,7 @@ class Funcionario
 				$resultRow->rg, $resultRow->data_nascimento,
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
-				$resultRow->funcao);
+				$resultRow->funcao;
 		}
 		return null;
 	}
@@ -47,7 +47,7 @@ class Funcionario
 		return 'INSERT INTO funcionario (
 									  nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
-									  funcao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
+									  funcao) VALUES (?,?,?,?,?,?,?,?,?);';
 	}
 	public function getSqlToUpdate()
 	{

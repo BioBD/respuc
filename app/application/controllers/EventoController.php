@@ -37,7 +37,7 @@ class EventoController extends RN_Controller {
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data = $this->toYYYYMMDD($dataIn->data)
+        $dataIn->data = $this->toYYYYMMDD($dataIn->data);
 		$return = $this->evento_model->insertNewEvento($dataIn);
 		$this->loadView('evento/cadastrosucesso');
 	}
@@ -45,7 +45,7 @@ class EventoController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data = $this->toYYYYMMDD($dataIn->data)
+        $dataIn->data = $this->toYYYYMMDD($dataIn->data);
 		$return = $this->evento_model->updateEvento($dataIn);
 		$this->loadView('evento/cadastrosucesso');
 	}

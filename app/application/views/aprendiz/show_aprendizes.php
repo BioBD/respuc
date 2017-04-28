@@ -29,8 +29,8 @@
 			echo "Profissao do Responsável: ".$aprendiz->getProfissaoResponsavel()."<br>";
 			echo "CPF do Responsavel: ".$aprendiz->getCpfResponsavel()."<br>";
 
-			$String = "{$this->config->item('base_link')}AprendizController/edit?nome=".$aprendiz->getNome();
-			$String2 = "{$this->config->item('base_link')}AprendizController/delete?nome=".$aprendiz->getNome();
+			$String = "{$this->config->item('base_link')}AprendizController/edit?cpf=".$aprendiz->getCpf();
+			$String2 = "{$this->config->item('base_link')}AprendizController/delete?cpf=".$aprendiz->getCpf();
 			echo '<a href="'.$String.'">EDIT</a>';
 			echo "<br>";
 			echo '<a href="'.$String2.'">DELETE</a>';

@@ -23,7 +23,7 @@ class Funcionario_model extends RN_Model
         $this->Logger->info("Running: " . __METHOD__);
         $funcionario = Funcionario::createObjectFuncionario($info);
         $resultArray = $funcionario->getDataToSave();
-        $resultArray[] = $info->old_nome;
+        $resultArray[] = $info->old_cpf;
         if(isset($funcionario)){
             $this->execute($this->db, $funcionario->getSqlToUpdate(), $resultArray);
         }

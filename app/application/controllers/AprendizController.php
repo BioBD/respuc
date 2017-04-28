@@ -27,11 +27,11 @@ class AprendizController extends RN_Controller {
 
 	public function edit(){
 		$dataIn = $this->input->get();
-		if(isset($dataIn["nome"]))
-			$nome = $dataIn["nome"];
+		if(isset($dataIn["cpf"]))
+			$cpf = $dataIn["cpf"];
 		else
-			$nome = "";
-		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($nome);
+			$cpf = "";
+		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($cpf);
 		$this->loadView('aprendiz/edit',$data);
 	}
 
@@ -65,11 +65,11 @@ class AprendizController extends RN_Controller {
 
 	public function delete(){
 		$dataIn = $this->input->get();
-		if(isset($dataIn["nome"]))
-			$nome = $dataIn["nome"];
+		if(isset($dataIn["cpf"]))
+			$cpf = $dataIn["cpf"];
 		else
-			$nome = '';
-		$return = $this->aprendiz_model->deleteAprendiz($nome);
+			$cpf = '';
+		$return = $this->aprendiz_model->deleteAprendiz($cpf);
 		$this->loadView('aprendiz/excluidosucesso');
 	}
 

@@ -102,18 +102,18 @@ class Aprendiz
 									  cidade=?, uf=?, cep=?, trabalho=?,
 									  nome_responsavel=?,telefone_responsavel=?,
 									  profissao_responsavel=?, cpf_responsavel=?
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 	public static function getSqlToDelete()
 	{
 		return 'DELETE FROM aprendiz
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelect()
 	{
-		return 'SELECT * FROM aprendiz WHERE nome=?;';
+		return 'SELECT * FROM aprendiz WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelectAll()

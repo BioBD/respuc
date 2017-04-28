@@ -35,53 +35,33 @@
 
         <div class = "container-fluid" >
             <div  id="nav">
+                <ul class = "nav navbar-nav" >
                 <?php
                 $paginaLink = $_SERVER['PHP_SELF'];
                 $extra = '"';
+                foreach($CRUDS as $crud)
+                {
+
                 ?>
-                <ul class = "nav navbar-nav" >
-                    <li class = "dropdown" >
-                        <a  <?php
-                        if ($paginaLink == "/index.php/admin/users" || $paginaLink == "/index.php/reports/user_reports") {
+                <li class = "dropdown" >
+                    <a  <?php
+                        if (strpos($paginaLink, $crud["pagina_admin"]) !== false) {
                             echo 'class="link active';
                         } else {
                             echo 'class="';
                         }
-                        ?> navbar-brand <?php echo $extra ?> data-toggle = "dropdown" href = "#" > Instituição
+                        ?> navbar-brand <?php echo $extra ?> data-toggle = "dropdown" href = "#" > <?=$crud["nome"]?>
                             <span class = "caret" > </span></a >
                         <ul class = "dropdown-menu" >
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>instituicaoController/admin" > Administração </a></li >
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>instituicaoController/show" > Relatórios </a></li >
+                            <li > <a href = "<?= $this->config->item('url_link'); ?><?=$crud["controller"]?>/admin" > Administração </a></li >
+                            <li > <a href = "<?= $this->config->item('url_link'); ?><?=$crud["controller"]?>/show" > Relatórios </a></li >
                         </ul>
                     </li>
-                    <li class = "dropdown" >
-                        <a  <?php
-                        if ($paginaLink == "/index.php/reports/associated_campaign" || $paginaLink == "/index.php/admin/campaign_admin") {
-                            echo 'class="link active';
-                        } else {
-                            echo 'class="';
-                        }
-                        ?> navbar-brand <?php echo $extra ?> data-toggle = "dropdown" href = "#" > Escola
-                            <span class = "caret" > </span></a >
-                        <ul class = "dropdown-menu" >
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>admin/campaign_admin" > Administração</a></li>
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>reports/associated_campaign" > Relatórios </a></li >
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a  <?php
-                        if ($paginaLink == "/index.php/admin/camp" || $paginaLink == "/index.php/reports/camp_reports" || $paginaLink == "/index.php/summercamps/roomDisposal") {
-                            echo 'class="link active';
-                        } else {
-                            echo 'class="';
-                        }
-                        ?> navbar-brand <?php echo $extra ?> data-toggle = "dropdown" href = "#" > Aprendiz
-                            <span class = "caret" > </span></a >
-                        <ul class = "dropdown-menu" >
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>admin/camp" > Administração </a></li >
-                            <li > <a href = "<?= $this->config->item('url_link'); ?>reports/camp_reports" > Relatórios </a></li >
-                        </ul>
-                    </li>
+
+                <?php                 
+                }
+
+                ?>
                 </ul>
             </div>
         </div>

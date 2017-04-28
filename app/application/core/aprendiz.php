@@ -1,7 +1,10 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
 
 class Aprendiz 
 {
+
+
 	protected $nome;
 	protected $cpf;
 	protected $rg;
@@ -53,7 +56,7 @@ class Aprendiz
 		if(self::valida($resultRow)){
 			return new Aprendiz (
 				$resultRow->nome, $resultRow->cpf,
-				$resultRow->rg, $resultRow->data_nascimento,
+				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
 				$resultRow->rua, $resultRow->numero, 

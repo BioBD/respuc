@@ -1,4 +1,5 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
 
 class Aluno{
 	protected $nome;
@@ -51,7 +52,7 @@ class Aluno{
 			return new Aluno (	$resultRow->nome, 
 									$resultRow->cpf,
 									$resultRow->rg, 
-									$resultRow->data_nascimento, 
+									RN_Controller::toDDMMYYYY($resultRow->data_nascimento), 
 									$resultRow->naturalidade, 
 									$resultRow->email, 
 									$resultRow->telefone, 

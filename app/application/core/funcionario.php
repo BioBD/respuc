@@ -1,4 +1,6 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
+
 class Funcionario 
 {
 	protected $nome;
@@ -10,6 +12,7 @@ class Funcionario
 	protected $telefone;
 	protected $celular;
 	protected $funcao;
+
 	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $funcao)
 	{
 		$this->nome = $nome;
@@ -27,7 +30,7 @@ class Funcionario
 		if(self::valida($resultRow)){
 			return new Funcionario (
 				$resultRow->nome, $resultRow->cpf,
-				$resultRow->rg, $resultRow->data_nascimento,
+				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
 				$resultRow->funcao);

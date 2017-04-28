@@ -12,7 +12,7 @@ class AtividadeController extends RN_Controller {
 
         $this->load->model('atividade_model');
 
-        $this->evento_model->setLogger($this->Logger);
+        $this->atividade_model->setLogger($this->Logger);
         $this->load->helper(array('form', 'url'));
 	}
 

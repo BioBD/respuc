@@ -5,6 +5,9 @@
 			echo "Mostrar Curso: "; "<br>";
 
 			echo "Nome: ".$curso->getNome()."<br>";
+			echo "Coordenador: ".$curso->getCoord()."<br>";
+			echo "Departamento: ".$curso->getDepto()."<br>";
+			echo "QUantidade de Alunos: ".$curso->getQtd_Alunos()."<br>";
 			
 			$String = "{$this->config->item('base_link')}CursoController/edit?nome=".$curso->getNome();
 			$String2 = "{$this->config->item('base_link')}CursoController/delete?nome=".$curso->getNome();

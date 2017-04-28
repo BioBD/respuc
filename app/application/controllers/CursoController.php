@@ -4,14 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'core/RN_Controller.php';
 
-class EventoController extends RN_Controller {
+class CursoController extends RN_Controller {
 
     public function __construct() {
     	//Aqui é necessário inicializar todos os modelos usados nesse controlador
         parent::__construct();
 
         $this->load->model('curso_model');
-
         $this->curso_model->setLogger($this->Logger);
         $this->load->helper(array('form', 'url'));
 	}
@@ -106,10 +105,31 @@ class EventoController extends RN_Controller {
 					            $this->load->view('curso/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
+                            if($resource[1] !== "Coordenador")
+                            {
+                                echo "<script> alert('A segunda coluna do csv de curso deve ser Coordenador!');</script>";
+                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                return;
+                            }
+                            if($resource[2] !== "Departamento")
+                            {
+                                echo "<script> alert('A terceira coluna do csv de curso deve ser Departamento!');</script>";
+                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                return;
+                            }
+                            if($resource[3] !== "Quantidade de Alunos")
+                            {
+                                echo "<script> alert('A quarta coluna do csv de curso deve ser Quantidade de Alunos!');</script>";
+                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                return;
+                            }
                     	}
                     	else
                     	{
-                    		$local_data = (object) array("nome" => $resource[0],);
+                    		$local_data = (object) array("nome" => $resource[0], 
+                                                         "coord" => $resource[1],
+                                                         "depto" => $resource[2],
+                                                         "qtd_alunos" => $resource[3]);
             				$return = $this->curso_model->insertNewCurso($local_data	);
             				if(!$return)
             				{

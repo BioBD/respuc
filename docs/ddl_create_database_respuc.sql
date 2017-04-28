@@ -184,7 +184,7 @@ CREATE TABLE instituicao(
      email_responsavel character varying(1024) NOT NULL,
      telefone_responsavel character varying(16) NOT NULL,
      CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
-)
+);
 
 drop table if Exists atividade;
 
@@ -192,7 +192,7 @@ CREATE TABLE atividade(
       nome character varying(50) NOT NULL,
       CONSTRAINT ch_nome CHECK (length(trim(nome)) > 0),
       CONSTRAINT pk_atividade PRIMARY KEY (nome)
-)
+);
 
 drop table if Exists funcionario;
 
@@ -206,7 +206,7 @@ CREATE TABLE funcionario(
    Telefone INTEGER NOT NULL,
    Celular INTEGER NOT NULL,
    CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
-)
+);
 
 CREATE OR REPLACE FUNCTION remove_acento(text) 
 RETURNS text AS 

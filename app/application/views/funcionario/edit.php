@@ -22,10 +22,7 @@
   <input type="text" name="telefone" value="<?php echo $funcionario->getTelefone()?>"><br><br>
   Celular:
   <input type="text" name="celular" value="<?php echo $funcionario->getCelular()?>"><br><br>
- 	Rua:
-  <input type="text" name="funcao" value="<?php echo $funcionario->getFuncao()?>"><br><br>
-  <br><br>
-  Dados do Responsável:
-  <br><br>
+ 	Funcao:
+  <input type="text" name="rua" value="<?php echo $funcionario->getFuncao()?>"><br><br>
   <input type="submit" value="Submit">
 </form>

@@ -38,7 +38,7 @@ class AprendizController extends RN_Controller {
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
 		$this->loadView('aprendiz/cadastrosucesso');

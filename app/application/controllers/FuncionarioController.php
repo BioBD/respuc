@@ -27,7 +27,7 @@ class FuncionarioController extends RN_Controller {
     public function save(){
         $dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento)
+        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
         $return = $this->funcionario_model->insertNewFuncionario($dataIn);
         $this->loadView('funcionario/cadastrosucesso');
     }
@@ -39,7 +39,7 @@ class FuncionarioController extends RN_Controller {
         $this->loadView('funcionario/cadastrosucesso');
     }
     public function show(){
-        $data['funcionarioes'] = $this->funcionario_model->selectAllFuncionario();
+        $data['funcionarios'] = $this->funcionario_model->selectAllFuncionario();
         $this->loadView('funcionario/show_funcionarios', $data);
     }
     public function find(){

@@ -30,7 +30,7 @@ class Funcionario
 				$resultRow->rg, $resultRow->data_nascimento,
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
-				$resultRow->funcao;
+				$resultRow->funcao);
 		}
 		return null;
 	}

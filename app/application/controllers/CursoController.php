@@ -119,15 +119,9 @@ class CursoController extends RN_Controller {
                                 $this->load->view('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }
-                            if($resource[3] !== "Data de Nascimento")
+                            if($resource[3] !== "QuantidadeAlunos")
                             {
-                                echo "<script> alert('A quarta coluna do csv de curso deve ser Data de Nascimento');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
-                                return;
-                            }
-                            if($resource[4] !== "QuantidadeAlunos")
-                            {
-                                echo "<script> alert('A quinta coluna do csv de curso deve ser QuantidadeAlunos!');</script>";
+                                echo "<script> alert('A quarta coluna do csv de curso deve ser QuantidadeAlunos!');</script>";
                                 $this->load->view('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }

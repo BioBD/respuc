@@ -17,9 +17,9 @@ class Curso_model extends RN_Model
         $curso = Curso::createObjectCurso($dataIn);
         if(isset($curso))
         {
-			return $this->execute($this->db, $curso->getSqlToInsert(), 
-				$curso->getDataToSave());
-   		}
+            return $this->execute($this->db, $curso->getSqlToInsert(), 
+                $curso->getDataToSave());
+        }
         return false;
     }
 
@@ -48,7 +48,8 @@ class Curso_model extends RN_Model
     public function selectOneCurso($dataIn)
     {
         $this->Logger->info("Running: " . __METHOD__);
-        $result = $this->executeRow($this->db, Curso::getSqlToSelect(), $dataIn);
+        $result = $this->executeRow($this->db, 
+            Curso::getSqlToSelect(), $dataIn);
 
         if ($result)
             return Curso::createObjectCurso ($result, true);
@@ -59,7 +60,8 @@ class Curso_model extends RN_Model
     public function selectAllCurso()
     {
         $this->Logger->info("Running: " . __METHOD__);
-        $result = $this->executeRows($this->db, Curso::getSqlToSelectAll());
+        $result = $this->executeRows($this->db, 
+            Curso::getSqlToSelectAll());
 
         $return_array = array();
 

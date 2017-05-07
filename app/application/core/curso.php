@@ -1,4 +1,5 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
 
 class Curso 
 {
@@ -15,31 +16,29 @@ class Curso
 		$this->qtd_alunos = $qtd_alunos;
 	}
 
-	public static function createObjectCurso($resultRow)
+	public static function createObjectEvento($resultRow)
 	{
-		if(self::valida($resultRow))
-		{
-			return new Curso (  $resultRow->nome , 
-								$resultRow->coord , 
-								$resultRow->depto , 
-								$resultRow->qtd_alunos );
+		if(self::valida($resultRow)){
+			return new Evento ( $resultRow->nome, $resultRow->coord,
+				$resultRow->depto, $resultRow->qtd_alunos);
 		}
 		return null;
 	}
 
 	public function getDataToSave()
 	{
-		return array ( $this->getNome() , $this->getCoord() , $this->getDepto() , $this->getQtd_Alunos() );
+		return array ( $this->getNome(), $this->getCoord(), $this->getDepto(),
+					   $this->getQtdAlunos());
 	}
 
 	public function getSqlToInsert()
 	{
-		return 'INSERT INTO curso (nome,coord,depto,qtd_alunos) VALUES (?,?,?,?);';
+		return 'INSERT INTO curso ( nome, coord, depto, qtd_alunos) VALUES (?,?,?,?);';
 	}
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE public.curso SET nome=? WHERE nome=?;';
+		return 'UPDATE public.curso SET nome=?, coord=?, depto=?, qtd_alunos=? WHERE nome=?;';
 	}
 
 	public static function getSqlToDelete()
@@ -87,14 +86,14 @@ class Curso
 		$this->depto = $newDepto;
 	}
 
-	public function getQtd_Alunos()
+	public function getQtdAlunos()
 	{
 		return $this->qtd_alunos;
 	}
 
-	public function setQtd_Alunos($newQtd_Alunos)
+	public function setQtdAlunos($newQtdAlunos)
 	{
-		$this->qtd_alunos = $newQtd_Alunos;
+		$this->qtd_alunos = $newQtdAlunos;
 	}
 
 	private static function valida ($data) 
@@ -103,8 +102,8 @@ class Curso
         $errors = self::validaNome($data->nome, $errors);
         $errors = self::validaCoord($data->coord, $errors);
         $errors = self::validaDepto($data->depto, $errors);
-        $errors = self::validaQtd_Alunos($data->qtd_alunos, $errors);
-
+        $errors = self::validaQtdAlunos($data->qtd_alunos, $errors);
+        
         if($errors == null)
         {
             return true;
@@ -128,6 +127,7 @@ class Curso
         } 
         return $errors;
     }
+
     private static function validaCoord ($data, $errors)
     {
         if (empty($data)) 
@@ -137,6 +137,7 @@ class Curso
         } 
         return $errors;
     }
+
     private static function validaDepto ($data, $errors)
     {
         if (empty($data)) 
@@ -146,7 +147,8 @@ class Curso
         } 
         return $errors;
     }
-    private static function validaQtd_Alunos ($data, $errors)
+
+    private static function validaQtdAlunos ($data, $errors)
     {
         if (empty($data)) 
         {

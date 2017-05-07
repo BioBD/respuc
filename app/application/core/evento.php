@@ -1,43 +1,45 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
 
 class Evento 
 {
 	protected $nome;
-	protected $presencas;
 	protected $dataevento;
+	protected $presencas;
 	protected $descricao;
 
-
-	public function __construct($nome, $presencas, $dataevento, $descricao)
+	public function __construct($nome, $dataevento, $presencas, $descricao)
 	{
 		$this->nome = $nome;
-		$this->presencas = $presencas;
 		$this->dataevento = $dataevento;
+		$this->presencas = $presencas;
 		$this->descricao = $descricao;
 	}
 
 	public static function createObjectEvento($resultRow)
 	{
-		if(self::valida($resultRow))
-		{
-			return new Evento ( $resultRow->nome, $resultRow->presencas, $resultRow->dataevento, $resultRow->descricao );
+		if(self::valida($resultRow)){
+			return new Evento (
+				$resultRow->nome, 
+				RN_Controller::toDDMMYYYY($resultRow->dataevento),
+				$resultRow->presencas, $resultRow->descricao);
 		}
 		return null;
 	}
 
 	public function getDataToSave()
 	{
-		return array ( $this->getNome(), $this->getPresencas(), $this->getDataEvento(), $this->getDescricao() );
+		return array ( $this->getNome(), $this->getDataEvento(), $this->getPresencas(), $this->getDescricao());
 	}
 
 	public function getSqlToInsert()
 	{
-		return 'INSERT INTO evento (nome, presencas, dataevento, descricao) VALUES (?,?,?,?);';
+		return 'INSERT INTO evento ( nome, dataevento, presencas, descricao ) VALUES (?,?,?,?);';
 	}
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE public.evento SET nome=?, presencas=?, dataevento=?, descricao=? WHERE nome=?;';
+		return 'UPDATE public.evento SET nome=?, dataevento=?, presencas=?, descricao=? WHERE nome=?;';
 	}
 
 	public static function getSqlToDelete()
@@ -65,16 +67,6 @@ class Evento
 		$this->nome = $newName;
 	}
 
-	public function getPresencas()
-	{
-		return $this->presencas;
-	}
-
-	public function setPresencas($newPresencas)
-	{
-		$this->presencas = $newPresencas;
-	}
-
 	public function getDataEvento()
 	{
 		return $this->dataevento;
@@ -83,6 +75,16 @@ class Evento
 	public function setDataEvento($newDataEvento)
 	{
 		$this->dataevento = $newDataEvento;
+	}
+
+	public function getPresencas()
+	{
+		return $this->presencas;
+	}
+
+	public function setPresencas($newPresencas)
+	{
+		$this->presencas = $newPresencas;
 	}
 
 	public function getDescricao()
@@ -99,8 +101,8 @@ class Evento
 	{
         $errors = array();
         $errors = self::validaNome($data->nome, $errors);
-		$errors = self::validaPresencas($data->presencas, $errors);
         $errors = self::validaDataEvento($data->dataevento, $errors);
+        $errors = self::validaPresencas($data->presencas, $errors);
         $errors = self::validaDescricao($data->descricao, $errors);
 
         if($errors == null)
@@ -127,22 +129,22 @@ class Evento
         return $errors;
     }
 
-    private static function validaPresencas ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['presencas'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
     private static function validaDataEvento ($data, $errors)
     {
         if (empty($data)) 
         {
             // Tratar erro para campo vazio.
             $errors['dataevento'] = "O campo não pode estar vazio!";
+        } 
+        return $errors;
+    }
+
+    private static function validaPresencas ($data, $errors)
+    {
+        if (empty($data)) 
+        {
+            // Tratar erro para campo vazio.
+            $errors['presencas'] = "O campo não pode estar vazio!";
         } 
         return $errors;
     }

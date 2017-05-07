@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'core/RN_Controller.php';
 
+
 class EventoController extends RN_Controller {
 
     public function __construct() {
@@ -36,7 +37,8 @@ class EventoController extends RN_Controller {
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data = $this->toYYYYMMDD($dataIn->data);
+        $dataIn->dataevento = $this->toYYYYMMDD($dataIn->dataevento);
+
 		$return = $this->evento_model->insertNewEvento($dataIn);
 		$this->loadView('evento/cadastrosucesso');
 	}
@@ -44,7 +46,7 @@ class EventoController extends RN_Controller {
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
-        $dataIn->data = $this->toYYYYMMDD($dataIn->data);
+        $dataIn->dataevento = $this->toYYYYMMDD($dataIn->dataevento);
 		$return = $this->evento_model->updateEvento($dataIn);
 		$this->loadView('evento/cadastrosucesso');
 	}
@@ -107,21 +109,21 @@ class EventoController extends RN_Controller {
 					            $this->load->view('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                            if($resource[1] !== "Presencas")
-                            {
-                                echo "<script> alert('A segunda coluna do csv de evento deve ser Presencas');</script>";
-                                $this->load->view('evento/form_csv', array('error' => ' ' ));
-                                return;
-                            }
-                    		if($resource[2] !== "DataEvento")
+                    		if($resource[1] !== "DataEvento")
                     		{
-                    			echo "<script> alert('A terceira coluna do csv de evento deve ser DataEvento');</script>";
+                    			echo "<script> alert('A segunda coluna do csv de evento deve ser DataEvento');</script>";
 					            $this->load->view('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[3] !== "Descrição")
+                    		if($resource[2] !== "Presencas")
                     		{
-                    			echo "<script> alert('A quarta coluna do csv de evento deve ser Descrição');</script>";
+                    			echo "<script> alert('A terceira coluna do csv de evento deve ser Presencas');</script>";
+					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[3] !== "Descricao")
+                    		{
+                    			echo "<script> alert('A quarta coluna do csv de evento deve ser Descricao');</script>";
 					            $this->load->view('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
@@ -130,9 +132,9 @@ class EventoController extends RN_Controller {
                     	{
                     		$local_data = (object) array(    
 							    "nome" => $resource[0],
-                                "presencas" => $resourse[1],
-								"dataevento" => $this->toYYYYMMDD($resource[2]),
-								"descricao" => $resource[3],
+								"dataevento" => $this->toYYYYMMDD($resource[1]),
+								"presencas" => $resource[2],
+								"descricao" => $resource[3]
 							    );
             				$return = $this->evento_model->insertNewEvento($local_data	);
             				if(!$return)

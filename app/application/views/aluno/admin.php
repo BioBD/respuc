@@ -1,24 +1,5 @@
 <script>
 
-	// function showCounter(currentPage, totalPage, firstRow, lastRow, totalRow, totalRowUnfiltered) {
-	// 	return '';
-	// }
-
-	// function sortLowerCase(l, r) {
-	// 	return l.toLowerCase().localeCompare(r.toLowerCase());
-	// }
-
-	// $(document).ready(function() {
-	// 		$('#sortable-table').datatable({
-	// 			pageSize : Number.MAX_VALUE,
-	// 			sort : [sortLowerCase, false, false, sortLowerCase, sortLowerCase, sortLowerCase, sortLowerCase],
-	// 			filters : [true, false, false, true, true, true, true],
-	// 			filterText: 'Escreva para filtrar... ',
-	// 			counterText	: showCounter,
-	// 			sortKey : 0				
-	// 		});
-	// });
-
 </script>
 
 <div>
@@ -30,6 +11,9 @@
     <div>
             <a href="<?php echo $this->config->item('base_link').'AlunoController/insert' ?>">
                 <input type="button" class='btn btn-primary' value="Inserir Aluno">
+            </a>
+            <a href="<?php echo $this->config->item('base_link').'AlunoController/form_csv' ?>">
+                <input type="button" class='btn btn-success' value="Importar CSV">
             </a>
 
         <div class="row">

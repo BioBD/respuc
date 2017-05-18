@@ -77,7 +77,7 @@ class EventoController extends RN_Controller {
 
 	public function form_csv()
     {
-            $this->load->view('evento/form_csv', array('error' => ' ' ));
+            $this->loadView('evento/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -92,7 +92,7 @@ class EventoController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('evento/form_csv', $error);
+                    $this->loadView('evento/form_csv', $error);
             }
             else
             {
@@ -109,25 +109,25 @@ class EventoController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeira coluna do csv de evento deve ser Nome!');</script>";
-					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+					            $this->loadView('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "DataEvento")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de evento deve ser DataEvento');</script>";
-					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+					            $this->loadView('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[2] !== "Presencas")
                     		{
                     			echo "<script> alert('A terceira coluna do csv de evento deve ser Presencas');</script>";
-					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+					            $this->loadView('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[3] !== "Descricao")
                     		{
                     			echo "<script> alert('A quarta coluna do csv de evento deve ser Descricao');</script>";
-					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+					            $this->loadView('evento/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     	}
@@ -144,7 +144,7 @@ class EventoController extends RN_Controller {
             				{
 			            		$this->evento_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('evento/form_csv', array('error' => ' ' ));
+					            $this->loadView('evento/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

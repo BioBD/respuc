@@ -47,7 +47,10 @@
 							<tbody id="tablebody">
 								<?php foreach ($instituicoes as $instituicao) { ?> 
 									<tr>
-										<td><a href="<?php echo $this->config->item('base_link').'InstituicaoController/find' ?>"><?php echo $instituicao->getNome();?></a></td>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>InstituicaoController/get?nome=<?=urlencode($instituicao->getNome())?>'>
+												<?=$instituicao->getNome()?> </a> 
+										</td>
 										<td><?php echo $instituicao->getTelefone();?></td>
 										<td><?php echo $instituicao->getCelular();?></td>
 										<td><?php echo $instituicao->getEmail();?></td>

@@ -86,7 +86,7 @@
 <div class = "row">
     <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
     <div class="col-lg-12">
-      <form method="post" action="save" enctype="multipart/form-data">
+      <form method="post" action="update" enctype="multipart/form-data">
 
         <div class="row">
                 <div class="form-group">

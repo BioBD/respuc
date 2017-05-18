@@ -1,35 +1,19 @@
 <script>
 
-	// function showCounter(currentPage, totalPage, firstRow, lastRow, totalRow, totalRowUnfiltered) {
-	// 	return '';
-	// }
-
-	// function sortLowerCase(l, r) {
-	// 	return l.toLowerCase().localeCompare(r.toLowerCase());
-	// }
-
-	// $(document).ready(function() {
-	// 		$('#sortable-table').datatable({
-	// 			pageSize : Number.MAX_VALUE,
-	// 			sort : [sortLowerCase, false, false, sortLowerCase, sortLowerCase, sortLowerCase, sortLowerCase],
-	// 			filters : [true, false, false, true, true, true, true],
-	// 			filterText: 'Escreva para filtrar... ',
-	// 			counterText	: showCounter,
-	// 			sortKey : 0				
-	// 		});
-	// });
-
 </script>
 
 <div>
-    <?php // require_once APPPATH . 'views/include/left_menu.php'
-		if($message !== null){
-			echo "<script>alert("$message")</script>";			
+    <?php 
+		if(isset($message) && $message !== null){
+			echo "<script>alert(\"{$message}\")</script>";			
 		} 
 	?>
     <div>
             <a href="<?php echo $this->config->item('base_link').'InstituicaoController/insert' ?>">
                 <input type="button" class='btn btn-primary' value="Inserir Instituição">
+            </a>
+            <a href="<?php echo $this->config->item('base_link').'InstituicaoController/form_csv' ?>">
+                <input type="button" class='btn btn-success' value="Importar CSV">
             </a>
 
         <div class="row">
@@ -57,7 +41,10 @@
 							<tbody id="tablebody">
 								<?php foreach ($instituicoes as $instituicao) { ?> 
 									<tr>
-										<td><?php echo $instituicao->getNome();?></td>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>InstituicaoController/get?nome=<?=urlencode($instituicao->getNome())?>'>
+												<?=$instituicao->getNome()?> </a> 
+										</td>
 										<td><?php echo $instituicao->getEmail();?></td>
 										<td><?php echo $instituicao->getVinculo();?></td>
 										<td><?php echo $instituicao->getNomeResponsavel();?></td>

@@ -78,7 +78,7 @@ class AprendizController extends RN_Controller {
 
 	public function form_csv()
     {
-            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -93,7 +93,7 @@ class AprendizController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('aprendiz/form_csv', $error);
+                    $this->loadView('aprendiz/form_csv', $error);
             }
             else
             {
@@ -110,121 +110,121 @@ class AprendizController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeira coluna do csv de aprendiz deve ser Nome!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "CPF")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de aprendiz deve ser CPF');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[2] !== "RG")
                     		{
                     			echo "<script> alert('A terceira coluna do csv de aprendiz deve ser RG');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[3] !== "Data de Nascimento")
                     		{
                     			echo "<script> alert('A quarta coluna do csv de aprendiz deve ser Data de Nascimento');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[4] !== "Naturalidade")
                     		{
                     			echo "<script> alert('A quinta coluna do csv de aprendiz deve ser Naturalidade!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[5] !== "Email")
                     		{
                     			echo "<script> alert('A sexta coluna do csv de aprendiz deve ser Email!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[6] !== "Telefone")
                     		{
                     			echo "<script> alert('A setima coluna do csv de aprendiz deve ser Telefone!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[7] !== "Celular")
                     		{
                     			echo "<script> alert('A oitava coluna do csv de aprendiz deve ser Celular!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[8] !== "Rua")
                     		{
                     			echo "<script> alert('A nona coluna do csv de aprendiz deve ser Rua!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[9] !== "Numero")
                     		{
                     			echo "<script> alert('A decima coluna do csv de aprendiz deve ser Numero!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[10] !== "Complemento")
                     		{
                     			echo "<script> alert('A decima primeira coluna do csv de aprendiz deve ser Complemento!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[11] !== "Bairro")
                     		{
                     			echo "<script> alert('A decima segunda coluna do csv de aprendiz deve ser Bairro!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[12] !== "Cidade")
                     		{
                     			echo "<script> alert('A decima terceira coluna do csv de aprendiz deve ser Cidade!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[13] !== "UF")
                     		{
                     			echo "<script> alert('A decima quarta coluna do csv de aprendiz deve ser UF!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[14] !== "CEP")
                     		{
                     			echo "<script> alert('A decima quinta coluna do csv de aprendiz deve ser CEP!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[15] !== "Trabalho")
                     		{
                     			echo "<script> alert('A decima sexta coluna do csv de aprendiz deve ser Trabalho!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[16] !== "Nome do Responsavel")
                     		{
                     			echo "<script> alert('A decima setima coluna do csv de aprendiz deve ser Nome do Responsavel!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[17] !== "Telefone do Responsavel")
                     		{
                     			echo "<script> alert('A decima oitava primeira coluna do csv de aprendiz deve ser Telefone do Responsavel!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[18] !== "Profissao do Responsavel")
                     		{
                     			echo "<script> alert('A decima nona coluna do csv de aprendiz deve ser Profissao do Responsavel!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[19] !== "CPF do Responsavel")
                     		{
                     			echo "<script> alert('A vigesima coluna do csv de aprendiz deve ser CPF do Responsavel!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
 
@@ -258,7 +258,7 @@ class AprendizController extends RN_Controller {
             				{
 			            		$this->aprendiz_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('aprendiz/form_csv', array('error' => ' ' ));
+					            $this->loadView('aprendiz/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

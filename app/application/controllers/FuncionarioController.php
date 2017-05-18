@@ -87,7 +87,7 @@ class FuncionarioController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('funcionario/form_csv', $error);
+                    $this->loadView('funcionario/form_csv', $error);
             }
             else
             {
@@ -104,55 +104,55 @@ class FuncionarioController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeira coluna do csv de funcionario deve ser Nome!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "CPF")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de funcionario deve ser CPF');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[2] !== "RG")
                     		{
                     			echo "<script> alert('A terceira coluna do csv de funcionario deve ser RG');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[3] !== "Data de Nascimento")
                     		{
                     			echo "<script> alert('A quarta coluna do csv de funcionario deve ser Data de Nascimento');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[4] !== "Naturalidade")
                     		{
                     			echo "<script> alert('A quinta coluna do csv de funcionario deve ser Naturalidade!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[5] !== "Email")
                     		{
                     			echo "<script> alert('A sexta coluna do csv de funcionario deve ser Email!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[6] !== "Telefone")
                     		{
                     			echo "<script> alert('A setima coluna do csv de funcionario deve ser Telefone!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[7] !== "Celular")
                     		{
                     			echo "<script> alert('A oitava coluna do csv de funcionario deve ser Celular!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[8] !== "Funcao")
                     		{
                     			echo "<script> alert('A nona coluna do csv de funcionario deve ser Funcao!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     	}
@@ -174,7 +174,7 @@ class FuncionarioController extends RN_Controller {
             				{
 			            		$this->funcionario_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
+					            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

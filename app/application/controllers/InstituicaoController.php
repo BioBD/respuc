@@ -42,7 +42,7 @@ class InstituicaoController extends RN_Controller {
         $dataIn = (object) $dataIn;
 		$return = $this->instituicao_model->insertNewInstituicao($dataIn);
 		$data['message'] = "Instituição cadastrada com sucesso!";
-		$this->loadView('instituicao/admin', $data);
+		$this->admin($data);
 	}
 
 	public function update(){
@@ -50,7 +50,7 @@ class InstituicaoController extends RN_Controller {
         $dataIn = (object) $dataIn;
 		$return = $this->instituicao_model->updateInstituicao($dataIn);
 		$data['message'] = "Instituição atualizada com sucesso!";
-		$this->loadView('instituicao/admin');
+		$this->admin($data);
 	}
 
 	public function show(){
@@ -58,11 +58,18 @@ class InstituicaoController extends RN_Controller {
 		$this->loadView('instituicao/show_instituicoes', $data);
 	}
 
+	public function get(){
+		$dataIn = $this->input->get();
+		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($dataIn);
+		$this->loadView('instituicao/show_instituicao', $data);
+	}
+
 	public function find(){
 		$dataIn = $this->input->post();
 		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($dataIn);
 		$this->loadView('instituicao/show_instituicao', $data);
 	}
+
 
 	public function delete(){
 		$dataIn = $this->input->get();
@@ -74,7 +81,7 @@ class InstituicaoController extends RN_Controller {
 		}
 		$return = $this->instituicao_model->deleteInstituicao($nome);
 		$data['message'] = "Instituição excluída com sucesso!";
-		$this->loadView('instituicao/admin', $data);
+		$this->admin($data);
 	}
 
     public function form_csv()
@@ -185,12 +192,12 @@ class InstituicaoController extends RN_Controller {
                     	}
                     }
             	$this->instituicao_model->commitTransaction();
-        		echo "<script> alert('Load do csv de instituicao feito com sucesso!');</script>";
-        		$this->show();
+				$data['message'] = "Load do csv de instituicao efetuado com sucesso!";		
+        		$this->admin();
             }
     }
 
-	public function admin(){
+	public function admin($data = array()){
 		$data['instituicoes'] = $this->instituicao_model->selectAllInstituicao();
 		$this->loadView('instituicao/admin', $data);
 	}

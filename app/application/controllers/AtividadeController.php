@@ -74,7 +74,7 @@ class AtividadeController extends RN_Controller {
 
 	public function form_csv()
     {
-            $this->load->view('atividade/form_csv', array('error' => ' ' ));
+            $this->loadView('atividade/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -89,7 +89,7 @@ class AtividadeController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('atividade/form_csv', $error);
+                    $this->loadView('atividade/form_csv', $error);
             }
             else
             {
@@ -106,7 +106,7 @@ class AtividadeController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeira coluna do csv de atividade deve ser Nome!');</script>";
-					            $this->load->view('atividade/form_csv', array('error' => ' ' ));
+					            $this->loadView('atividade/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     	}
@@ -118,7 +118,7 @@ class AtividadeController extends RN_Controller {
             				{
 			            		$this->atividade_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('atividade/form_csv', array('error' => ' ' ));
+					            $this->loadView('atividade/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

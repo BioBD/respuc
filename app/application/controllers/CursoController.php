@@ -75,7 +75,7 @@ class CursoController extends RN_Controller {
 
     public function form_csv()
     {
-            $this->load->view('curso/form_csv', array('error' => ' ' ));
+            $this->loadView('curso/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -90,7 +90,7 @@ class CursoController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('curso/form_csv', $error);
+                    $this->loadView('curso/form_csv', $error);
             }
             else
             {
@@ -107,25 +107,25 @@ class CursoController extends RN_Controller {
                             if($resource[0] !== "Nome")
                             {
                                 echo "<script> alert('A primeira coluna do csv de curso deve ser Nome!');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                $this->loadView('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }
                             if($resource[1] !== "Coordenador")
                             {
                                 echo "<script> alert('A segunda coluna do csv de curso deve ser Coordenador');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                $this->loadView('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }
                             if($resource[2] !== "Departamento")
                             {
                                 echo "<script> alert('A terceira coluna do csv de curso deve ser Departamento');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                $this->loadView('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }
                             if($resource[3] !== "QuantidadeAlunos")
                             {
                                 echo "<script> alert('A quarta coluna do csv de curso deve ser QuantidadeAlunos!');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                $this->loadView('curso/form_csv', array('error' => ' ' ));
                                 return;
                             }
                         }
@@ -142,7 +142,7 @@ class CursoController extends RN_Controller {
                             {
                                 $this->curso_model->rollbackTransaction();
                                 echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-                                $this->load->view('curso/form_csv', array('error' => ' ' ));
+                                $this->loadView('curso/form_csv', array('error' => ' ' ));
                                 return;
 
                             }

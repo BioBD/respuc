@@ -77,7 +77,7 @@ class EscolaController extends RN_Controller {
 
     public function form_csv()
     {
-            $this->load->view('escola/form_csv', array('error' => ' ' ));
+            $this->loadView('escola/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -92,7 +92,7 @@ class EscolaController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('escola/form_csv', $error);
+                    $this->loadView('escola/form_csv', $error);
             }
             else
             {
@@ -109,13 +109,13 @@ class EscolaController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeiro coluna do csv de escola deve ser Nome!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "Telefone")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de escola deve ser Telefone!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
 
@@ -131,7 +131,7 @@ class EscolaController extends RN_Controller {
             				{
 			            		$this->escola_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}

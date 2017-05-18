@@ -1,35 +1,15 @@
-<script>
-
-	// function showCounter(currentPage, totalPage, firstRow, lastRow, totalRow, totalRowUnfiltered) {
-	// 	return '';
-	// }
-
-	// function sortLowerCase(l, r) {
-	// 	return l.toLowerCase().localeCompare(r.toLowerCase());
-	// }
-
-	// $(document).ready(function() {
-	// 		$('#sortable-table').datatable({
-	// 			pageSize : Number.MAX_VALUE,
-	// 			sort : [sortLowerCase, false, false, sortLowerCase, sortLowerCase, sortLowerCase, sortLowerCase],
-	// 			filters : [true, false, false, true, true, true, true],
-	// 			filterText: 'Escreva para filtrar... ',
-	// 			counterText	: showCounter,
-	// 			sortKey : 0				
-	// 		});
-	// });
-
-</script>
-
 <div>
-    <?php // require_once APPPATH . 'views/include/left_menu.php'
-		if($message !== null){
-			echo "<script>alert("$message")</script>";			
+    <?php 
+		if(isset($message) && $message !== null){
+			echo "<script>alert(\"{$message}\")</script>";			
 		} 
 	?>
     <div>
             <a href="<?php echo $this->config->item('base_link').'AprendizController/insert' ?>">
                 <input type="button" class='btn btn-primary' value="Inserir Aprendiz">
+            </a>
+            <a href="<?php echo $this->config->item('base_link').'AprendizController/form_csv' ?>">
+                <input type="button" class='btn btn-success' value="Importar CSV">
             </a>
 
         <div class="row">
@@ -56,6 +36,10 @@
 							<tbody id="tablebody">
 								<?php foreach ($aprendizes as $aprendiz) { ?> 
 									<tr>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>InstituicaoController/get?cpf=<?=urlencode($aprendiz->getCPF())?>'>
+												<?=$instituicao->getNome()?> </a> 
+										</td>
 										<td><?php echo $aprendiz->getNome();?></td>
 										<td><?php echo $aprendiz->getEmail();?></td>
 										<td><?php echo $aprendiz->getTrabalho();?></td>

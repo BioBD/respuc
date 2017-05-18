@@ -1,15 +1,16 @@
 <div class = "row">
-    <?php require_once APPPATH . 'views/include/left_menu.php' ?>
     <div class="col-lg-10">
 		<?php echo $error;?>
 
 		<?php echo form_open_multipart('InstituicaoController/upload_csv');?>
 
-		<input type="file" name="userfile" size="20" />
+		<input type="file" class="form-control" name="userfile" size="20" />
 
 		<br /><br />
+		<br /><br />
+		<br /><br />
 
-		<input type="submit" value="upload" />
+		<input type="submit" class="btn btn-primary" value="upload" />
 
 		</form>
     </div>

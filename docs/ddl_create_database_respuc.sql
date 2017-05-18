@@ -208,7 +208,7 @@ CREATE TABLE funcionario(
    CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
 );
 
-DROP TABLE IF EXISTS aluno_atividade;
+DROP TABLE IF EXISTS aluno_atividade cascade;
 
 CREATE TABLE aluno_atividade
 (
@@ -223,7 +223,7 @@ CREATE TABLE aluno_atividade
       ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS public.aprendiz_atividade;
+DROP TABLE IF EXISTS public.aprendiz_atividade cascade;
 
 CREATE TABLE public.aprendiz_atividade
 (

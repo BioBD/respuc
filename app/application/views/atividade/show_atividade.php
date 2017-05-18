@@ -12,10 +12,48 @@
                                name="nome" onkeypress="return validateLetterInput(event);" required
                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                oninput="setCustomValidity('')"
-                               value="<?php echo $atividade->getNome()?>">/>
+                               value="<?php echo $atividade->getNome()?>"/>
                     </div>
                 </div>
             </div>
       </form>
+      <br><br>
+      <br><br>
+		<table class="table table-bordered table-striped table-min-td-size" style="max-width: 100%;" id="sortable-table">
+							<tr>
+								<th style="    text-align:center;    vertical-align:middle;" colspan="4">Participantes da atividade</th>
+							</tr>
+							<tr>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+							</tr>
+							<tbody id="tablebody">
+								<?php foreach ($pessoas as $pessoa) { ?> 
+									<tr>
+                                        <?php if($pessoa->tipo === "aluno") 
+                                        {?>
+
+										<td>
+											<a href='<?=$this->config->item('base_link')?>AlunoController/get?cpf=<?=urlencode($pessoa->cpf)?>'>
+												<?=$pessoa->nome?> </a> 
+										</td>
+
+                                        <?php
+                                        }else {?>
+
+										<td>
+											<a href='<?=$this->config->item('base_link')?>AprendizController/get?cpf=<?=urlencode($pessoa->cpf)?>'>
+												<?=$pessoa->nome?> </a> 
+										</td>
+
+
+                                        <?php
+                                        }
+                                        ?>
+										<td><?php echo $pessoa->tipo?></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+			</table>
     </div>
 </div>

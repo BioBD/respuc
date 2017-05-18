@@ -1,4 +1,4 @@
-drop table if Exists aprendiz;
+drop table if Exists aprendiz cascade;
 
 CREATE TABLE aprendiz(
 CPF VARCHAR(11) Not Null,
@@ -35,7 +35,7 @@ CONSTRAINT aprendiz_chk_trabalho CHECK(length(trim(Trabalho)) > 0),
 CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
 );
 
-drop table if Exists aluno;
+drop table if Exists aluno cascade;
 
 CREATE TABLE aluno(
    CPF VARCHAR(11) NOT NULL,
@@ -186,7 +186,7 @@ CREATE TABLE instituicao(
      CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
 );
 
-drop table if Exists atividade;
+drop table if Exists atividade cascade;
 
 CREATE TABLE atividade(
       nome character varying(50) NOT NULL,
@@ -207,6 +207,76 @@ CREATE TABLE funcionario(
    Celular INTEGER NOT NULL,
    CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
 );
+
+DROP TABLE IF EXISTS aluno_atividade;
+
+CREATE TABLE aluno_atividade
+(
+  cpf character varying(11) NOT NULL,
+  atividade character varying(50) NOT NULL,
+  CONSTRAINT aluno_atividade_pkey PRIMARY KEY (cpf, atividade),
+  CONSTRAINT aluno_atividade_atividade_fkey FOREIGN KEY (atividade)
+      REFERENCES public.atividade (nome)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT aluno_atividade_cpf_fkey FOREIGN KEY (cpf)
+      REFERENCES public.aluno (cpf)
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS public.aprendiz_atividade;
+
+CREATE TABLE public.aprendiz_atividade
+(
+  cpf character varying(11) NOT NULL,
+  atividade character varying(50) NOT NULL,
+  CONSTRAINT aprendiz_atividade_pkey PRIMARY KEY (cpf, atividade),
+  CONSTRAINT aprendiz_atividade_atividade_fkey FOREIGN KEY (atividade)
+      REFERENCES public.atividade (nome)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT aprendiz_atividade_cpf_fkey FOREIGN KEY (cpf)
+      REFERENCES public.aprendiz (cpf)
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE OR REPLACE VIEW public.alunos_e_aprendizes AS 
+ SELECT subquery.cpf,
+    subquery.nome,
+    subquery.tipo
+   FROM ( SELECT aluno.cpf,
+            aluno.nome,
+            'aluno'::text AS tipo
+           FROM aluno
+        UNION ALL
+         SELECT aprendiz.cpf,
+            aprendiz.nome,
+            'aprendiz'::text AS tipo
+           FROM aprendiz) subquery
+  ORDER BY subquery.nome, subquery.tipo, subquery.cpf;
+
+CREATE OR REPLACE VIEW public.cpf_atividade AS 
+ SELECT subquery.atividade,
+    subquery.cpf,
+    subquery.tipo
+   FROM ( SELECT aluno_atividade.cpf,
+            aluno_atividade.atividade,
+            'aluno'::text AS tipo
+           FROM aluno_atividade
+        UNION ALL
+         SELECT aprendiz_atividade.cpf,
+            aprendiz_atividade.atividade,
+            'aprendiz'::text AS tipo
+           FROM aprendiz_atividade) subquery
+  ORDER BY subquery.atividade, subquery.cpf, subquery.tipo;
+
+CREATE OR REPLACE VIEW public.pessoa_atividade AS 
+ SELECT alunos_e_aprendizes.cpf,
+    alunos_e_aprendizes.tipo,
+    alunos_e_aprendizes.nome,
+    cpf_atividade.atividade
+   FROM alunos_e_aprendizes
+    NATURAL JOIN cpf_atividade;
+
+
 
 CREATE OR REPLACE FUNCTION remove_acento(text) 
 RETURNS text AS 

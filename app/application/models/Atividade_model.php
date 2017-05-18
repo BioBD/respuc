@@ -68,6 +68,51 @@ class Atividade_model extends RN_Model
 
         return $return_array;
     }    
+
+    public function selectCandidates($atividade)
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        $result = $this->executeRows($this->db, Atividade::getSqlToSelectCandidates(), [$atividade->getNome()]);
+        return $result;
+    }
+
+    public function selectPersonsActivity($atividade)
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        $result = $this->executeRows($this->db, Atividade::getSqlToSelectPersons(), [$atividade->getNome()]);
+        return $result;
+    }
+
+
+    public function addAprendizAtividade($cpf,$atividade) 
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        return $this->execute($this->db, Atividade::getSqlToAddAprendiz(), 
+            [$cpf,$atividade]);
+    }
+
+    public function addAlunoAtividade($cpf,$atividade) 
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        return $this->execute($this->db, Atividade::getSqlToAddAluno(), 
+            [$cpf,$atividade]);
+    }
+
+    public function removeAprendiz($cpf,$atividade) 
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        return $this->execute($this->db, Atividade::getSqlToRemoveAprendiz(), 
+            [$cpf,$atividade]);
+    }
+
+    public function removeAluno($cpf,$atividade) 
+    {
+        $this->Logger->info("Running: " . __METHOD__);
+        return $this->execute($this->db, Atividade::getSqlToRemoveAluno(), 
+            [$cpf,$atividade]);
+    }
+
+
 }
 
 ?>

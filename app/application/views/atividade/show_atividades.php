@@ -32,7 +32,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($atividades as $atividade) { ?> 
 									<tr>
-										<td><a href="<?php echo $this->config->item('base_link').'AtividadeController/find' ?>"><?php echo $atividade->getNome();?></a></td>									
+										<td><a href="<?php echo $this->config->item('base_link')."AtividadeController/get?nome={$atividade->getNome()}" ?>"><?php echo $atividade->getNome();?></a></td>									
 									</tr>
 								<?php } ?>
 							</tbody>

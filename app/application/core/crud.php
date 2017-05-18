@@ -1,6 +1,6 @@
 <?php
 
-$nomes = ["instituicao","aprendiz","aluno","atividade","escola"];
+$nomes = ["instituicao","aprendiz","aluno","atividade"];
 $cruds = [];
 foreach($nomes as $nome)
 {

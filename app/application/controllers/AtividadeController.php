@@ -24,13 +24,12 @@ class AtividadeController extends RN_Controller {
 		$this->loadView('atividade/search');
 	}
 
-	public function edit(){
+	public function edit($nome="",$data=array()){
 		$dataIn = $this->input->get();
 		if(isset($dataIn["nome"]))
 			$nome = $dataIn["nome"];
-		else
-			$nome = "";
 		$data['atividade'] = $this->atividade_model->selectOneAtividade($nome);
+		$data['pessoas'] = $this->atividade_model->selectPersonsActivity($data['atividade']);
 		$this->loadView('atividade/edit',$data);
 	}
 
@@ -39,7 +38,7 @@ class AtividadeController extends RN_Controller {
         $dataIn = (object) $dataIn;
 		$return = $this->atividade_model->insertNewAtividade($dataIn);
 		$data['message'] = "Atividade cadastrada com sucesso!";
-		$this->loadView('atividade/admin', $data);
+		$this->admin($data);
 	}
 
 	public function update(){
@@ -47,7 +46,7 @@ class AtividadeController extends RN_Controller {
         $dataIn = (object) $dataIn;
 		$return = $this->atividade_model->updateAtividade($dataIn);
 		$data['message'] = "Atividade atualizada com sucesso!";
-		$this->loadView('atividade/admin');
+		$this->admin($data);	
 	}
 
 	public function show(){
@@ -61,6 +60,13 @@ class AtividadeController extends RN_Controller {
 		$this->loadView('atividade/show_atividade', $data);
 	}
 
+	public function get(){
+		$dataIn = $this->input->get();
+		$data['atividade'] = $this->atividade_model->selectOneAtividade($dataIn);
+		$data['pessoas'] = $this->atividade_model->selectPersonsActivity($data['atividade']);
+		$this->loadView('atividade/show_atividade', $data);
+	}
+
 	public function delete(){
 		$dataIn = $this->input->get();
 		if(isset($dataIn["nome"]))
@@ -69,7 +75,7 @@ class AtividadeController extends RN_Controller {
 			$nome = '';
 		$return = $this->atividade_model->deleteAtividade($nome);
 		$data['message'] = "Atividade excluída com sucesso!";
-		$this->loadView('atividade/admin', $data);
+		$this->admin($data);
 	}
 
 	public function form_csv()
@@ -125,14 +131,82 @@ class AtividadeController extends RN_Controller {
                     	}
                     }
             	$this->atividade_model->commitTransaction();
-        		echo "<script> alert('Load do csv de atividade feito com sucesso!');</script>";
-        		$this->show();
+        		$data["message"] = 'Load do csv de atividade feito com sucesso!';
+        		$this->admin($data);
             }
     }
 
-	public function admin(){
+	public function admin($data = array()){
 		$data['atividades'] = $this->atividade_model->selectAllAtividade();
+		$candidatos = array();
+		foreach ($data['atividades'] as $atividades)
+		{
+			$candidatos[$atividades->getNome()] = $this->atividade_model->selectCandidates($atividades);
+			
+		}
+		$data["candidatos"] = $candidatos;
 		$this->loadView('atividade/admin', $data);
 	}
+
+	public function addPerson()
+	{
+		$dataIn = $this->input->get();
+		$splittedPerson = explode("####",$dataIn["person"]);
+		$cpf = $splittedPerson[0];
+		$tipo = $splittedPerson[1];
+		$atividade = $dataIn["atividade"];
+		$message = "";
+		if($tipo === 'aluno')
+		{
+			$result = $this->atividade_model->addAlunoAtividade($cpf,$atividade);
+			if ($result)
+				$message = "Aluno adicionado com sucesso na atividade";
+			else
+				$message = "Problema ao inserir aluno em atividade";
+		}
+		else if($tipo === 'aprendiz')
+		{
+			$result = $this->atividade_model->addAprendizAtividade($cpf,$atividade);
+			if ($result)
+				$message = "Aprendiz adicionado com sucesso na atividade";
+			else
+				$message = "Problema ao inserir aprendiz em atividade";
+
+		}
+		else
+			$message = "Problema ao inserir pessoa em atividade";
+		$data["message"] = $message;
+		$this->admin($data);
+	}
+
+	public function removePerson(){
+		$dataIn = $this->input->get();
+		$cpf = $dataIn["cpf"];
+		$tipo = $dataIn["tipo"];
+		$atividade = $dataIn["atividade"];
+		if($tipo === 'aluno')
+		{
+			$result = $this->atividade_model->removeAluno($cpf,$atividade);
+			if ($result)
+				$message = "Aluno removido com sucesso da atividade";
+			else
+				$message = "Problema ao remover aluno de atividade";
+		}
+		else if($tipo === 'aprendiz')
+		{
+			$result = $this->atividade_model->removeAprendiz($cpf,$atividade);
+			if ($result)
+				$message = "Aprendiz removido com sucesso da atividade";
+			else
+				$message = "Problema ao remover aprendiz de atividade";
+
+		}
+		else
+			$message = "Problema ao remover pessoa de atividade";
+		$data["message"] = $message;
+		$this->edit($atividade,$data);
+	}
+
+
 }
 ?>

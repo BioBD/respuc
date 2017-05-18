@@ -1,5 +1,6 @@
 <?php
 include_once APPPATH . 'core/RN_Controller.php';
+include_once APPPATH . 'core/utils.php';
 
 class Aprendiz 
 {
@@ -73,7 +74,7 @@ class Aprendiz
 	{
 		return array (
 					$this->getNome(), $this->getCpf(), $this->getRg(),
-					$this->getDataNascimento(), $this->getNaturalidade(), 
+					toYYYYMMDD($this->getDataNascimento()), $this->getNaturalidade(), 
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
 					$this->getRua(), $this->getNumero(), $this->getComplemento(),
 					$this->getBairro(), $this->getCidade(), $this->getUf(), 

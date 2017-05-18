@@ -78,7 +78,18 @@
                 };
         $(".phone").mask(SPMaskBehavior, spOptions);
         $("#cep").mask("00000-000");
+        $("#rg").mask("0.000.000-0");
         $("#cpf").mask("000.000.000-00");
+        $("#cpf_responsavel").mask("000.000.000-00");
+        $("#data_nascimento").mask("00/00/0000");
+
+        $("#theForm").submit(function() {
+            $(".phone").unmask();
+            $("#cep").unmask();
+            $("#rg").unmask();
+            $("#cpf").unmask();
+            $("#cpf_responsavel").unmask();
+        });
     });
 
 </script>
@@ -86,7 +97,7 @@
 <div class = "row">
     <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
     <div class="col-lg-12">
-      <form method="post" action="save" enctype="multipart/form-data">
+      <form method="post" id="theForm" action="save" enctype="multipart/form-data">
 
         <div class="row">
                 <div class="form-group">
@@ -106,7 +117,7 @@
                     <label for="cpf" class="col-lg-1 control-label"> CPF: </label>
                     <div class="col-lg-4">
                         <input type="text" class="form-control" placeholder="Digite o cpf"
-                               name="cpf" onkeypress="return validateNumberInput(event);" required
+                               name="cpf" id="cpf" onkeypress="return validateNumberInput(event);" required
                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                oninput="setCustomValidity('')"
                                value="<?php
@@ -119,7 +130,7 @@
                     <label for="rg" class="col-lg-1 control-label"> RG: </label>
                     <div class="col-lg-4">
                         <input type="text" class="form-control" placeholder="Digite o rg"
-                               name="rg" onkeypress="return validateNumberInput(event);" required
+                               name="rg" id="rg" onkeypress="return validateNumberInput(event);" required
                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                oninput="setCustomValidity('')"
                                value="<?php
@@ -136,7 +147,7 @@
                     <label for="data_nascimento" class="col-lg-1 control-label"> Data de Nascimento: </label>
                     <div class="col-lg-4">
                         <input type="text" class="form-control" placeholder="Digite a data de nascimento"
-                               name="data_nascimento" onkeypress="return validateNumberInput(event);" required
+                               name="data_nascimento" id="data_nascimento" onkeypress="return validateNumberInput(event);" required
                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                oninput="setCustomValidity('')"
                                value="<?php
@@ -224,7 +235,7 @@
                       <label for="numero" class="col-lg-1 control-label"> Número: </label>
                       <div class="col-lg-1">
                           <input type="text" class="form-control" 
-                                name="numero" onkeypress="return validateNumberInput(event);" required
+                                name="numero" required
                                 oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                 oninput="setCustomValidity('')"
                                 value="<?php
@@ -237,7 +248,7 @@
                       <label for="complemento" class="col-lg-1 control-label"> Complemento: </label>
                       <div class="col-lg-3">
                           <input type="text" class="form-control" 
-                                name="complemento" onkeypress="return validateNumberInput(event);" required
+                                name="complemento" required
                                 oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                 oninput="setCustomValidity('')"
                                 value="<?php
@@ -276,18 +287,41 @@
                                 ?>"/>
                       </div>
 
-                      <label for="uf" class="col-lg-1 control-label"> UF: </label>
-                      <div class="col-lg-2">
-                          <input type="text" class="form-control" 
-                                name="uf" onkeypress="return validateLetterInput(event);" required
-                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                                oninput="setCustomValidity('')"
-                                value="<?php
-                                if (!empty($_POST['uf'])) {
-                                    echo $_POST['uf'];
-                                }
-                                ?>"/>
-                      </div>
+                        <label for="uf" class="col-lg-2 control-label"> Estado*: </label>
+                        <div class="col-lg-2">
+                            <select  class="form-control endereco" id="uf" name="uf" required
+                                     oninvalid="this.setCustomValidity('Favor escolher um item da lista.')"
+                                     oninput="setCustomValidity('')">
+                                <option value=""> -- Selecione -- </option>
+                                <option value="RJ" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "RJ")) echo "selected" ?>>RJ</option>
+                                <option value="AC" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "AC")) echo "selected" ?>>AC</option>
+                                <option value="AL" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "AL")) echo "selected" ?>>AL</option>
+                                <option value="AM" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "AM")) echo "selected" ?>>AM</option>
+                                <option value="AP" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "AP")) echo "selected" ?>>AP</option>
+                                <option value="BA" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "BA")) echo "selected" ?>>BA</option>
+                                <option value="CE" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "CE")) echo "selected" ?>>CE</option>
+                                <option value="DF" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "DF")) echo "selected" ?>>DF</option>
+                                <option value="ES" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "ES")) echo "selected" ?>>ES</option>
+                                <option value="GO" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "GO")) echo "selected" ?>>GO</option>
+                                <option value="MA" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "MA")) echo "selected" ?>>MA</option>
+                                <option value="MG" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "MG")) echo "selected" ?>>MG</option>
+                                <option value="MS" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "MS")) echo "selected" ?>>MS</option>
+                                <option value="MT" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "MT")) echo "selected" ?>>MT</option>
+                                <option value="PA" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "PA")) echo "selected" ?>>PA</option>
+                                <option value="PB" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "PB")) echo "selected" ?>>PB</option>
+                                <option value="PE" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "PE")) echo "selected" ?>>PE</option>
+                                <option value="PI" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "PI")) echo "selected" ?>>PI</option>
+                                <option value="PR" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "PR")) echo "selected" ?>>PR</option>
+                                <option value="RN" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "RN")) echo "selected" ?>>RN</option>
+                                <option value="RO" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "RO")) echo "selected" ?>>RO</option>
+                                <option value="RR" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "RR")) echo "selected" ?>>RR</option>
+                                <option value="RS" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "RS")) echo "selected" ?>>RS</option>
+                                <option value="SC" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "SC")) echo "selected" ?>>SC</option>
+                                <option value="SE" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "SE")) echo "selected" ?>>SE</option>
+                                <option value="SP" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "SP")) echo "selected" ?>>SP</option>
+                                <option value="TO" <?php if (!empty($_POST['uf']) && ($_POST['uf'] == "TO")) echo "selected" ?>>TO</option>
+                            </select>
+                        </div>
                   </div>
               </div>
               <div class="row">
@@ -295,7 +329,7 @@
                       <label for="cep" class="col-lg-1 control-label"> CEP: </label>
                       <div class="col-lg-3">
                           <input type="text" class="form-control" 
-                                name="cep" onkeypress="return validateNumberInput(event);" required
+                                name="cep" id="cep" onkeypress="return validateNumberInput(event);" required
                                 oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                 oninput="setCustomValidity('')"
                                 value="<?php
@@ -305,18 +339,6 @@
                                 ?>"/>
                       </div>
 
-                      <label for="cursos" class="col-lg-1 control-label"> Cursos: </label>
-                      <div class="col-lg-3">
-                          <input type="text" class="form-control" 
-                                name="cursos" onkeypress="return validateLetterInput(event);" required
-                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                                oninput="setCustomValidity('')"
-                                value="<?php
-                                if (!empty($_POST['cursos'])) {
-                                    echo $_POST['cursos'];
-                                }
-                                ?>"/>
-                      </div>
                   </div>
                 </div>
                 <br/>
@@ -369,7 +391,7 @@
                         <label for="cpf_responsavel" class="col-lg-1 control-label"> CPF: </label>
                         <div class="col-lg-3">
                             <input type="text" class="form-control" 
-                                  name="cpf_responsavel" onkeypress="return validateNumberInput(event);" required
+                                  name="cpf_responsavel" id="cpf_responsavel" onkeypress="return validateNumberInput(event);" required
                                   oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                   oninput="setCustomValidity('')"
                                   value="<?php

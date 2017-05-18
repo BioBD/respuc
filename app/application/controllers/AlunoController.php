@@ -27,11 +27,11 @@ class AlunoController extends RN_Controller {
 
 	public function edit(){
 		$dataIn = $this->input->get();
-		if(isset($dataIn["nome"]))
-			$nome = $dataIn["nome"];
+		if(isset($dataIn["cpf"]))
+			$cpf = $dataIn["cpf"];
 		else
-			$nome = "";
-		$data['aluno'] = $this->aluno_model->selectOneAluno($nome);
+			$cpf = "";
+		$data['aluno'] = $this->aluno_model->selectOneAluno($cpf);
 		$this->loadView('aluno/edit',$data);
 	}
 
@@ -42,7 +42,7 @@ class AlunoController extends RN_Controller {
 
 		$return = $this->aluno_model->insertNewAluno($dataIn);
 		$data['message'] = "Aluno cadastrado com sucesso!";
-		$this->loadView('aluno/admin', $data);
+		$this->admin($data);
 	}
 
 	public function update(){
@@ -52,11 +52,11 @@ class AlunoController extends RN_Controller {
 		$return = $this->aluno_model->updateAluno($dataIn);
 
 		$data['message'] = "Aluno atualizado com sucesso!";
-		$this->loadView('aluno/admin');
+		$this->admin($data);
 	}
 
 	public function show(){
-		$data['alunos'] = $this->aluno_model->selectAllAluno();
+		$data['alunos'] = $this->aluno_model->selectAllAlunos();
 		$this->loadView('aluno/show_alunos', $data);
 	}
 
@@ -66,15 +66,21 @@ class AlunoController extends RN_Controller {
 		$this->loadView('aluno/show_aluno', $data);
 	}
 
+	public function get(){
+		$dataIn = $this->input->get();
+		$data['aluno'] = $this->aluno_model->selectOneAluno($dataIn);
+		$this->loadView('aluno/show_aluno', $data);
+	}
+
 	public function delete(){
 		$dataIn = $this->input->get();
-		if(isset($dataIn["nome"]))
-			$nome = $dataIn["nome"];
+		if(isset($dataIn["cpf"]))
+			$cpf = $dataIn["cpf"];
 		else
-			$nome = '';
-		$return = $this->aluno_model->deleteAluno($nome);
+			$cpf = '';
+		$return = $this->aluno_model->deleteAluno($cpf);
 		$data['message'] = "Aluno excluído com sucesso!";
-		$this->loadView('aluno/admin', $data);
+		$this->admin($data);
 	}
 
 	public function form_csv()
@@ -198,33 +204,27 @@ class AlunoController extends RN_Controller {
 					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[15] !== "Cursos")
+                    		if($resource[15] !== "Nome do Responsavel")
                     		{
-                    			echo "<script> alert('A decima sexta coluna do csv de aluno deve ser Cursos!');</script>";
+                    			echo "<script> alert('A decima sexta coluna do csv de aluno deve ser Nome do Responsavel!');</script>";
 					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[16] !== "Nome do Responsavel")
+                    		if($resource[16] !== "Telefone do Responsavel")
                     		{
-                    			echo "<script> alert('A decima setima coluna do csv de aluno deve ser Nome do Responsavel!');</script>";
+                    			echo "<script> alert('A decima setima primeira coluna do csv de aluno deve ser Telefone do Responsavel!');</script>";
 					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[17] !== "Telefone do Responsavel")
+                    		if($resource[17] !== "Profissao do Responsavel")
                     		{
-                    			echo "<script> alert('A decima oitava primeira coluna do csv de aluno deve ser Telefone do Responsavel!');</script>";
+                    			echo "<script> alert('A decima oitava coluna do csv de aluno deve ser Profissao do Responsavel!');</script>";
 					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[18] !== "Profissao do Responsavel")
+                    		if($resource[18] !== "CPF do Responsavel")
                     		{
-                    			echo "<script> alert('A decima nona coluna do csv de aluno deve ser Profissao do Responsavel!');</script>";
-					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
-			                    return;
-                    		}
-                    		if($resource[19] !== "CPF do Responsavel")
-                    		{
-                    			echo "<script> alert('A vigesima coluna do csv de aluno deve ser CPF do Responsavel!');</script>";
+                    			echo "<script> alert('A decima nona coluna do csv de aluno deve ser CPF do Responsavel!');</script>";
 					            $this->loadView('aluno/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
@@ -248,13 +248,12 @@ class AlunoController extends RN_Controller {
 								"cidade" => $resource[12],
 								"uf" => $resource[13],
 								"cep" => $resource[14],
-								"cursos" => $resource[15],
-								"nome_responsavel"=> $resource[16],
-								"telefone_responsavel" => $resource[17],
-								"profissao_responsavel" => $resource[18],
-								"cpf_responsavel"=> $resource[19]
+								"nome_responsavel"=> $resource[15],
+								"telefone_responsavel" => $resource[16],
+								"profissao_responsavel" => $resource[17],
+								"cpf_responsavel"=> $resource[18]
 							    );
-            				$return = $this->aluno_model->insertNewAluno($local_data	);
+            				$return = $this->aluno_model->insertNewAluno($local_data);
             				if(!$return)
             				{
 			            		$this->aluno_model->rollbackTransaction();
@@ -271,8 +270,8 @@ class AlunoController extends RN_Controller {
             }
     }
 
-	public function admin(){
-		$data['alunos'] = $this->Aluno_model->selectAllAlunos();
+	public function admin($data=array()){
+		$data['alunos'] = $this->aluno_model->selectAllAlunos();
 		$this->loadView('aluno/admin', $data);
 	}
 }

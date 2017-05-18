@@ -42,7 +42,7 @@ class AprendizController extends RN_Controller {
 
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
 		$data['message'] = "Aprendiz cadastrado com sucesso!";
-		$this->loadView('aprendiz/admin', $data);
+		$this->admin($data);
 	}
 
 	public function update(){
@@ -51,7 +51,7 @@ class AprendizController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
 		$data['message'] = "Aprendiz atualizado com sucesso!";
-		$this->loadView('aprendiz/admin');
+		$this->admin($data);
 	}
 
 	public function show(){
@@ -65,6 +65,13 @@ class AprendizController extends RN_Controller {
 		$this->loadView('aprendiz/show_aprendiz', $data);
 	}
 
+	public function get(){
+		$dataIn = $this->input->get();
+		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($dataIn);
+		$this->loadView('aprendiz/show_aprendiz', $data);
+	}
+
+
 	public function delete(){
 		$dataIn = $this->input->get();
 		if(isset($dataIn["cpf"]))
@@ -73,7 +80,7 @@ class AprendizController extends RN_Controller {
 			$cpf = '';
 		$return = $this->aprendiz_model->deleteAprendiz($cpf);
 		$data['message'] = "Aprendiz excluído com sucesso!";
-		$this->loadView('aprendiz/admin', $data);
+		$this->admin($data);
 	}
 
 	public function form_csv()
@@ -265,12 +272,12 @@ class AprendizController extends RN_Controller {
                     	}
                     }
             	$this->aprendiz_model->commitTransaction();
-        		echo "<script> alert('Load do csv de aprendiz feito com sucesso!');</script>";
-        		$this->show();
+        		$data["message"] = 'Load do csv de aprendiz feito com sucesso!';
+        		$this->admin($data);
             }
     }
 
-	public function admin(){
+	public function admin($data=array()){
 		$data['aprendizes'] = $this->aprendiz_model->selectAllAprendiz();
 		$this->loadView('aprendiz/admin', $data);
 	}

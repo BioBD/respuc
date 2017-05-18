@@ -28,19 +28,19 @@ class Aluno_model extends RN_Model
         $this->Logger->info("Running: " . __METHOD__);
         $aluno = Aluno::createObjectAluno($info);
         $resultArray = $aluno->getDataToSave();
-        $resultArray[] = $info->old_nome;
+        $resultArray[] = $info->old_cpf;
         if(isset($aluno)){
             $this->execute($this->db, $aluno->getSqlToUpdate(), $resultArray);
         }
         return false;
     }
 
-    public function deleteAluno($nome)
+    public function deleteAluno($cpf)
     {
         $this->Logger->info("Running: " . __METHOD__);
-        if(isset($nome))
+        if(isset($cpf))
         {
-            return $this->execute($this->db, Aluno::getSqlToDelete(), $nome);
+            return $this->execute($this->db, Aluno::getSqlToDelete(), $cpf);
         }
         return false;
     }

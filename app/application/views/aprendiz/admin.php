@@ -37,17 +37,16 @@
 								<?php foreach ($aprendizes as $aprendiz) { ?> 
 									<tr>
 										<td>
-											<a href='<?=$this->config->item('base_link')?>InstituicaoController/get?cpf=<?=urlencode($aprendiz->getCPF())?>'>
-												<?=$instituicao->getNome()?> </a> 
+											<a href='<?=$this->config->item('base_link')?>AprendizController/get?cpf=<?=urlencode($aprendiz->getCPF())?>'>
+												<?=$aprendiz->getNome()?> </a> 
 										</td>
-										<td><?php echo $aprendiz->getNome();?></td>
 										<td><?php echo $aprendiz->getEmail();?></td>
 										<td><?php echo $aprendiz->getTrabalho();?></td>
 										<td><?php echo $aprendiz->getNomeResponsavel();?></td>
 										<td><?php echo $aprendiz->getTelefoneResponsavel();?></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'AprendizController/edit?nome='.$aprendiz->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'AprendizController/edit?cpf='.$aprendiz->getCPF(); ?>">
                                             <input class="btn btn-success" type="button" value="Editar"></a></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'AprendizController/delete?nome='.$aprendiz->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'AprendizController/delete?cpf='.$aprendiz->getCPF(); ?>">
                                             <input class="btn btn-danger" type="button" value="Deletar"></a></td>								
 									</tr>
 								<?php } ?>

@@ -161,14 +161,6 @@
                                 value="<?php echo $aluno->getCep()?>"/>
                       </div>
 
-                      <label for="cursos" class="col-lg-1 control-label"> Cursos: </label>
-                      <div class="col-lg-3">
-                          <input disabled type="text" class="form-control" 
-                                name="cursos" onkeypress="return validateLetterInput(event);" required
-                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                                oninput="setCustomValidity('')"
-                                value="<?php echo $aluno->getCursos()?>"/>
-                      </div>
                   </div>
                 </div>
                 <br/>

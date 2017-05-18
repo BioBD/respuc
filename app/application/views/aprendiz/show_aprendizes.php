@@ -36,7 +36,10 @@
 							<tbody id="tablebody">
 								<?php foreach ($aprendizes as $aprendiz) { ?> 
 									<tr>
-										<td><a href="<?php echo $this->config->item('base_link').'AprendizController/find' ?>"><?php echo $aprendiz->getNome();?></a></td>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>AprendizController/get?cpf=<?=urlencode($aprendiz->getCPF())?>'>
+												<?=$aprendiz->getNome()?> </a> 
+										</td>
 										<td><?php echo $aprendiz->getEmail();?></td>
 										<td><?php echo $aprendiz->getTrabalho();?></td>
 										<td><?php echo $aprendiz->getNomeResponsavel();?></td>

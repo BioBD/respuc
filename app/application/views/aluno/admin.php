@@ -3,9 +3,9 @@
 </script>
 
 <div>
-    <?php // require_once APPPATH . 'views/include/left_menu.php'
-		if($message !== null){
-			echo "<script>alert("$message")</script>";			
+    <?php 
+		if(isset($message) && $message !== null){
+			echo "<script>alert(\"{$message}\")</script>";			
 		} 
 	?>
     <div>
@@ -24,12 +24,10 @@
 							<tr>
 								<th style="width: 100px;">Nome</th>
 								<th style="width: 100px;">Email</th>
-								<th style="width: 150px;">Cursos</th>
 								<th colspan="2" style="width: 600px;">Responsável</th>
                                 <th colspan="2" style="width: 500px;">Ações</th>
 							</tr>
 							<tr>
-								<th></th>
 								<th></th>
 								<th></th>
 								<th style="width: 100px;">Nome</th>
@@ -40,14 +38,16 @@
 							<tbody id="tablebody">
 								<?php foreach ($alunos as $aluno) { ?> 
 									<tr>
-										<td><?php echo $aluno->getNome();?></td>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>AlunoController/get?cpf=<?=urlencode($aluno->getCPF())?>'>
+												<?=$aluno->getNome()?> </a> 
+										</td>
 										<td><?php echo $aluno->getEmail();?></td>
-										<td><?php echo $aluno->getCursos();?></td>
 										<td><?php echo $aluno->getNomeResponsavel();?></td>
 										<td><?php echo $aluno->getTelefoneResponsavel();?></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/edit?nome='.$aluno->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/edit?cpf='.$aluno->getCPF(); ?>">
                                             <input class="btn btn-success" type="button" value="Editar"></a></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/delete?nome='.$aluno->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/delete?cpf='.$aluno->getCPF(); ?>">
                                             <input class="btn btn-danger" type="button" value="Deletar"></a></td>								
 									</tr>
 								<?php } ?>

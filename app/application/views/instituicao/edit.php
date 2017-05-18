@@ -79,6 +79,11 @@
         $(".phone").mask(SPMaskBehavior, spOptions);
         $("#cep").mask("00000-000");
         $("#cpf").mask("000.000.000-00");
+        $("#theForm").submit(function() {
+            $(".phone").unmask();
+            $("#cep").unmask();
+            $("#cpf").unmask();
+        });
     });
 
 </script>
@@ -86,7 +91,7 @@
 <div class = "row">
     <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
     <div class="col-lg-12">
-      <form method="post" action="update" enctype="multipart/form-data">
+      <form method="post" id="theForm" action="update" enctype="multipart/form-data">
 
         <div class="row">
                 <div class="form-group">

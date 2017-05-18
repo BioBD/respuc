@@ -29,18 +29,21 @@
 							<tr>
 								<th style="width: 100px;">Nome</th>
 								<th style="width: 250px;">Email</th>
-								<th style="width: 250px;">Trabalho</th>
-								<th style="width: 200px;">Responsável</th>
-								<th style="width: 400px;">Profissão Responsável</th>
+								<th style="width: 250px;">Responsável</th>
+								<th style="width: 200px;">Profissão Responsável</th>
+								<th style="width: 400px;">Telefone Responsável</th>
 							</tr>
 							<tbody id="tablebody">
 								<?php foreach ($alunos as $aluno) { ?> 
 									<tr>
-										<td><a href="<?php echo $this->config->item('base_link').'AlunoController/find' ?>"><?php echo $aluno->getNome();?></a></td>
+										<td>
+											<a href='<?=$this->config->item('base_link')?>AlunoController/get?cpf=<?=urlencode($aluno->getCPF())?>'>
+												<?=$aluno->getNome()?> </a> 
+										</td>
 										<td><?php echo $aluno->getEmail();?></td>
-										<td><?php echo $aluno->getCursos();?></td>
 										<td><?php echo $aluno->getNomeResponsavel();?></td>
 										<td><?php echo $aluno->getProfissaoResponsavel();?></td>
+										<td><?php echo $aluno->getTelefoneResponsavel();?></td>
 									</tr>
 								<?php } ?>
 							</tbody>

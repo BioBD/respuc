@@ -1,5 +1,5 @@
 <?php
-include_once APPPATH . 'core/RN_Controller.php';
+include_once APPPATH . 'core/utils.php';
 
 class Aluno{
 	protected $nome;
@@ -17,14 +17,13 @@ class Aluno{
 	protected $cidade;
 	protected $uf;
 	protected $cep;
-	protected $cursos;
 	protected $nome_responsavel;
 	protected $telefone_responsavel;
 	protected $profissao_responsavel;
 	protected $cpf_responsavel;
 
 	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $rua, $numero, $complemento, 
-		$bairro, $cidade, $uf, $cep, $cursos, $nome_responsavel, $telefone_responsavel, $profissao_responsavel, $cpf_responsavel){
+		$bairro, $cidade, $uf, $cep, $nome_responsavel, $telefone_responsavel, $profissao_responsavel, $cpf_responsavel){
 		$this->nome = $nome;
 		$this->cpf = $cpf;
 		$this->rg = $rg;
@@ -40,7 +39,6 @@ class Aluno{
 		$this->cidade = $cidade;
 		$this->uf = $uf;
 		$this->cep = $cep;
-		$this->cursos = $cursos;
 		$this->nome_responsavel = $nome_responsavel;
 		$this->telefone_responsavel = $telefone_responsavel;
 		$this->profissao_responsavel = $profissao_responsavel;
@@ -52,7 +50,7 @@ class Aluno{
 			return new Aluno (	$resultRow->nome, 
 									$resultRow->cpf,
 									$resultRow->rg, 
-									RN_Controller::toDDMMYYYY($resultRow->data_nascimento), 
+									toDDMMYYYY($resultRow->data_nascimento), 
 									$resultRow->naturalidade, 
 									$resultRow->email, 
 									$resultRow->telefone, 
@@ -64,7 +62,6 @@ class Aluno{
 									$resultRow->cidade, 
 									$resultRow->uf, 
 									$resultRow->cep, 
-									$resultRow->cursos, 
 									$resultRow->nome_responsavel, 
 									$resultRow->telefone_responsavel, 
 									$resultRow->profissao_responsavel, 
@@ -78,7 +75,7 @@ class Aluno{
 					$this->getNome(), 
 					$this->getCpf(), 
 					$this->getRg(),
-					$this->getDataNascimento(), 
+					toYYYYMMDD($this->getDataNascimento()), 
 					$this->getNaturalidade(), 
 					$this->getEmail(), 
 					$this->getTelefone(), 
@@ -90,7 +87,6 @@ class Aluno{
 					$this->getCidade(), 
 					$this->getUf(), 
 					$this->getCep(), 
-					$this->getCursos(), 
 					$this->getNomeResponsavel(),
 					$this->getTelefoneResponsavel(), 
 					$this->getProfissaoResponsavel(),
@@ -101,9 +97,9 @@ class Aluno{
 		return 'INSERT INTO aluno ( nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
 									  rua, numero, complemento, bairro, cidade,
-		                              uf, cep, cursos, nome_responsavel,
+		                              uf, cep, nome_responsavel,
 		                              telefone_responsavel, profissao_responsavel,
-		                              cpf_responsavel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+		                              cpf_responsavel) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
 	}
 
 		public function getSqlToUpdate(){
@@ -111,20 +107,20 @@ class Aluno{
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
 									  rua=?, numero=?, complemento=?, bairro=?,
-									  cidade=?, uf=?, cep=?, cursos=?,
+									  cidade=?, uf=?, cep=?,
 									  nome_responsavel=?,telefone_responsavel=?,
 									  profissao_responsavel=?, cpf_responsavel=?
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 		public static function getSqlToDelete(){
 
 		return 'DELETE FROM aluno
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelect(){
-		return 'SELECT * FROM aluno WHERE nome=?;';
+		return 'SELECT * FROM aluno WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelectAll(){
@@ -309,7 +305,6 @@ class Aluno{
         $errors = self::validaCidade($data->cidade, $errors);
         $errors = self::validaUf($data->uf, $errors);
         $errors = self::validaCep($data->cep, $errors);
-        $errors = self::validaCursos($data->cursos, $errors);
         $errors = self::validaNomeResponsavel($data->nome_responsavel, $errors);
         $errors = self::validaTelefoneResponsavel($data->telefone_responsavel, $errors);
         $errors = self::validaProfissaoResponsavel($data->profissao_responsavel, $errors);

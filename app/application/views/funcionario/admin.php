@@ -49,9 +49,9 @@
 										<td><?php echo $funcionario->getNome();?></td>
 										<td><?php echo $funcionario->getEmail();?></td>
 										<td><?php echo $funcionario->getFuncao();?></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'FuncionarioController/edit?nome='.$funcionario->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'FuncionarioController/edit?cpf='.$funcionario->getCpf(); ?>">
                                             <input class="btn btn-success" type="button" value="Editar"></a></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'FuncionarioController/delete?nome='.$funcionario->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'FuncionarioController/delete?cpf='.$funcionario->getCpf(); ?>">
                                             <input class="btn btn-danger" type="button" value="Deletar"></a></td>								
 									</tr>
 								<?php } ?>

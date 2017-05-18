@@ -92,7 +92,7 @@
                 <div class="form-group">
                     <label for="nome" class="col-lg-1 control-label"> Nome*: </label>
                     <div class="col-lg-4">
-                        <input type="hidden" name="old_nome" value="<?php echo $funcionario->getNome()?>"><br><br>
+                        <input type="hidden" name="old_cpf" value="<?php echo $aprendiz->getCpf()?>"><br><br>
                         <input type="text" class="form-control" placeholder="Digite o nome"
                                name="nome" onkeypress="return validateLetterInput(event);" required
                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"

@@ -1,8 +1,10 @@
 <?php
 include_once APPPATH . 'core/RN_Controller.php';
 
-class Funcionario 
+class Aprendiz 
 {
+
+
 	protected $nome;
 	protected $cpf;
 	protected $rg;
@@ -25,10 +27,11 @@ class Funcionario
 		$this->celular = $celular;
 		$this->funcao = $funcao;
 	}
-	public static function createObjectFuncionario($resultRow)
+
+	public static function createObjectAprendiz($resultRow)
 	{
 		if(self::valida($resultRow)){
-			return new Funcionario (
+			return new Aprendiz (
 				$resultRow->nome, $resultRow->cpf,
 				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
@@ -37,6 +40,7 @@ class Funcionario
 		}
 		return null;
 	}
+
 	public function getDataToSave()
 	{
 		return array (
@@ -45,106 +49,130 @@ class Funcionario
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
 					$this->getFuncao());
 	}
+
 	public function getSqlToInsert()
 	{
-		return 'INSERT INTO funcionario (
+		return 'INSERT INTO aprendiz (
 									  nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
 									  funcao) VALUES (?,?,?,?,?,?,?,?,?);';
 	}
+
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE public.funcionario SET   
+		return 'UPDATE public.aprendiz SET   
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
 									  funcao=?
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
+
 	public static function getSqlToDelete()
 	{
-		return 'DELETE FROM funcionario
-		WHERE nome=?;';
+		return 'DELETE FROM aprendiz
+		WHERE cpf=?;';
 	}
+
 	public static function getSqlToSelect()
 	{
-		return 'SELECT * FROM funcionario WHERE nome=?;';
+		return 'SELECT * FROM aprendiz WHERE cpf=?;';
 	}
+
 	public static function getSqlToSelectAll()
 	{
-		return 'SELECT * FROM funcionario;';
+		return 'SELECT * FROM aprendiz;';
 	}
+
 	public function getNome()
 	{
 		return $this->nome;
 	}
+
 	public function setNome($newName)
 	{
 		$this->nome = $newName;
 	}
+
 	public function getCpf()
 	{
 		return $this->cpf;
 	}
+
 	public function setCpf($newCpf)
 	{
 		$this->cpf = $newCpf;
 	}
+
 	public function getRg()
 	{
 		return $this->rg;
 	}
+
 	public function setRg($newRg)
 	{
 		$this->rg = $newRg;
 	}
+
 	public function getDataNascimento()
 	{
 		return $this->data_nascimento;
 	}
+
 	public function setDataNascimento($newDataNascimento)
 	{
 		$this->data_nascimento = $newDataNascimento;
 	}
+
 	public function getNaturalidade()
 	{
 		return $this->naturalidade;
 	}
+
 	public function setNaturalidade($newNaturalidade)
 	{
 		$this->naturalidade = $newNaturalidade;
 	}
+
 	public function getEmail()
 	{
 		return $this->email;
 	}
+
 	public function setEmail($newEmail)
 	{
 		$this->email = $newEmail;
 	}	
+
 	public function getTelefone()
 	{
 		return $this->telefone;
 	}
+
 	public function setTelefone($newTelephone)
 	{
 		$this->telefone = $newTelephone;
 	}
+
 	public function getCelular()
 	{
 		return $this->celular;
 	}
+
 	public function setCelular($newCelular)
 	{
 		$this->celular = $newCelular;
 	}
+
 	public function getFuncao()
 	{
 		return $this->funcao;
 	}
+
 	public function setFuncao($newFuncao)
 	{
 		$this->funcao = $newFuncao;
 	}
+
 	private static function valida ($data) 
 	{
         $errors = array();
@@ -157,17 +185,21 @@ class Funcionario
         $errors = self::validaTelefone($data->telefone, $errors);
         $errors = self::validaCelular($data->celular, $errors);
         $errors = self::validaFuncao($data->funcao, $errors);
+
         if($errors == null)
         {
             return true;
         }
+
         foreach ($errors as $error) 
         {
         	echo $error;
         }
+
         die();
         return false;
     }
+
     private static function validaNome ($data, $errors)
     {
         if (empty($data)) 
@@ -177,6 +209,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaCpf ($data, $errors)
     {
         if (empty($data)) 
@@ -186,6 +219,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaRg ($data, $errors)
     {
         if (empty($data)) 
@@ -195,6 +229,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaDataNascimento ($data, $errors)
     {
         if (empty($data)) 
@@ -204,6 +239,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaNaturalidade ($data, $errors)
     {
         if (empty($data)) 
@@ -213,6 +249,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaEmail ($data, $errors)
     {
         if (empty($data)) 
@@ -226,6 +263,7 @@ class Funcionario
         }
         return $errors;
     }
+
     private static function validaTelefone ($data, $errors)
     {
         if (empty($data)) 
@@ -235,6 +273,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaCelular ($data, $errors)
     {
         if (empty($data)) 
@@ -244,6 +283,7 @@ class Funcionario
         } 
         return $errors;
     }
+
     private static function validaFuncao ($data, $errors)
     {
         if (empty($data)) 
@@ -253,5 +293,7 @@ class Funcionario
         } 
         return $errors;
     }
+    
 }
+
 ?>

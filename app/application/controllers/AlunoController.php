@@ -41,7 +41,8 @@ class AlunoController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aluno_model->insertNewAluno($dataIn);
-		$this->loadView('aluno/cadastrosucesso');
+		$data['message'] = "Aluno cadastrado com sucesso!";
+		$this->loadView('aluno/admin', $data);
 	}
 
 	public function update(){
@@ -49,7 +50,9 @@ class AlunoController extends RN_Controller {
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aluno_model->updateAluno($dataIn);
-		$this->loadView('aluno/cadastrosucesso');
+
+		$data['message'] = "Aluno atualizado com sucesso!";
+		$this->loadView('aluno/admin');
 	}
 
 	public function show(){
@@ -70,7 +73,8 @@ class AlunoController extends RN_Controller {
 		else
 			$nome = '';
 		$return = $this->aluno_model->deleteAluno($nome);
-		$this->loadView('aluno/excluidosucesso');
+		$data['message'] = "Aluno excluído com sucesso!";
+		$this->loadView('aluno/admin', $data);
 	}
 
 	public function form_csv()
@@ -266,5 +270,10 @@ class AlunoController extends RN_Controller {
         		$this->show();
             }
     }
+
+	public function admin(){
+		$data['alunos'] = $this->Aluno_model->selectAllAlunos();
+		$this->loadView('aluno/admin', $data);
+	}
 }
 ?>

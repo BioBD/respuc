@@ -39,14 +39,16 @@ class CursoController extends RN_Controller {
         $dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
         $return = $this->curso_model->insertNewCurso($dataIn);
-        $this->loadView('curso/cadastrosucesso');
+        $data['message'] = "Curso cadastrado com sucesso!";
+		$this->loadView('curso/admin', $data);
     }
 
     public function update(){
         $dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
         $return = $this->evento_model->updateEvento($dataIn);
-        $this->loadView('evento/cadastrosucesso');
+        $data['message'] = "Curso atualizado com sucesso!";
+		$this->loadView('curso/admin');
     }
 
     public function show(){
@@ -67,7 +69,8 @@ class CursoController extends RN_Controller {
         else
             $nome = '';
         $return = $this->curso_model->deleteCurso($nome);
-        $this->loadView('curso/excluidosucesso');
+        $data['message'] = "Curso excluído com sucesso!";
+		$this->loadView('curso/admin', $data);
     }
 
     public function form_csv()
@@ -150,5 +153,10 @@ class CursoController extends RN_Controller {
                 $this->show();
             }
     }
+
+    public function admin(){
+		$data['cursos'] = $this->curso_model->selectAllCurso();
+		$this->loadView('curso/admin', $data);
+	}
 }
 ?>

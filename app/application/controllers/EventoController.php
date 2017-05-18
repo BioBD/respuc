@@ -40,7 +40,8 @@ class EventoController extends RN_Controller {
         $dataIn->dataevento = $this->toYYYYMMDD($dataIn->dataevento);
 
 		$return = $this->evento_model->insertNewEvento($dataIn);
-		$this->loadView('evento/cadastrosucesso');
+		$data['message'] = "Evento cadastrado com sucesso!";
+		$this->loadView('evento/admin', $data);
 	}
 
 	public function update(){
@@ -48,7 +49,8 @@ class EventoController extends RN_Controller {
         $dataIn = (object) $dataIn;
         $dataIn->dataevento = $this->toYYYYMMDD($dataIn->dataevento);
 		$return = $this->evento_model->updateEvento($dataIn);
-		$this->loadView('evento/cadastrosucesso');
+		$data['message'] = "Evento atualizado com sucesso!";
+		$this->loadView('evento/admin');
 	}
 
 	public function show(){
@@ -69,7 +71,8 @@ class EventoController extends RN_Controller {
 		else
 			$nome = '';
 		$return = $this->evento_model->deleteEvento($nome);
-		$this->loadView('evento/excluidosucesso');
+		$data['message'] = "Evento excluído com sucesso!";
+		$this->loadView('evento/admin', $data);
 	}
 
 	public function form_csv()
@@ -152,5 +155,10 @@ class EventoController extends RN_Controller {
         		$this->show();
             }
     }
+
+	public function admin(){
+		$data['eventos'] = $this->evento_model->selectAllEvento();
+		$this->loadView('evento/admin', $data);
+	}
 }
 ?>

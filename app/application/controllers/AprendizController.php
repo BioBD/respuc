@@ -41,7 +41,8 @@ class AprendizController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
-		$this->loadView('aprendiz/cadastrosucesso');
+		$data['message'] = "Aprendiz cadastrado com sucesso!";
+		$this->loadView('aprendiz/admin', $data);
 	}
 
 	public function update(){
@@ -49,7 +50,8 @@ class AprendizController extends RN_Controller {
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
-		$this->loadView('aprendiz/cadastrosucesso');
+		$data['message'] = "Aprendiz atualizado com sucesso!";
+		$this->loadView('aprendiz/admin');
 	}
 
 	public function show(){
@@ -70,7 +72,8 @@ class AprendizController extends RN_Controller {
 		else
 			$cpf = '';
 		$return = $this->aprendiz_model->deleteAprendiz($cpf);
-		$this->loadView('aprendiz/excluidosucesso');
+		$data['message'] = "Aprendiz excluído com sucesso!";
+		$this->loadView('aprendiz/admin', $data);
 	}
 
 	public function form_csv()
@@ -266,5 +269,10 @@ class AprendizController extends RN_Controller {
         		$this->show();
             }
     }
+
+	public function admin(){
+		$data['aprendizes'] = $this->aprendiz_model->selectAllAprendiz();
+		$this->loadView('aprendiz/admin', $data);
+	}
 }
 ?>

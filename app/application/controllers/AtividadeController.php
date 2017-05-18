@@ -38,14 +38,16 @@ class AtividadeController extends RN_Controller {
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->atividade_model->insertNewAtividade($dataIn);
-		$this->loadView('atividade/cadastrosucesso');
+		$data['message'] = "Atividade cadastrada com sucesso!";
+		$this->loadView('atividade/admin', $data);
 	}
 
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->atividade_model->updateAtividade($dataIn);
-		$this->loadView('atividade/cadastrosucesso');
+		$data['message'] = "Atividade atualizada com sucesso!";
+		$this->loadView('atividade/admin');
 	}
 
 	public function show(){
@@ -66,7 +68,8 @@ class AtividadeController extends RN_Controller {
 		else
 			$nome = '';
 		$return = $this->atividade_model->deleteAtividade($nome);
-		$this->loadView('atividade/excluidosucesso');
+		$data['message'] = "Atividade excluída com sucesso!";
+		$this->loadView('atividade/admin', $data);
 	}
 
 	public function form_csv()
@@ -126,5 +129,10 @@ class AtividadeController extends RN_Controller {
         		$this->show();
             }
     }
+
+	public function admin(){
+		$data['atividades'] = $this->atividade_model->selectAllAtividade();
+		$this->loadView('atividade/admin', $data);
+	}
 }
 ?>

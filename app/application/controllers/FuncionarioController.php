@@ -30,13 +30,16 @@ class FuncionarioController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
         $return = $this->funcionario_model->insertNewFuncionario($dataIn);
         $this->loadView('funcionario/cadastrosucesso');
+        $data['message'] = "Funcionário cadastrado com sucesso!";
+		$this->loadView('funcionario/admin', $data);
     }
     public function update(){
         $dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
         $return = $this->funcionario_model->updateFuncionario($dataIn);
-        $this->loadView('funcionario/cadastrosucesso');
+        $data['message'] = "Funcionário atualizado com sucesso!";
+		$this->loadView('funcionario/admin');
     }
     public function show(){
         $data['funcionarios'] = $this->funcionario_model->selectAllFuncionario();
@@ -54,7 +57,8 @@ class FuncionarioController extends RN_Controller {
         else
             $nome = '';
         $return = $this->funcionario_model->deleteFuncionario($nome);
-        $this->loadView('funcionario/excluidosucesso');
+        $data['message'] = "Funcionário excluído com sucesso!";
+		$this->loadView('funcionario/admin', $data);
     }
     public function form_csv()
     {
@@ -165,5 +169,10 @@ class FuncionarioController extends RN_Controller {
                 $this->show();
             }
     }
+
+    public function admin(){
+		$data['funcionarios'] = $this->funcionario_model->selectAllFuncionario();
+		$this->loadView('funcionario/admin', $data);
+	}
 }
 ?>

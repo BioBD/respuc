@@ -41,14 +41,16 @@ class EscolaController extends RN_Controller {
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->escola_model->insertNewEscola($dataIn);
-		$this->loadView('escola/cadastrosucesso');
+		$data['message'] = "Escola cadastrada com sucesso!";
+		$this->loadView('escola/admin', $data);
 	}
 
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->escola_model->updateEscola($dataIn);
-		$this->loadView('escola/cadastrosucesso');
+		$data['message'] = "Escola atualizada com sucesso!";
+		$this->loadView('escola/admin');
 	}
 
 	public function show(){
@@ -69,7 +71,8 @@ class EscolaController extends RN_Controller {
 		else
 			$nome = "";
 		$return = $this->escola_model->deleteEscola($nome);
-		$this->loadView('escola/excluidosucesso');
+		$data['message'] = "Escola excluída com sucesso!";
+		$this->loadView('escola/admin', $data);
 	}
 
     public function form_csv()
@@ -139,5 +142,9 @@ class EscolaController extends RN_Controller {
         		$this->show();
             }
     }
+	public function admin(){
+		$data['escolas'] = $this->escola_model->selectAllEscola();
+		$this->loadView('escola/admin', $data);
+	}
 }
 ?>

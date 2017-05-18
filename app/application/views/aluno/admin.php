@@ -40,8 +40,8 @@
 							<tr>
 								<th style="width: 100px;">Nome</th>
 								<th style="width: 100px;">Email</th>
-								<th style="width: 150px;">Vínculo</th>
-								<th colspan="3" style="width: 600px;">Responsável</th>
+								<th style="width: 150px;">Cursos</th>
+								<th colspan="2" style="width: 600px;">Responsável</th>
                                 <th colspan="2" style="width: 500px;">Ações</th>
 							</tr>
 							<tr>
@@ -49,23 +49,21 @@
 								<th></th>
 								<th></th>
 								<th style="width: 100px;">Nome</th>
-								<th style="width: 250px;">Email</th>
 								<th style="width: 250px;">Telefone</th>
                                 <th style="width: 250px;"></th>
                                 <th style="width: 250px;"></th> 
 							</tr>
 							<tbody id="tablebody">
-								<?php foreach ($instituicoes as $instituicao) { ?> 
+								<?php foreach ($alunos as $aluno) { ?> 
 									<tr>
-										<td><?php echo $instituicao->getNome();?></td>
-										<td><?php echo $instituicao->getEmail();?></td>
-										<td><?php echo $instituicao->getVinculo();?></td>
-										<td><?php echo $instituicao->getNomeResponsavel();?></td>
-										<td><?php echo $instituicao->getEmailResponsavel();?></td>
-										<td><?php echo $instituicao->getTelefoneResponsavel();?></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'InstituicaoController/edit?nome='.$instituicao->getNome(); ?>">
+										<td><?php echo $aluno->getNome();?></td>
+										<td><?php echo $aluno->getEmail();?></td>
+										<td><?php echo $aluno->getCursos();?></td>
+										<td><?php echo $aluno->getNomeResponsavel();?></td>
+										<td><?php echo $aluno->getTelefoneResponsavel();?></td>
+                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/edit?nome='.$aluno->getNome(); ?>">
                                             <input class="btn btn-success" type="button" value="Editar"></a></td>
-                                        <td><a href="<?php echo $this->config->item('base_link').'InstituicaoController/delete?nome='.$instituicao->getNome(); ?>">
+                                        <td><a href="<?php echo $this->config->item('base_link').'AlunoController/delete?nome='.$aluno->getNome(); ?>">
                                             <input class="btn btn-danger" type="button" value="Deletar"></a></td>								
 									</tr>
 								<?php } ?>

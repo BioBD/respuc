@@ -1,29 +1,221 @@
-<?php
-			echo "<br>";
-			echo "Mostrar Aluno: "; "<br>";
+<div class = "row">
+    <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
+    <div class="col-lg-12">
+      <form method="post" action="save" enctype="multipart/form-data">
 
-			echo "Nome: ".$aluno->getNome()."<br>";
-			echo "CPF: ".$aluno->getCpf()."<br>";
-			echo "RG: ".$aluno->getRg()."<br>";
-			echo "Data de Nascimento: ".$aluno->getDataNascimento()."<br>";
-			echo "Naturalidade: ".$aluno->getNaturalidade()."<br>";
-			echo "Email: ".$aluno->getEmail()."<br>";
-			echo "Telefone: ".$aluno->getTelefone()."<br>";
-			echo "Celular: ".$aluno->getCelular()."<br>";
-			echo "Rua: ".$aluno->getRua()."<br>";
-			echo "Numero: ".$aluno->getNumero()."<br>";
-			echo "Complemento: ".$aluno->getComplemento()."<br>";
-			echo "Bairro: ".$aluno->getBairro()."<br>";
-			echo "Cidade: ".$aluno->getCidade()."<br>";
-			echo "UF: ".$aluno->getUf()."<br>";
-			echo "CEP: ".$aluno->getCep()."<br>";
-			echo "Trabalho: ".$aluno->getCursos()."<br>";
+        <div class="row">
+                <div class="form-group">
+                    <label for="nome" class="col-lg-1 control-label"> Nome*: </label>
+                    <div class="col-lg-4">
+                        <input disabled type="hidden" name="old_nome" value="<?php echo $aluno->getNome()?>"><br><br>
+                        <input disabled type="text" class="form-control" placeholder="Digite o nome"
+                               name="nome" onkeypress="return validateLetterInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getNome()?>"/>
+                    </div>
 
-			echo "<br>";
-			echo "Responsavel do Aluno: "; "<br>";
+                    <label for="cpf" class="col-lg-1 control-label"> CPF: </label>
+                    <div class="col-lg-4">
+                        <input disabled type="text" class="form-control" placeholder="Digite o cpf"
+                               name="cpf" onkeypress="return validateNumberInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getCpf()?>"/>
+                    </div>
 
-			echo "Nome do Responsavel: ".$aluno->getNomeResponsavel()."<br>";
-			echo "Telefone do Responsavel: ".$aluno->getTelefoneResponsavel()."<br>";
-			echo "Profissao do Responsável: ".$aluno->getProfissaoResponsavel()."<br>";
-			echo "CPF do Responsavel: ".$aluno->getCpfResponsavel()."<br>";
-?>
+                    <label for="rg" class="col-lg-1 control-label"> RG: </label>
+                    <div class="col-lg-4">
+                        <input disabled type="text" class="form-control" placeholder="Digite o rg"
+                               name="rg" onkeypress="return validateNumberInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getRg()?>"/>
+                    </div>
+            </div>
+      </div>
+      <div class="row">
+            <div class="form-group">   
+
+                    <label for="data_nascimento" class="col-lg-1 control-label"> Data de Nascimento: </label>
+                    <div class="col-lg-4">
+                        <input disabled type="text" class="form-control" placeholder="Digite a data de nascimento"
+                               name="data_nascimento" onkeypress="return validateNumberInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getDataNascimento()?>"/>
+                    </div>
+
+                    <label for="naturalidade" class="col-lg-1 control-label"> Naturalidade: </label>
+                    <div class="col-lg-4">
+                        <input disabled type="text" class="form-control" placeholder="Digite a naturalidade"
+                               name="naturalidade" onkeypress="return validateLetterInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getNaturalidade()?>"/>
+                    </div>
+
+                    <label for="telefone" class="col-lg-1 control-label"> Telefone*: </label>
+                    <div class="col-lg-3">
+                          <input disabled type="text" class="form-control phone phone1" placeholder="(ddd) Telefone de contato"
+                                name="telefone" id="telefone" maxlength="25" required onkeypress="return validateNumberInput(event);"
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getTelefone()?>"/>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    <label for="celular" class="col-lg-1 control-label"> Celular*: </label>
+                    <div class="col-lg-3">
+                          <input disabled type="text" class="form-control phone phone1" placeholder="(ddd) Celular de contato"
+                                name="celular" id="celular" maxlength="25" required onkeypress="return validateNumberInput(event);"
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getCelular()?>"/>
+                    </div>
+                    
+                    <label for="email" class="col-lg-1 control-label"> E-mail*: </label>
+                    <div class="col-lg-3">
+                        <input disabled type="email" id="email" class="form-control" placeholder="Email"
+                               name="email" required title ="Favor incluir '@' e '.' ."
+                               oninvalid="this.setCustomValidity('Este campo requer um endereço de email.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php echo $aluno->getEmail()?>"/>
+                        <script type="text/javascript">
+                            window.onload = funcExistingEmail();
+                        </script>
+                    </div>                  
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group"> 
+                      <label for="rua" class="col-lg-1 control-label"> Rua: </label>
+                      <div class="col-lg-4">
+                          <input disabled type="text" class="form-control" placeholder="Digite a rua"
+                                name="rua" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getRua()?>"/>
+                      </div>
+
+                      <label for="numero" class="col-lg-1 control-label"> Número: </label>
+                      <div class="col-lg-1">
+                          <input disabled type="text" class="form-control" 
+                                name="numero" onkeypress="return validateNumberInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getNumero()?>"/>
+                      </div>
+
+                      <label for="complemento" class="col-lg-1 control-label"> Complemento: </label>
+                      <div class="col-lg-3">
+                          <input disabled type="text" class="form-control" 
+                                name="complemento" onkeypress="return validateNumberInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getComplemento()?>"/>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group">
+                    <label for="bairro" class="col-lg-1 control-label"> Bairro: </label>
+                      <div class="col-lg-3">
+                          <input disabled type="text" class="form-control" placeholder="Digite o bairro"
+                                name="bairro" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getBairro()?>"/>
+                      </div>
+
+                      <label for="cidade" class="col-lg-1 control-label"> Cidade: </label>
+                      <div class="col-lg-3">
+                          <input disabled type="text" class="form-control" placeholder="Digite a cidade"
+                                name="cidade" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getCidade()?>"/>
+                      </div>
+
+                      <label for="uf" class="col-lg-1 control-label"> UF: </label>
+                      <div class="col-lg-2">
+                          <input disabled type="text" class="form-control" 
+                                name="uf" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getUf()?>"/>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group">
+                      <label for="cep" class="col-lg-1 control-label"> CEP: </label>
+                      <div class="col-lg-3">
+                          <input disabled type="text" class="form-control" 
+                                name="cep" onkeypress="return validateNumberInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getCep()?>"/>
+                      </div>
+
+                      <label for="cursos" class="col-lg-1 control-label"> Cursos: </label>
+                      <div class="col-lg-3">
+                          <input disabled type="text" class="form-control" 
+                                name="cursos" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getCursos()?>"/>
+                      </div>
+                  </div>
+                </div>
+                <br/>
+                <b>Responsável:</b>
+                <div class="row"><br/></div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="nome_responsavel" class="col-lg-1 control-label"> Nome: </label>
+                        <div class="col-lg-3">
+                            <input disabled type="text" class="form-control" placeholder="Digite o nome do responsável"
+                                name="nome_responsavel" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getNomeResponsavel()?>"/>
+                        </div>
+                        
+                        <label for="telefone_responsavel" class="col-lg-1 control-label"> Telefone*: </label>
+                        <div class="col-lg-3">
+                            <input disabled type="text" class="form-control phone phone1" placeholder="(ddd) Telefone do responsável"
+                                    name="telefone_responsavel" id="telefone_responsavel" maxlength="25" required onkeypress="return validateNumberInput(event);"
+                                    oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                    oninput="setCustomValidity('')"
+                                    value="<?php echo $aluno->getTelefoneResponsavel()?>"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group">
+                        <label for="profissao_responsavel" class="col-lg-1 control-label"> Profissão: </label>
+                        <div class="col-lg-3">
+                            <input disabled type="text" class="form-control" placeholder="Digite a profissão do responsável"
+                                name="profissao_responsavel" onkeypress="return validateLetterInput(event);" required
+                                oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                oninput="setCustomValidity('')"
+                                value="<?php echo $aluno->getProfissaoResponsavel()?>"/>
+                        </div>
+
+                        <label for="cpf_responsavel" class="col-lg-1 control-label"> CPF: </label>
+                        <div class="col-lg-3">
+                            <input disabled type="text" class="form-control" 
+                                  name="cpf_responsavel" onkeypress="return validateNumberInput(event);" required
+                                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                                  oninput="setCustomValidity('')"
+                                  value="<?php echo $aluno->getCpfResponsavel()?>"/>
+                        </div>
+                    </div>
+                </div>
+      </form>
+    </div>
+</div>

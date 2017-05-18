@@ -175,8 +175,8 @@
                                 oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                                 oninput="setCustomValidity('')"
                                 value="<?php
-                                if (!empty($_POST['nome'])) {
-                                    echo $_POST['nome'];
+                                if (!empty($_POST['nome_responsavel'])) {
+                                    echo $_POST['nome_responsavel'];
                                 }
                                 ?>"/>
                         </div>
@@ -224,4 +224,3 @@
       </form>
     </div>
 </div>
-

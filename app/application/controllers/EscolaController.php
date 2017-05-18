@@ -41,14 +41,16 @@ class EscolaController extends RN_Controller {
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->escola_model->insertNewEscola($dataIn);
-		$this->loadView('escola/cadastrosucesso');
+		$data['message'] = "Escola cadastrada com sucesso!";
+		$this->loadView('escola/admin', $data);
 	}
 
 	public function update(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
 		$return = $this->escola_model->updateEscola($dataIn);
-		$this->loadView('escola/cadastrosucesso');
+		$data['message'] = "Escola atualizada com sucesso!";
+		$this->loadView('escola/admin');
 	}
 
 	public function show(){
@@ -69,12 +71,13 @@ class EscolaController extends RN_Controller {
 		else
 			$nome = "";
 		$return = $this->escola_model->deleteEscola($nome);
-		$this->loadView('escola/excluidosucesso');
+		$data['message'] = "Escola excluída com sucesso!";
+		$this->loadView('escola/admin', $data);
 	}
 
     public function form_csv()
     {
-            $this->load->view('escola/form_csv', array('error' => ' ' ));
+            $this->loadView('escola/form_csv', array('error' => ' ' ));
     }
 
     public function upload_csv()
@@ -89,7 +92,7 @@ class EscolaController extends RN_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
 
-                    $this->load->view('escola/form_csv', $error);
+                    $this->loadView('escola/form_csv', $error);
             }
             else
             {
@@ -106,13 +109,13 @@ class EscolaController extends RN_Controller {
                     		if($resource[0] !== "Nome")
                     		{
                     			echo "<script> alert('A primeiro coluna do csv de escola deve ser Nome!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
                     		if($resource[1] !== "Telefone")
                     		{
                     			echo "<script> alert('A segunda coluna do csv de escola deve ser Telefone!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
 
@@ -128,7 +131,7 @@ class EscolaController extends RN_Controller {
             				{
 			            		$this->escola_model->rollbackTransaction();
                     			echo "<script> alert('Ocorreu um problema ao fazer o load do csv, favor verificar o arquivo enviado!');</script>";
-					            $this->load->view('escola/form_csv', array('error' => ' ' ));
+					            $this->loadView('escola/form_csv', array('error' => ' ' ));
 			                    return;
 
             				}
@@ -139,5 +142,9 @@ class EscolaController extends RN_Controller {
         		$this->show();
             }
     }
+	public function admin(){
+		$data['escolas'] = $this->escola_model->selectAllEscola();
+		$this->loadView('escola/admin', $data);
+	}
 }
 ?>

@@ -1,7 +1,11 @@
 <?php
+include_once APPPATH . 'core/RN_Controller.php';
+include_once APPPATH . 'core/utils.php';
 
 class Aprendiz 
 {
+
+
 	protected $nome;
 	protected $cpf;
 	protected $rg;
@@ -53,7 +57,7 @@ class Aprendiz
 		if(self::valida($resultRow)){
 			return new Aprendiz (
 				$resultRow->nome, $resultRow->cpf,
-				$resultRow->rg, $resultRow->data_nascimento,
+				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
 				$resultRow->rua, $resultRow->numero, 
@@ -70,7 +74,7 @@ class Aprendiz
 	{
 		return array (
 					$this->getNome(), $this->getCpf(), $this->getRg(),
-					$this->getDataNascimento(), $this->getNaturalidade(), 
+					toYYYYMMDD($this->getDataNascimento()), $this->getNaturalidade(), 
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
 					$this->getRua(), $this->getNumero(), $this->getComplemento(),
 					$this->getBairro(), $this->getCidade(), $this->getUf(), 
@@ -99,18 +103,18 @@ class Aprendiz
 									  cidade=?, uf=?, cep=?, trabalho=?,
 									  nome_responsavel=?,telefone_responsavel=?,
 									  profissao_responsavel=?, cpf_responsavel=?
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 	public static function getSqlToDelete()
 	{
 		return 'DELETE FROM aprendiz
-		WHERE nome=?;';
+		WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelect()
 	{
-		return 'SELECT * FROM aprendiz WHERE nome=?;';
+		return 'SELECT * FROM aprendiz WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelectAll()

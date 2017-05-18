@@ -28,7 +28,7 @@ class Aprendiz_model extends RN_Model
         $this->Logger->info("Running: " . __METHOD__);
         $aprendiz = Aprendiz::createObjectAprendiz($info);
         $resultArray = $aprendiz->getDataToSave();
-        $resultArray[] = $info->old_nome;
+        $resultArray[] = $info->old_cpf;
         if(isset($aprendiz)){
             $this->execute($this->db, $aprendiz->getSqlToUpdate(), $resultArray);
         }

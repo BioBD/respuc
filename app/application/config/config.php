@@ -26,6 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://localhost/respuc/';
 $config['assets'] = $config['base_url'] . "assets/";
 $config['base_link'] = $config['base_url'].'index.php/';
+$config['url_link'] = $config['base_link'];
+
 
 /*
 |--------------------------------------------------------------------------

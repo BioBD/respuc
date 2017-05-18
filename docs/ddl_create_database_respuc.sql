@@ -1,4 +1,4 @@
-drop table if Exists aprendiz;
+drop table if Exists aprendiz cascade;
 
 CREATE TABLE aprendiz(
 CPF VARCHAR(11) Not Null,
@@ -35,37 +35,37 @@ CONSTRAINT aprendiz_chk_trabalho CHECK(length(trim(Trabalho)) > 0),
 CONSTRAINT aprendiz_pk PRIMARY KEY (CPF)
 );
 
-drop table if Exists aluno;
+drop table if Exists aluno cascade;
 
 CREATE TABLE aluno(
-   CPF INTEGER NOT NULL,
-   RG INTEGER NOT NULL,
+   CPF VARCHAR(11) NOT NULL,
+   RG VARCHAR(12) NOT NULL,
    Naturalidade CHAR(50) NOT NULL,
    Email VARCHAR(60) NOT NULL,
    Nome VARCHAR(70) NOT NULL,
    Data_Nascimento DATE NOT NULL,
-   Telefone INTEGER NOT NULL,
-   Celular INTEGER NOT NULL,
-   Endereco VARCHAR(100) NOT NULL,
-   Numero INTEGER NOT NULL,
+   Telefone VARCHAR(200) Not Null,
+   Celular VARCHAR(200) Not Null,
+   Rua VARCHAR(100) NOT NULL,
+   Numero Varchar(20) Not Null,
    Complemento CHAR(50) NOT NULL,
    Bairro VARCHAR(20) NOT NULL,
    Cidade VARCHAR(20) NOT NULL,
-   CEP CHAR(9) NOT NULL,
+   uf VARCHAR(2) Not Null,
+   CEP CHAR(8) NOT NULL,
+   Nome_Responsavel VARCHAR(200) Not Null,
+   CPF_Responsavel VARCHAR(200) Not Null,
+   Telefone_Responsavel VARCHAR(200) Not Null,
+   Profissao_Responsavel VARCHAR(200) Not Null,
    
-   CONSTRAINT aluno_chk_cpf CHECK(CPF > 0),
-   CONSTRAINT aluno_chk_rg CHECK(RG > 0),
    CONSTRAINT aluno_chk_naturalidade CHECK(length(trim(Naturalidade)) > 0),
    CONSTRAINT aluno_chk_email CHECK(length(trim(Email)) > 0),
    CONSTRAINT aluno_chk_nome CHECK(length(trim(Nome)) > 0),
-   CONSTRAINT aluno_chk_telefone CHECK(Telefone > 0),
-   CONSTRAINT aluno_chk_celular CHECK(Celular > 0),
-   CONSTRAINT aluno_chk_endereco CHECK(length(trim(Endereco)) > 0),
-   CONSTRAINT aluno_chk_numero CHECK(Numero > 0),
+   CONSTRAINT aluno_chk_rua CHECK(length(trim(Rua)) > 0),
    CONSTRAINT aluno_chk_complemento CHECK(length(trim(Complemento)) > 0),
    CONSTRAINT aluno_chk_bairro CHECK(length(trim(Bairro)) > 0),
    CONSTRAINT aluno_chk_cidade CHECK(length(trim(Cidade)) > 0),
-   CONSTRAINT aluno_chk_cep CHECK(length(trim(CEP)) = 9),
+   CONSTRAINT aluno_chk_cep CHECK(length(trim(CEP)) = 8),
    CONSTRAINT aluno_pk PRIMARY KEY (CPF)
 );
 
@@ -184,7 +184,99 @@ CREATE TABLE instituicao(
      email_responsavel character varying(1024) NOT NULL,
      telefone_responsavel character varying(16) NOT NULL,
      CONSTRAINT instituicao_pkey PRIMARY KEY (nome)
-)
+);
+
+drop table if Exists atividade cascade;
+
+CREATE TABLE atividade(
+      nome character varying(50) NOT NULL,
+      CONSTRAINT ch_nome CHECK (length(trim(nome)) > 0),
+      CONSTRAINT pk_atividade PRIMARY KEY (nome)
+);
+
+drop table if Exists funcionario;
+
+CREATE TABLE funcionario(
+   CPF INTEGER NOT NULL,
+   RG INTEGER NOT NULL,
+   Naturalidade CHAR(50) NOT NULL,
+   Email VARCHAR(60) NOT NULL,
+   Nome VARCHAR(70) NOT NULL,
+   Data_Nascimento DATE NOT NULL,
+   Telefone INTEGER NOT NULL,
+   Celular INTEGER NOT NULL,
+   CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
+);
+
+DROP TABLE IF EXISTS aluno_atividade;
+
+CREATE TABLE aluno_atividade
+(
+  cpf character varying(11) NOT NULL,
+  atividade character varying(50) NOT NULL,
+  CONSTRAINT aluno_atividade_pkey PRIMARY KEY (cpf, atividade),
+  CONSTRAINT aluno_atividade_atividade_fkey FOREIGN KEY (atividade)
+      REFERENCES public.atividade (nome)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT aluno_atividade_cpf_fkey FOREIGN KEY (cpf)
+      REFERENCES public.aluno (cpf)
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS public.aprendiz_atividade;
+
+CREATE TABLE public.aprendiz_atividade
+(
+  cpf character varying(11) NOT NULL,
+  atividade character varying(50) NOT NULL,
+  CONSTRAINT aprendiz_atividade_pkey PRIMARY KEY (cpf, atividade),
+  CONSTRAINT aprendiz_atividade_atividade_fkey FOREIGN KEY (atividade)
+      REFERENCES public.atividade (nome)
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT aprendiz_atividade_cpf_fkey FOREIGN KEY (cpf)
+      REFERENCES public.aprendiz (cpf)
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE OR REPLACE VIEW public.alunos_e_aprendizes AS 
+ SELECT subquery.cpf,
+    subquery.nome,
+    subquery.tipo
+   FROM ( SELECT aluno.cpf,
+            aluno.nome,
+            'aluno'::text AS tipo
+           FROM aluno
+        UNION ALL
+         SELECT aprendiz.cpf,
+            aprendiz.nome,
+            'aprendiz'::text AS tipo
+           FROM aprendiz) subquery
+  ORDER BY subquery.nome, subquery.tipo, subquery.cpf;
+
+CREATE OR REPLACE VIEW public.cpf_atividade AS 
+ SELECT subquery.atividade,
+    subquery.cpf,
+    subquery.tipo
+   FROM ( SELECT aluno_atividade.cpf,
+            aluno_atividade.atividade,
+            'aluno'::text AS tipo
+           FROM aluno_atividade
+        UNION ALL
+         SELECT aprendiz_atividade.cpf,
+            aprendiz_atividade.atividade,
+            'aprendiz'::text AS tipo
+           FROM aprendiz_atividade) subquery
+  ORDER BY subquery.atividade, subquery.cpf, subquery.tipo;
+
+CREATE OR REPLACE VIEW public.pessoa_atividade AS 
+ SELECT alunos_e_aprendizes.cpf,
+    alunos_e_aprendizes.tipo,
+    alunos_e_aprendizes.nome,
+    cpf_atividade.atividade
+   FROM alunos_e_aprendizes
+    NATURAL JOIN cpf_atividade;
+
+
 
 CREATE OR REPLACE FUNCTION remove_acento(text) 
 RETURNS text AS 

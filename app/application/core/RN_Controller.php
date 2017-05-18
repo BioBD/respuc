@@ -1,8 +1,10 @@
 <?php
 
 include_once APPPATH . 'core/person.php';
+include_once APPPATH . 'core/crud.php';
 include_once APPPATH . 'libraries/logger.php';
 include_once APPPATH . 'libraries/csv.php';
+
 
 // RESPUC/NEAM Controller -> RN_Controller
 class RN_Controller extends CI_Controller {
@@ -33,7 +35,11 @@ class RN_Controller extends CI_Controller {
     }
 
     public function loadView($viewName, $data = array()) {
+        $data["CRUDS"] = CRUDS;
+
+
         $output = $this->load->view('include/header', $data, true);
+        $output .= $this->load->view('include/upper_menu', $data, true);
         $output .= $this->load->view($viewName, $data, true);
         $output .= $this->load->view('include/footer', $data, true);
         $this->output->set_output($output);
@@ -43,6 +49,13 @@ class RN_Controller extends CI_Controller {
         if ($date !== "" && $date !== FALSE && $date !== NULL) {
             $date = explode("/", $date);
             return $date[2] . "-" . $date[1] . "-" . $date[0];
+        }
+    }
+
+    public static function toDDMMYYYY($date) {
+        if ($date !== "" && $date !== FALSE && $date !== NULL) {
+            $date = explode("-", $date);
+            return $date[2] . "/" . $date[1] . "/" . $date[0];
         }
     }
 

@@ -1,0 +1,68 @@
+O que eu precisei arrumar
+
+Admin
+1. Corrigir bug do message 
+2. Adicionar link clicavel no lugar do nome para abrir a tela de inserçao/ediçao
+3. Adicionar botao de CSV 
+4. Ideal seria recolocar a mascara pra mostrar
+
+CSV
+1. Corrigir bug das datas 
+2. Retornar para admin 
+
+Show
+1. Corrigir o link pra usar get e nao find 
+2. Ideal seria recolocar a mascara pra mostrar
+
+Get
+1. Verificar que os dados aparecem bonitinho. 
+
+Delete
+1. Arrumar o retorno para a pagina admin da maneira correta	
+
+Save
+1. Arrumar o retorno para a pagina admin da maneira correta 
+
+Update
+1. Arrumar o retorno para a pagina admin da maneira correta 
+
+Insert
+1. Corrigir bug da mascara (remover a mascara antes de mandar pro php)
+2. Adicionar mascaras que faltam
+3. Corrigir bug de nao poder escrever caracter em complemento e numero
+4. UF deve ser um combobox
+5. Bairro e Cidade nao pode escrever Numero?
+
+Edit
+1. Arrumar a pagina de saida do form 
+2. Corrigir bug da mascara (remover a mascara antes de mandar pro php)
+3. Adicionar mascaras que faltam
+4. Corrigir bug de nao poder escrever caracter em complemento e numero
+5. UF deve ser um combobox
+6. Bairro e Cidade nao pode escrever Numero?
+
+Miscelanea
+
+O que ja estava faltando que eu ia falar na reuniao com eles:
+Corrigir CRUD Aluno e Tabela Aluno que eu ja fiz.
+Funcionario: Coluna funçao nao existe no banco, precisa criar ou precisa tirar de funcionario?
+Eventos: Presenças deveria ser calculado e nao adicionado na mao (pessoas se cadastram no evento e com isso sabemos a quantidade, nada de colocar a quantidade na mao)
+Cursos: Ver Redmine
+Alunos: Cursos é um atributo multivalorado deveria ter uma tabela. Como é multivalorado nao fica legal nesse form, teria que estudar direitinho como ia fazer. Por enquanto ta sem.
+
+
+O que faltou:
+
+O ideal é refatorar todo esse codigo para que as telas de edit/insert/show usem a mesma view mudando apenas a inserçao ou nao de dados nos campos, possibilidade de alteraçao e 
+Deixar os formularios bonitos, eles estao quebrando na tela.
+Adicionar o famoso botao voltar/cancelar em todos os formularios.
+Adicionar o famoso "tem certeza que deseja deletar" no caso do delete.
+Bolar um jeito melhor do que o meu separador na hora de adicionar pessoas a atividade
+Testar Funcionario que o Pedro entregou ontem
+Corrigir os CRUDS
+Verificar se realmente inseriu antes de retornar "Inserido com sucesso"
+Programaçao defensiva no addPerson
+Verificar linhas que pegam a query SQL, provavelmente o ideal seria usar a classe e nao o objeto.
+Verificar ingles/portugues.
+Formatar todos os sql pra ficar mais legivel, principalmente as views.
+Provavelmente poderia trocar as inserçoes nas tabelas por inserçoes nas views mas tava com pouco tempo pra arrumar.

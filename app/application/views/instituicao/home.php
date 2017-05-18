@@ -1,5 +1,5 @@
 <div class = "row">
-    <?php require_once APPPATH . 'views/include/left_menu.php' ?>
+    <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
     <div class="col-lg-10">
 	    <ul class="nav nav-pills nav-stacked">
 			<li><a href="<?= $this->config->item('base_link'); ?>InstituicaoController/search">Procurar</a></li>

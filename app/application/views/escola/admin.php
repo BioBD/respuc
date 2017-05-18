@@ -28,8 +28,8 @@
 		} 
 	?>
     <div>
-            <a href="<?php echo $this->config->item('base_link').'InstituicaoController/insert' ?>">
-                <input type="button" class='btn btn-primary' value="Inserir Instituição">
+            <a href="<?php echo $this->config->item('base_link').'EscolaController/insert' ?>">
+                <input type="button" class='btn btn-primary' value="Inserir Escola">
             </a>
 
         <div class="row">

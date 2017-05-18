@@ -34,7 +34,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($funcionarios as $funcionario) { ?> 
 									<tr>
-										<td><?php echo $funcionario->getNome();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'FuncionarioController/find' ?>"><?php echo $funcionario->getNome();?></a></td>
 										<td><?php echo $funcionario->getEmail();?></td>
 										<td><?php echo $funcionario->getFuncao();?></td>
 									</tr>

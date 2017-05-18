@@ -36,11 +36,11 @@
 							<tbody id="tablebody">
 								<?php foreach ($aprendizes as $aprendiz) { ?> 
 									<tr>
-										<td><?php echo $aluno->getNome();?></td>
-										<td><?php echo $aluno->getEmail();?></td>
-										<td><?php echo $aluno->getTrabalho();?></td>
-										<td><?php echo $aluno->getNomeResponsavel();?></td>
-										<td><?php echo $aluno->getProfissaoResponsavel();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'AprendizController/find' ?>"><?php echo $aprendiz->getNome();?></a></td>
+										<td><?php echo $aprendiz->getEmail();?></td>
+										<td><?php echo $aprendiz->getTrabalho();?></td>
+										<td><?php echo $aprendiz->getNomeResponsavel();?></td>
+										<td><?php echo $aprendiz->getProfissaoResponsavel();?></td>
 									</tr>
 								<?php } ?>
 							</tbody>

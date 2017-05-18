@@ -33,7 +33,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($escolas as $escola) { ?> 
 									<tr>
-										<td><?php echo $escola->getNome();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'EscolaController/find' ?>"><?php echo $escola->getNome();?></a></td>
 										<td><?php echo $escola->getTelefone();?></td>								
 									</tr>
 								<?php } ?>

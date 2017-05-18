@@ -35,7 +35,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($eventos as $evento) { ?> 
 									<tr>
-										<td><?php echo $evento->getNome();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'EventoController/find' ?>"><?php echo $evento->getNome();?></a></td>
 										<td><?php echo $evento->getDataEvento();?></td>
 										<td><?php echo $evento->getPresencas();?></td>
 										<td><?php echo $evento->getDescricao();?></td>									

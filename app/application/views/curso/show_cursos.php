@@ -35,7 +35,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($cursos as $curso) { ?> 
 									<tr>
-										<td><?php echo $curso->getNome();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'CursoController/find' ?>"><?php echo $curso->getNome();?></a></td>
 										<td><?php echo $curso->getCoord();?></td>
 										<td><?php echo $curso->getDepto();?></td>
 										<td><?php echo $curso->getQtdAlunos();?></td>									

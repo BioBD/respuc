@@ -36,7 +36,7 @@
 							<tbody id="tablebody">
 								<?php foreach ($alunos as $aluno) { ?> 
 									<tr>
-										<td><?php echo $aluno->getNome();?></td>
+										<td><a href="<?php echo $this->config->item('base_link').'AlunoController/find' ?>"><?php echo $aluno->getNome();?></a></td>
 										<td><?php echo $aluno->getEmail();?></td>
 										<td><?php echo $aluno->getCursos();?></td>
 										<td><?php echo $aluno->getNomeResponsavel();?></td>

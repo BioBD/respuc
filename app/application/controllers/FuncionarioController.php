@@ -75,40 +75,6 @@ class FuncionarioController extends RN_Controller {
 		$this->loadView('funcionario/cadastrosucesso');
 	}
 
-	public function update(){
-		$dataIn = $this->input->post();
-        $dataIn = (object) $dataIn;
-        $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
-		$return = $this->funcionario_model->updateFuncionario($dataIn);
-		$this->loadView('funcionario/cadastrosucesso');
-	}
-
-	public function show(){
-		$data['funcionarios'] = $this->funcionario_model->selectAllFuncionario();
-		$this->loadView('funcionario/show_funcionarios', $data);
-	}
-
-	public function find(){
-		$dataIn = $this->input->post();
-		$data['funcionario'] = $this->funcionario_model->selectOneFuncionario($dataIn);
-		$this->loadView('funcionario/show_funcionario', $data);
-	}
-
-	public function delete(){
-		$dataIn = $this->input->get();
-		if(isset($dataIn["cpf"]))
-			$cpf = $dataIn["cpf"];
-		else
-			$cpf = '';
-		$return = $this->funcionario_model->deleteFuncionario($cpf);
-		$this->loadView('funcionario/excluidosucesso');
-	}
-
-	public function form_csv()
-    {
-            $this->load->view('funcionario/form_csv', array('error' => ' ' ));
-    }
-
     public function upload_csv()
     {
             $config['upload_path']          = './uploads/';

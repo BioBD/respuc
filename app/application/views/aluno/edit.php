@@ -1,4 +1,8 @@
 <script>
+    function goBack() {
+      window.history.back()
+    }
+
     /* permite apenas numeros, tab e backspace*/
     function validateNumberInput(evt) {
 
@@ -78,7 +82,7 @@
                 };
         $(".phone").mask(SPMaskBehavior, spOptions);
         $("#cep").mask("00000-000");
-        $("#rg").mask("0.000.000-0");
+        $("#rg").mask("00.000.000-0");
         $("#cpf").mask("000.000.000-00");
         $("#cpf_responsavel").mask("000.000.000-00");
         $("#data_nascimento").mask("00/00/0000");
@@ -94,6 +98,14 @@
     });
 
 </script>
+
+<style type="text/css">
+  h4 {color: black; margin-left: all}
+  label {color: black;}
+  .container{margin: auto;width: 45%;}
+  input[type=text]:focus { border: 2px solid #555;}
+  input[type=email]:focus { border: 2px solid #555;}
+</style>
 
 <div class = "row">
     <?php // require_once APPPATH . 'views/include/left_menu.php' ?>

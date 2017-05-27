@@ -36,10 +36,7 @@ class RN_Controller extends CI_Controller {
 
     public function loadView($viewName, $data = array()) {
         $data["CRUDS"] = CRUDS;
-
-
         $output = $this->load->view('include/header', $data, true);
-        $output .= $this->load->view('include/upper_menu', $data, true);
         $output .= $this->load->view($viewName, $data, true);
         $output .= $this->load->view('include/footer', $data, true);
         $this->output->set_output($output);

@@ -56,7 +56,7 @@ function goBack() {
 									<td><?php echo $instituicao->getTelefoneResponsavel();?></td>
     <td><a href="<?php echo $this->config->item('base_link').'InstituicaoController/edit?nome='.$instituicao->getNome(); ?>">
         <input class="btn btn-success" type="button" value="Editar"></a></td>
-    <td><a href="<?php echo $this->config->item('base_link').'InstituicaoController/delete?nome='.$instituicao->getNome(); ?>">
+    <td><a onclick="return confirm('Tem certeza que deseja deletar a instituiçao <?= $instituicao->getNome()?> ?')" href="<?php echo $this->config->item('base_link').'InstituicaoController/delete?nome='.$instituicao->getNome(); ?>">
         <input class="btn btn-danger" type="button" value="Excluir"></a></td>								
 		</tr><?php } ?>
 	</tbody>

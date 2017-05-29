@@ -18,7 +18,8 @@ class AlunoController extends RN_Controller {
 	}
 
 	public function insert(){
-		$this->loadView('aluno/insert');
+		$data["action"] = "save"; 
+		$this->loadView('aluno/modifyShow',$data);
 	}
 
 	public function search(){
@@ -31,8 +32,9 @@ class AlunoController extends RN_Controller {
 			$cpf = $dataIn["cpf"];
 		else
 			$cpf = "";
+		$data["action"] = "update"; 
 		$data['aluno'] = $this->aluno_model->selectOneAluno($cpf);
-		$this->loadView('aluno/edit',$data);
+		$this->loadView('aluno/modifyShow',$data);
 	}
 
 	public function save(){
@@ -60,16 +62,12 @@ class AlunoController extends RN_Controller {
 		$this->loadView('aluno/show_alunos', $data);
 	}
 
-	public function find(){
-		$dataIn = $this->input->post();
-		$data['aluno'] = $this->aluno_model->selectOneAluno($dataIn);
-		$this->loadView('aluno/show_aluno', $data);
-	}
-
 	public function get(){
 		$dataIn = $this->input->get();
+		$data["action"] = "";
+		$data["disabled"] = "disabled"; 
 		$data['aluno'] = $this->aluno_model->selectOneAluno($dataIn);
-		$this->loadView('aluno/show_aluno', $data);
+		$this->loadView('aluno/modifyShow', $data);
 	}
 
 	public function delete(){

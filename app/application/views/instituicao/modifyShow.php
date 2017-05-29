@@ -73,6 +73,16 @@
 <div class="container"><br>
   <h4><i class="fa fa-cog" aria-hidden="true"></i>  Inserir Nova Instituição <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
     <form method="post" id="theForm" action="<?=$action?>" enctype="multipart/form-data">
+
+        <?php if (isset($instituicao)) 
+            {
+        ?>
+                <input type="hidden" name="old_nome" id="old_nome" value="<?=$instituicao->getNome()?>">
+        <?php    
+            }
+        ?>
+
+
       <div class="form-group">
         <label for="nome" class="col-lg-1">Nome*: </label><br><br>
         <input type="text" <?php if (isset($disabled)) echo "disabled";?> size="10" class="form-control" placeholder="Digite o nome da instituição"

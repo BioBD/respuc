@@ -18,11 +18,8 @@ class AprendizController extends RN_Controller {
 	}
 
 	public function insert(){
-		$this->loadView('aprendiz/insert');
-	}
-
-	public function search(){
-		$this->loadView('aprendiz/search');
+		$data["action"] = "save"; 
+		$this->loadView('aprendiz/modifyShow',$data);
 	}
 
 	public function edit(){
@@ -31,8 +28,9 @@ class AprendizController extends RN_Controller {
 			$cpf = $dataIn["cpf"];
 		else
 			$cpf = "";
+		$data["action"] = "update"; 
 		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($cpf);
-		$this->loadView('aprendiz/edit',$data);
+		$this->loadView('aprendiz/modifyShow',$data);
 	}
 
 	public function save(){
@@ -54,21 +52,12 @@ class AprendizController extends RN_Controller {
 		$this->admin($data);
 	}
 
-	public function show(){
-		$data['aprendizes'] = $this->aprendiz_model->selectAllAprendiz();
-		$this->loadView('aprendiz/show_aprendizes', $data);
-	}
-
-	public function find(){
-		$dataIn = $this->input->post();
-		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($dataIn);
-		$this->loadView('aprendiz/show_aprendiz', $data);
-	}
-
 	public function get(){
 		$dataIn = $this->input->get();
+		$data["action"] = "";
+		$data["disabled"] = "disabled"; 
 		$data['aprendiz'] = $this->aprendiz_model->selectOneAprendiz($dataIn);
-		$this->loadView('aprendiz/show_aprendiz', $data);
+		$this->loadView('aprendiz/modifyShow', $data);
 	}
 
 

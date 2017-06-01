@@ -17,7 +17,8 @@ class AtividadeController extends RN_Controller {
 	}
 
 	public function insert(){
-		$this->loadView('atividade/insert');
+		$data["action"] = "save"; 
+		$this->loadView('atividade/modifyShow',$data);
 	}
 
 	public function search(){
@@ -30,7 +31,8 @@ class AtividadeController extends RN_Controller {
 			$nome = $dataIn["nome"];
 		$data['atividade'] = $this->atividade_model->selectOneAtividade($nome);
 		$data['pessoas'] = $this->atividade_model->selectPersonsActivity($data['atividade']);
-		$this->loadView('atividade/edit',$data);
+		$data["action"] = "update"; 
+		$this->loadView('atividade/modifyShow',$data);
 	}
 
 	public function save(){
@@ -49,17 +51,14 @@ class AtividadeController extends RN_Controller {
 		$this->admin($data);	
 	}
 
-	public function show(){
-		$data['atividades'] = $this->atividade_model->selectAllAtividade();
-		$this->loadView('atividade/show_atividades', $data);
-	}
-
 
 	public function get(){
 		$dataIn = $this->input->get();
 		$data['atividade'] = $this->atividade_model->selectOneAtividade($dataIn);
 		$data['pessoas'] = $this->atividade_model->selectPersonsActivity($data['atividade']);
-		$this->loadView('atividade/show_atividade', $data);
+		$data["action"] = ""; 
+		$data["disabled"] = "disabled"; 
+		$this->loadView('atividade/modifyShow', $data);
 	}
 
 	public function delete(){

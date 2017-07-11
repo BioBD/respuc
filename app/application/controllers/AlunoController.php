@@ -17,7 +17,7 @@ class AlunoController extends RN_Controller {
         $this->load->helper(array('form', 'url'));
 	}
 
-	public function insert(){
+	public function insert($data = array()){
 		$data["action"] = "save"; 
 		$this->loadView('aluno/modifyShow',$data);
 	}
@@ -39,7 +39,13 @@ class AlunoController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aluno_model->insertNewAluno($dataIn);
-		$data['message'] = "Aluno cadastrado com sucesso!";
+		if($return)
+			$data['message'] = "Aluno cadastrado com sucesso!";
+		else
+		{
+			$this->insert($this->input->post);
+			return;
+		}		
 		$this->admin($data);
 	}
 
@@ -48,8 +54,13 @@ class AlunoController extends RN_Controller {
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aluno_model->updateAluno($dataIn);
-
-		$data['message'] = "Aluno atualizado com sucesso!";
+		if($return)
+			$data['message'] = "Aluno atualizado com sucesso!";
+		else
+		{
+			$this->edit($this->input->post);
+			return;
+		}		
 		$this->admin($data);
 	}
 

@@ -1,7 +1,8 @@
 <?php
 include_once APPPATH . 'core/RN_Controller.php';
+include_once APPPATH . 'core/utils.php';
 
-class Aprendiz 
+class Funcionario 
 {
 
 
@@ -28,10 +29,10 @@ class Aprendiz
 		$this->funcao = $funcao;
 	}
 
-	public static function createObjectAprendiz($resultRow)
+	public static function createObjectFuncionario($resultRow)
 	{
 		if(self::valida($resultRow)){
-			return new Aprendiz (
+			return new Funcionario (
 				$resultRow->nome, $resultRow->cpf,
 				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
@@ -45,14 +46,14 @@ class Aprendiz
 	{
 		return array (
 					$this->getNome(), $this->getCpf(), $this->getRg(),
-					$this->getDataNascimento(), $this->getNaturalidade(), 
+					toYYYYMMDD($this->getDataNascimento()), $this->getNaturalidade(), 
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
 					$this->getFuncao());
 	}
 
 	public function getSqlToInsert()
 	{
-		return 'INSERT INTO aprendiz (
+		return 'INSERT INTO funcionario (
 									  nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
 									  funcao) VALUES (?,?,?,?,?,?,?,?,?);';
@@ -60,7 +61,7 @@ class Aprendiz
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE public.aprendiz SET   
+		return 'UPDATE public.funcionario SET   
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
 									  funcao=?
@@ -69,18 +70,18 @@ class Aprendiz
 
 	public static function getSqlToDelete()
 	{
-		return 'DELETE FROM aprendiz
+		return 'DELETE FROM funcionario
 		WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelect()
 	{
-		return 'SELECT * FROM aprendiz WHERE cpf=?;';
+		return 'SELECT * FROM funcionario WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelectAll()
 	{
-		return 'SELECT * FROM aprendiz;';
+		return 'SELECT * FROM funcionario;';
 	}
 
 	public function getNome()
@@ -293,7 +294,7 @@ class Aprendiz
         } 
         return $errors;
     }
-    
+
 }
 
 ?>

@@ -52,7 +52,7 @@ function goBack() {
         <td><a href="<?php echo $this->config->item('base_link').'AtividadeController/edit?nome='.$atividade->getNome(); ?>">
             <input class="btn btn-success" type="button" value="Editar"></a></td>
         <td><a href="<?php echo $this->config->item('base_link').'AtividadeController/delete?nome='.$atividade->getNome(); ?>">
-            <input onclick="return confirm('Tem certeza que deseja deletar a atividade <?= $atividade->getNome()?> ?')" class="btn btn-danger" type="button" value="Deletar"></a></td>
+            <input class="btn btn-danger" type="button" value="Deletar"></a></td>
             </tr>
 		<?php } ?>
 	</tbody>

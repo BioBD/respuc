@@ -17,7 +17,7 @@ class AprendizController extends RN_Controller {
         $this->load->helper(array('form', 'url'));
 	}
 
-	public function insert($data = array()){
+	public function insert(){
 		$data["action"] = "save"; 
 		$this->loadView('aprendiz/modifyShow',$data);
 	}
@@ -39,13 +39,7 @@ class AprendizController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->aprendiz_model->insertNewAprendiz($dataIn);
-		if($return)
-			$data['message'] = "Aprendiz cadastrado com sucesso!";
-		else
-		{
-			$this->insert($this->input->post);
-			return;
-		}		
+		$data['message'] = "Aprendiz cadastrado com sucesso!";
 		$this->admin($data);
 	}
 
@@ -54,13 +48,7 @@ class AprendizController extends RN_Controller {
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->aprendiz_model->updateAprendiz($dataIn);
-		if($return)
-			$data['message'] = "Aprendiz cadastrado com sucesso!";
-		else
-		{
-			$this->edit($this->input->post);
-			return;
-		}		
+		$data['message'] = "Aprendiz atualizado com sucesso!";
 		$this->admin($data);
 	}
 

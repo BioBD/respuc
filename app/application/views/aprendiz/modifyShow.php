@@ -78,15 +78,10 @@
 <div class="container"><br>
   <h4><i class="fa fa-cog" aria-hidden="true"></i>  Inserir Novo Aluno <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
     <form method="post" id="theForm" action="<?=$action?>" enctype="multipart/form-data">
-        <?php if (!empty($_POST['old_cpf']) || isset($aprendiz)) 
+        <?php if (isset($aprendiz)) 
             {
         ?>
-                <input type="hidden" name="old_cpf" id="old_cpf" value="<?php
-                          if (!empty($_POST['old_cpf']))
-                                echo $_POST['old_cpf'];
-                        else if(isset($aprendiz))
-                                echo $aprendiz->getCpf();
-                ?>"/>
+                <input type="hidden" name="old_cpf" id="old_cpf" value="<?=$aprendiz->getCpf()?>">
         <?php    
             }
         ?>

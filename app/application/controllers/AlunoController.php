@@ -22,6 +22,10 @@ class AlunoController extends RN_Controller {
 		$this->loadView('aluno/modifyShow',$data);
 	}
 
+	public function search(){
+		$this->loadView('aluno/search');
+	}
+
 	public function edit(){
 		$dataIn = $this->input->get();
 		if(isset($dataIn["cpf"]))
@@ -51,6 +55,11 @@ class AlunoController extends RN_Controller {
 
 		$data['message'] = "Aluno atualizado com sucesso!";
 		$this->admin($data);
+	}
+
+	public function show(){
+		$data['alunos'] = $this->aluno_model->selectAllAlunos();
+		$this->loadView('aluno/show_alunos', $data);
 	}
 
 	public function get(){

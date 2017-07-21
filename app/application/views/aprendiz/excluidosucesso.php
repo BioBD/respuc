@@ -1,5 +1,6 @@
+<script>function goBack() { window.history.back() } </script>
 <?php
-	echo "Aprendiz excluído com sucesso !";
+	echo "Aprendiz excluído com sucesso!";
 	echo "<br>";
-	echo "<a href='{$this->config->item('base_link')}AprendizController/show'>Voltar</a>";
 ?>
+<input type="button" onclick="goBack()" class='btn btn-warning' value="Voltar"></a>

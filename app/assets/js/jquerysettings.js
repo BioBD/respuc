@@ -1,4 +1,4 @@
-	
+
 	$(function() {
 	    $( "#datepicker" ).datepicker( {
 	        changeMonth: true,

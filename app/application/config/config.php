@@ -28,6 +28,7 @@ $config['assets'] = $config['base_url'] . "assets/";
 $config['base_link'] = $config['base_url'].'index.php/';
 $config['url_link'] = $config['base_link'];
 
+
 /*
 |--------------------------------------------------------------------------
 | Index File

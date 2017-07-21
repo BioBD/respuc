@@ -45,8 +45,8 @@ class Aluno{
 		$this->cpf_responsavel = $cpf_responsavel;
 	}
 
-	public static function createObjectAluno($resultRow){
-		if(self::valida($resultRow)){
+	public static function createObjectAluno($resultRow, $skip_check=false){
+		if(self::valida($resultRow,$skip_check)){
 			return new Aluno (	$resultRow->nome, 
 									$resultRow->cpf,
 									$resultRow->rg, 
@@ -287,11 +287,11 @@ class Aluno{
 		$this->cpf_responsavel = $newCpfResponsavel;
 	}
 
-	private static function valida ($data) 
+	private static function valida ($data,$skip_check=false) 
 	{
         $errors = array();
         $errors = self::validaNome($data->nome, $errors);
-        $errors = self::validaCpf($data->cpf, $errors);
+        $errors = self::validaCpf($data, $errors);
         $errors = self::validaRg($data->rg, $errors);
         $errors = self::validaDataNascimento($data->data_nascimento, $errors);
         $errors = self::validaNaturalidade($data->naturalidade, $errors);
@@ -310,17 +310,20 @@ class Aluno{
         $errors = self::validaProfissaoResponsavel($data->profissao_responsavel, $errors);
         $errors = self::validaCpfResponsavel($data->cpf_responsavel, $errors);
 
+		if($skip_check)
+			return true;
+
         if($errors == null)
         {
             return true;
         }
 
-        foreach ($errors as $error) 
+        foreach ($errors as $key => $error) 
         {
-        	echo "<script>alert('$error');</script>";
+        	echo "<script>alert('$key: $error');</script>";
         }
 		
-        return false;
+        return true;
     }
 
     private static function validaNome ($data, $errors)
@@ -335,17 +338,22 @@ class Aluno{
 
     private static function validaCpf ($data, $errors)
     {
-        if (empty($data)) 
+        if (empty($data->cpf)) 
         {
             // Tratar erro para campo vazio.
             $errors['cpf'] = "O campo não pode estar vazio!";
         } 
-		else if(!validaCPF($data))
+		else
 		{
-            $errors['cpf'] = "CPF Invalido!";			
+			$data->cpf = str_replace(".","",str_replace("-","",$data->cpf));
+			if(!validaCPF($data->cpf))
+			{
+        	    $errors['cpf'] = "CPF $data->cpf Invalido!";			
+			}
 		}
         return $errors;
     }
+
 
     private static function validaRg ($data, $errors)
     {

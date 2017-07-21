@@ -376,7 +376,7 @@ class Aprendiz
             // Tratar erro para campo vazio.
             $errors['cpf'] = "O campo não pode estar vazio!";
         } 
-		else if(!validaCPF($data))
+		if(!validaCPF($data))
 		{
             $errors['cpf'] = "CPF Invalido!";			
 		}
@@ -564,7 +564,7 @@ class Aprendiz
             // Tratar erro para campo vazio.
             $errors['cpf_responsavel'] = "O campo não pode estar vazio!";
         } 
-		else if(!validaCPF($data))
+		if(!validaCPF($data))
 		{
             $errors['cpf_responsavel'] = "CPF Invalido de responsavel!";
 		}

@@ -54,6 +54,11 @@ class AtividadeController extends RN_Controller {
 		$this->loadView('atividade/show_atividades', $data);
 	}
 
+	public function find(){
+		$dataIn = $this->input->post();
+		$data['atividade'] = $this->atividade_model->selectOneAtividade($dataIn);
+		$this->loadView('atividade/show_atividade', $data);
+	}
 
 	public function get(){
 		$dataIn = $this->input->get();

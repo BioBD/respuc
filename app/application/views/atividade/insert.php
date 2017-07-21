@@ -1,8 +1,4 @@
 <script>
-    function goBack() {
-      window.history.back()
-    }
-
     /* permite apenas numeros, tab e backspace*/
     function validateNumberInput(evt) {
 
@@ -87,30 +83,37 @@
 
 </script>
 
-<style type="text/css">
-  h4 {color: black; margin-left: all}
-  label {color: black;}
-  .container{margin: auto;width: 45%;}
-  input[type=text]:focus { border: 2px solid #555;}
-  input[type=email]:focus { border: 2px solid #555;}
-</style>
+<div class = "row">
+    <?php // require_once APPPATH . 'views/include/left_menu.php' ?>
+    <div class="col-lg-12">
+      <form method="post" action="save" enctype="multipart/form-data">
 
-<div class="container"><br>
-  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Inserir Nova Atividade <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
-    <form method="post" id="theForm" action="save" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="nome" class="col-lg-1">Nome*: </label><br><br>
-        <input type="text" size="10" class="form-control" placeholder="Digite o nome da atividade"
-                  name="nome" onkeypress="return validateLetterInput(event);" required
-                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                  oninput="setCustomValidity('')"
-                  value="<?php
-                          if (!empty($_POST['nome']))
-                                echo $_POST['nome'];
-        ?>"/> </div>
-
-    <div class="row">
-      <div class="form-group">
-        <div class="col-lg-1"></div>
-        <input type="button" onclick="goBack()" class='btn btn-warning' value="Voltar"></a>
-        <input class="btn btn-primary" type="submit" value="Salvar"> </div></div></form></div></div>
+        <div class="row">
+                <div class="form-group">
+                    <label for="nome" class="col-lg-1 control-label"> Nome*: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" placeholder="Digite o nome"
+                               name="nome" onkeypress="return validateLetterInput(event);" required
+                               oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
+                               oninput="setCustomValidity('')"
+                               value="<?php
+                               if (!empty($_POST['nome'])) {
+                                   echo $_POST['nome'];
+                               }
+                               ?>"/>
+                    </div>
+                </div>
+            </div>
+            <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="padding-right:95px">
+                            <input class="btn btn-primary" style="float:right" type="submit" value="Salvar">
+                        </div>
+                    </div>
+                </div>
+      </form>
+    </div>
+</div>

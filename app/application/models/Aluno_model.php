@@ -27,10 +27,9 @@ class Aluno_model extends RN_Model
     {
         $this->Logger->info("Running: " . __METHOD__);
         $aluno = Aluno::createObjectAluno($info);
-        if(isset($aluno))
-        {
-            $resultArray = $aluno->getDataToSave();
-            $resultArray[] = $info->old_cpf;
+        $resultArray = $aluno->getDataToSave();
+        $resultArray[] = $info->old_cpf;
+        if(isset($aluno)){
             $this->execute($this->db, $aluno->getSqlToUpdate(), $resultArray);
         }
         return false;

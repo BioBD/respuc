@@ -18,23 +18,16 @@ class InstituicaoController extends RN_Controller {
 	}
 
 	public function insert(){
-		$this->loadView('instituicao/insert');
+		$data["action"] = "save"; 
+		$this->loadView('instituicao/modifyShow',$data);
 	}
-
-	public function search(){
-		$this->loadView('instituicao/search');
-	}
-
-    public function home(){
-        $this->loadView('instituicao/home');
-    }
-
 
 	public function edit(){
 		$dataIn = $this->input->get();
 		$nome = $dataIn["nome"];
+		$data["action"] = "update"; 
 		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($nome);
-		$this->loadView('instituicao/edit', $data);
+		$this->loadView('instituicao/modifyShow', $data);
 	}
 
 	public function save(){
@@ -60,16 +53,11 @@ class InstituicaoController extends RN_Controller {
 
 	public function get(){
 		$dataIn = $this->input->get();
+		$data["disabled"] = "disabled"; 
+		$data["action"] = ""; 
 		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($dataIn);
-		$this->loadView('instituicao/show_instituicao', $data);
+		$this->loadView('instituicao/modifyShow', $data);
 	}
-
-	public function find(){
-		$dataIn = $this->input->post();
-		$data['instituicao'] = $this->instituicao_model->selectOneInstituicao($dataIn);
-		$this->loadView('instituicao/show_instituicao', $data);
-	}
-
 
 	public function delete(){
 		$dataIn = $this->input->get();

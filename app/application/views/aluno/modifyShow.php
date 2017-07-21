@@ -340,7 +340,7 @@
           ?>"/></div> <br>
 
 
-  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Dados do Responsável <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
+  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Dados do Responável <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
       <div class="form-group">
           <label for="nome_responsavel" class="col-lg-1 control-label"> Nome: </label><br><br>
           <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite o nome do responsável"

@@ -54,7 +54,7 @@ function goBack() {
                     <td><a href="<?php echo $this->config->item('base_link').'AprendizController/edit?cpf='.$aprendiz->getCPF(); ?>">
                         <input class="btn btn-primary" type="button" value="Editar"></a></td>
                     <td><a href="<?php echo $this->config->item('base_link').'AprendizController/delete?cpf='.$aprendiz->getCPF(); ?>">
-                        <input onclick="return confirm('Tem certeza que deseja deletar o aprendiz de CPF <?= $aprendiz->getCPF()?> ?')" class="btn btn-danger" type="button" value="Excluir"></a></td>								
+                        <input class="btn btn-danger" type="button" value="Excluir"></a></td>								
 					</tr>
 				<?php } ?>
 			</tbody>

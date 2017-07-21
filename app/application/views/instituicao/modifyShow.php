@@ -111,9 +111,9 @@
 
 
     <div class="form-group">
-        <label for="celular" class="col-lg-1 control-label"> Celular*: </label> <br><br>
+        <label for="celular" class="col-lg-1 control-label"> Celular: </label> <br><br>
         <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control phone phone1" placeholder="(XX) XXXXX-XXXX"
-                  name="celular" id="celular" maxlength="25" required onkeypress="return validateNumberInput(event);"
+                  name="celular" id="celular" maxlength="25" onkeypress="return validateNumberInput(event);"
                   oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                   oninput="setCustomValidity('')"
                   value="<?php
@@ -139,7 +139,7 @@
               ?>"/> </div>                  
 
     <div class="form-group">
-        <label for="vinculo" class="col-lg-1 control-label"> Vínculo: </label> <br><br>
+        <label for="vinculo" class="col-lg-1 control-label"> Vínculo*: </label> <br><br>
         <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite o vínculo"
                   name="vinculo" id="vinculo" maxlength="25" required
                   oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
@@ -153,7 +153,7 @@
 
   <h4><i class="fa fa-cog" aria-hidden="true"></i>  Dados do Responável <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
       <div class="form-group">
-          <label for="nome_responsavel" class="col-lg-1 control-label"> Nome: </label><br><br>
+          <label for="nome_responsavel" class="col-lg-1 control-label"> Nome*: </label><br><br>
           <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite o nome do responsável"
                   name="nome_responsavel" onkeypress="return validateLetterInput(event);" required
                   oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"

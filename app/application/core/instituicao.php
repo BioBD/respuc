@@ -128,7 +128,7 @@ class Instituicao {
         $errors = array();
         $errors = self::validaNome($data->nome, $errors);
         $errors = self::validaTelefone($data->telefone, $errors);
-        $errors = self::validaCelular($data->celular, $errors);
+        $errors = self::validaCelular($data, $errors);
         $errors = self::validaVinculo($data->vinculo, $errors);
         $errors = self::validaEmail($data->email, $errors);
         $errors = self::validaNomeResponsavel($data->nome_responsavel, $errors);
@@ -154,15 +154,6 @@ class Instituicao {
         return $errors;
     }
 
-	private static function validaWebsite($data, $errors){
-        if (empty($data)) {
-            //tratar erro para campo dt_nasc vazio.
-        } else if (filter_var($url, FILTER_VALIDATE_URL) === false){
-        	$errors["website"] = "O campo Website inválido!";
-        }
-        return $errors;
-    }
-
 	private static function validaVinculo($data, $errors){
         if (empty($data)) {
             //tratar erro para campo vinculo vazio.
@@ -180,9 +171,9 @@ class Instituicao {
     }
 
 	private static function validaCelular($data, $errors){
-        if (empty($data)) {
+        if (empty($data->celular)) {
             //tratar erro para campo vinculo vazio.
-            $errors['celular'] = "O campo Celular não pode estar vazio!";
+			$data->celular = NULL;
         } 
         return $errors;
     }

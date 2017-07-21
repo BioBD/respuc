@@ -440,7 +440,6 @@ class Voluntario
         } 
         return $errors;
     }
-
 }
 
 ?>

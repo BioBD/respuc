@@ -353,10 +353,9 @@ class Aprendiz
 
         foreach ($errors as $error) 
         {
-        	echo $error;
+        	echo "<script>alert('$error');</script>";
         }
 
-        die();
         return false;
     }
 
@@ -377,6 +376,10 @@ class Aprendiz
             // Tratar erro para campo vazio.
             $errors['cpf'] = "O campo não pode estar vazio!";
         } 
+		if(!validaCPF($data))
+		{
+            $errors['cpf'] = "CPF Invalido!";			
+		}
         return $errors;
     }
 
@@ -561,6 +564,10 @@ class Aprendiz
             // Tratar erro para campo vazio.
             $errors['cpf_responsavel'] = "O campo não pode estar vazio!";
         } 
+		if(!validaCPF($data))
+		{
+            $errors['cpf_responsavel'] = "CPF Invalido de responsavel!";
+		}
         return $errors;
     }
 }

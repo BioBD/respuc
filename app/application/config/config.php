@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/respuc/';
+$config['base_url'] = 'http://localhost/respuc/app/';
 $config['assets'] = $config['base_url'] . "assets/";
 $config['base_link'] = $config['base_url'].'index.php/';
 $config['url_link'] = $config['base_link'];

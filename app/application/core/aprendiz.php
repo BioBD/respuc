@@ -326,34 +326,34 @@ class Aprendiz
 	{
         $errors = array();
         $errors = self::validaNome($data->nome, $errors);
-        $errors = self::validaCpf($data->cpf, $errors);
+        $errors = self::validaCpf($data, $errors);
         $errors = self::validaRg($data->rg, $errors);
         $errors = self::validaDataNascimento($data->data_nascimento, $errors);
         $errors = self::validaNaturalidade($data->naturalidade, $errors);
         $errors = self::validaEmail($data->email, $errors);
-        $errors = self::validaTelefone($data->telefone, $errors);
-        $errors = self::validaCelular($data->celular, $errors);
+        $errors = self::validaTelefone($data, $errors);
+        $errors = self::validaCelular($data, $errors);
         $errors = self::validaRua($data->rua, $errors);
-        $errors = self::validaNumero($data->numero, $errors);
-        $errors = self::validaComplemento($data->complemento, $errors);
+        $errors = self::validaNumero($data, $errors);
+        $errors = self::validaComplemento($data, $errors);
         $errors = self::validaBairro($data->bairro, $errors);
         $errors = self::validaCidade($data->cidade, $errors);
         $errors = self::validaUf($data->uf, $errors);
         $errors = self::validaCep($data->cep, $errors);
         $errors = self::validaTrabalho($data->trabalho, $errors);
         $errors = self::validaNomeResponsavel($data->nome_responsavel, $errors);
-        $errors = self::validaTelefoneResponsavel($data->telefone_responsavel, $errors);
-        $errors = self::validaProfissaoResponsavel($data->profissao_responsavel, $errors);
-        $errors = self::validaCpfResponsavel($data->cpf_responsavel, $errors);
+        $errors = self::validaTelefoneResponsavel($data, $errors);
+        $errors = self::validaProfissaoResponsavel($data, $errors);
+        $errors = self::validaCpfResponsavel($data, $errors);
 
         if($errors == null)
         {
             return true;
         }
 
-        foreach ($errors as $error) 
+        foreach ($errors as $key => $error) 
         {
-        	echo "<script>alert('$error');</script>";
+        	echo "<script>alert('$key: $error');</script>";
         }
 
         return false;
@@ -371,14 +371,18 @@ class Aprendiz
 
     private static function validaCpf ($data, $errors)
     {
-        if (empty($data)) 
+        if (empty($data->cpf)) 
         {
             // Tratar erro para campo vazio.
             $errors['cpf'] = "O campo não pode estar vazio!";
         } 
-		else if(!validaCPF($data))
+		else
 		{
-            $errors['cpf'] = "CPF Invalido!";			
+			$data->cpf = str_replace(".","",str_replace("-","",$data->cpf));
+			if(!validaCPF($data->cpf))
+			{
+        	    $errors['cpf'] = "CPF $data->cpf Invalido!";			
+			}
 		}
         return $errors;
     }
@@ -422,27 +426,21 @@ class Aprendiz
         } 
         else if (filter_var($data, FILTER_VALIDATE_EMAIL) === false)
         {
-            $errors["email"] = "Campo inválido!";
+            $errors["email"] = "Campo inválido! $data";
         }
         return $errors;
     }
 
-    private static function validaTelefone ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['telefone'] = "O campo não pode estar vazio!";
+	private static function validaTelefone($data, $errors){
+        if (empty($data->telefone)) {
+			$data->telefone = NULL;
         } 
         return $errors;
     }
 
-    private static function validaCelular ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['celular'] = "O campo não pode estar vazio!";
+	private static function validaCelular($data, $errors){
+        if (empty($data->celular)) {
+			$data->celular = NULL;
         } 
         return $errors;
     }
@@ -461,18 +459,14 @@ class Aprendiz
     {
         if (empty($data)) 
         {
-            // Tratar erro para campo vazio.
-            $errors['numero'] = "O campo não pode estar vazio!";
+            $data->numero = "S/N";
         } 
         return $errors;
     }
 
-    private static function validaComplemento ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['complemento'] = "O campo não pode estar vazio!";
+	private static function validaComplemento($data, $errors){
+        if (empty($data->complemento)) {
+			$data->complemento = NULL;
         } 
         return $errors;
     }
@@ -539,34 +533,35 @@ class Aprendiz
 
     private static function validaTelefoneResponsavel ($data, $errors)
     {
-        if (empty($data)) 
+        if (empty($data->telefone_responsavel)) 
         {
-            // Tratar erro para campo vazio.
-            $errors['telefone_responsavel'] = "O campo não pode estar vazio!";
-        } 
+			$data->telefone_responsavel = NULL;
+		}
         return $errors;
     }
 
     private static function validaProfissaoResponsavel ($data, $errors)
     {
-        if (empty($data)) 
+        if (empty($data->profissao_responsavel)) 
         {
-            // Tratar erro para campo vazio.
-            $errors['profissao_responsavel'] = "O campo não pode estar vazio!";
+			$data->profissao_responsavel = NULL;
         } 
         return $errors;
     }
 
     private static function validaCpfResponsavel ($data, $errors)
     {
-        if (empty($data)) 
+        if (empty($data->cpf_responsavel)) 
         {
-            // Tratar erro para campo vazio.
-            $errors['cpf_responsavel'] = "O campo não pode estar vazio!";
+			$data->cpf_responsavel = NULL;
         } 
-		else if(!validaCPF($data))
+		else
 		{
-            $errors['cpf_responsavel'] = "CPF Invalido de responsavel!";
+			$data->cpf = str_replace(".","",str_replace("-","",$data->cpf));
+			if(!validaCPF($data->cpf))
+			{
+        	    $errors['cpf'] = "CPF $data->cpf Invalido!";			
+			}
 		}
         return $errors;
     }

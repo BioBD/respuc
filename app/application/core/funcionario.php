@@ -1,8 +1,7 @@
 <?php
 include_once APPPATH . 'core/RN_Controller.php';
-include_once APPPATH . 'core/utils.php';
 
-class Voluntario 
+class Aprendiz 
 {
 
 
@@ -14,16 +13,9 @@ class Voluntario
 	protected $email;
 	protected $telefone;
 	protected $celular;
-	protected $rua;
-	protected $numero;
-	protected $complemento;
-	protected $bairro;
-	protected $cidade;
-	protected $uf;
-	protected $cep;
+	protected $funcao;
 
-	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $rua, $numero, $complemento, 
-		$bairro, $cidade, $uf, $cep)
+	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $funcao)
 	{
 		$this->nome = $nome;
 		$this->cpf = $cpf;
@@ -33,27 +25,18 @@ class Voluntario
 		$this->email = $email;
 		$this->telefone = $telefone;
 		$this->celular = $celular;
-		$this->rua = $rua;
-		$this->numero = $numero;
-		$this->complemento = $complemento;
-		$this->bairro = $bairro;
-		$this->cidade = $cidade;
-		$this->uf = $uf;
-		$this->cep = $cep;
+		$this->funcao = $funcao;
 	}
 
-	public static function createObjectVoluntario($resultRow)
+	public static function createObjectAprendiz($resultRow)
 	{
 		if(self::valida($resultRow)){
-			return new Voluntario (
+			return new Aprendiz (
 				$resultRow->nome, $resultRow->cpf,
 				$resultRow->rg, RN_Controller::toDDMMYYYY($resultRow->data_nascimento),
 				$resultRow->naturalidade, $resultRow->email,
 				$resultRow->telefone, $resultRow->celular,
-				$resultRow->rua, $resultRow->numero, 
-				$resultRow->complemento, $resultRow->bairro, 
-				$resultRow->cidade, $resultRow->uf, 
-				$resultRow->cep);
+				$resultRow->funcao);
 		}
 		return null;
 	}
@@ -62,46 +45,42 @@ class Voluntario
 	{
 		return array (
 					$this->getNome(), $this->getCpf(), $this->getRg(),
-					toYYYYMMDD($this->getDataNascimento()), $this->getNaturalidade(), 
+					$this->getDataNascimento(), $this->getNaturalidade(), 
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
-					$this->getRua(), $this->getNumero(), $this->getComplemento(),
-					$this->getBairro(), $this->getCidade(), $this->getUf(), 
-					$this->getCep());
+					$this->getFuncao());
 	}
 
 	public function getSqlToInsert()
 	{
-		return 'INSERT INTO voluntario (
+		return 'INSERT INTO aprendiz (
 									  nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
-									  rua, numero, complemento, bairro, cidade,
-		                              uf, cep) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+									  funcao) VALUES (?,?,?,?,?,?,?,?,?);';
 	}
 
 	public function getSqlToUpdate()
 	{
-		return 'UPDATE public.voluntario SET   
+		return 'UPDATE public.aprendiz SET   
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
-									  rua=?, numero=?, complemento=?, bairro=?,
-									  cidade=?, uf=?, cep=?
+									  funcao=?
 		WHERE cpf=?;';
 	}
 
 	public static function getSqlToDelete()
 	{
-		return 'DELETE FROM voluntario
+		return 'DELETE FROM aprendiz
 		WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelect()
 	{
-		return 'SELECT * FROM voluntario WHERE cpf=?;';
+		return 'SELECT * FROM aprendiz WHERE cpf=?;';
 	}
 
 	public static function getSqlToSelectAll()
 	{
-		return 'SELECT * FROM voluntario;';
+		return 'SELECT * FROM aprendiz;';
 	}
 
 	public function getNome()
@@ -184,74 +163,14 @@ class Voluntario
 		$this->celular = $newCelular;
 	}
 
-	public function getRua()
+	public function getFuncao()
 	{
-		return $this->rua;
+		return $this->funcao;
 	}
 
-	public function setRua($newRua)
+	public function setFuncao($newFuncao)
 	{
-		$this->rua = $newRua;
-	}
-
-	public function getNumero()
-	{
-		return $this->numero;
-	}
-
-	public function setNumero($newNumero)
-	{
-		$this->numero = $newNumero;
-	}
-
-	public function getComplemento()
-	{
-		return $this->complemento;
-	}
-
-	public function setComplemento($newComplemento)
-	{
-		$this->complemento = $newComplemento;
-	}
-
-	public function getBairro()
-	{
-		return $this->bairro;
-	}
-
-	public function setBairro($newBairro)
-	{
-		$this->bairro = $newBairro;
-	}
-
-	public function getCidade()
-	{
-		return $this->cidade;
-	}
-
-	public function setCidade($newCidade)
-	{
-		$this->cidade = $newCidade;
-	}
-
-	public function getUf()
-	{
-		return $this->uf;
-	}
-
-	public function setUf($newUf)
-	{
-		$this->uf = $newUf;
-	}
-
-	public function getCep()
-	{
-		return $this->cep;
-	}
-
-	public function setCep($newCep)
-	{
-		$this->cep = $newCep;
+		$this->funcao = $newFuncao;
 	}
 
 	private static function valida ($data) 
@@ -265,13 +184,7 @@ class Voluntario
         $errors = self::validaEmail($data->email, $errors);
         $errors = self::validaTelefone($data->telefone, $errors);
         $errors = self::validaCelular($data->celular, $errors);
-        $errors = self::validaRua($data->rua, $errors);
-        $errors = self::validaNumero($data->numero, $errors);
-        $errors = self::validaComplemento($data->complemento, $errors);
-        $errors = self::validaBairro($data->bairro, $errors);
-        $errors = self::validaCidade($data->cidade, $errors);
-        $errors = self::validaUf($data->uf, $errors);
-        $errors = self::validaCep($data->cep, $errors);
+        $errors = self::validaFuncao($data->funcao, $errors);
 
         if($errors == null)
         {
@@ -371,76 +284,16 @@ class Voluntario
         return $errors;
     }
 
-    private static function validaRua ($data, $errors)
+    private static function validaFuncao ($data, $errors)
     {
         if (empty($data)) 
         {
             // Tratar erro para campo vazio.
-            $errors['rua'] = "O campo não pode estar vazio!";
+            $errors['funcao'] = "O campo não pode estar vazio!";
         } 
         return $errors;
     }
-
-	private static function validaNumero ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['numero'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
-    private static function validaComplemento ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['complemento'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
-    private static function validaBairro ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['bairro'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
-    private static function validaCidade ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['cidade'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
-    private static function validaUf ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['uf'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
-    private static function validaCep ($data, $errors)
-    {
-        if (empty($data)) 
-        {
-            // Tratar erro para campo vazio.
-            $errors['cep'] = "O campo não pode estar vazio!";
-        } 
-        return $errors;
-    }
-
+    
 }
 
 ?>

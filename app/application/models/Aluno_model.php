@@ -31,7 +31,7 @@ class Aluno_model extends RN_Model
         {
             $resultArray = $aluno->getDataToSave();
             $resultArray[] = $info->old_cpf;
-            $this->execute($this->db, $aluno->getSqlToUpdate(), $resultArray);
+            return $this->execute($this->db, $aluno->getSqlToUpdate(), $resultArray);
         }
         return false;
     }

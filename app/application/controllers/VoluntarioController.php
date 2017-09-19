@@ -17,22 +17,20 @@ class VoluntarioController extends RN_Controller {
         $this->load->helper(array('form', 'url'));
 	}
 
-	public function insert(){
-		$this->loadView('voluntario/insert');
+	public function insert($data = array()){
+		$data["action"] = "save"; 
+		$this->loadView('voluntario/modifyShow',$data);
 	}
 
-	public function search(){
-		$this->loadView('voluntario/search');
-	}
-
-	public function edit(){
+	public function edit($data = array()){
 		$dataIn = $this->input->get();
 		if(isset($dataIn["cpf"]))
 			$cpf = $dataIn["cpf"];
 		else
 			$cpf = "";
+		$data["action"] = "update"; 			
 		$data['voluntario'] = $this->voluntario_model->selectOneVoluntario($cpf);
-		$this->loadView('voluntario/edit',$data);
+		$this->loadView('voluntario/modifyShow',$data);
 	}
 
 	public function save(){
@@ -41,7 +39,13 @@ class VoluntarioController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 
 		$return = $this->voluntario_model->insertNewVoluntario($dataIn);
-		$data['message'] = "Voluntario cadastrado com sucesso!";
+		if($return)
+			$data['message'] = "Voluntario cadastrado com sucesso!";
+		else
+		{
+			$this->insert($this->input->post);
+			return;
+		}		
 		$this->admin($data);
 	}
 
@@ -51,24 +55,23 @@ class VoluntarioController extends RN_Controller {
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
 		$return = $this->voluntario_model->updateVoluntario($dataIn);
 		$data['message'] = "Voluntario atualizado com sucesso!";
+		if($return)
+			$data['message'] = "Voluntario atualizado com sucesso!";
+		else
+		{
+			$this->edit($this->input->post);
+			return;
+		}		
 		$this->admin($data);
 	}
 
-	public function show(){
-		$data['voluntarios'] = $this->voluntario_model->selectAllVoluntario();
-		$this->loadView('voluntario/show_voluntarios', $data);
-	}
-
-	public function find(){
-		$dataIn = $this->input->post();
-		$data['voluntario'] = $this->voluntario_model->selectOneVoluntario($dataIn);
-		$this->loadView('voluntario/show_voluntario', $data);
-	}
 
 	public function get(){
 		$dataIn = $this->input->get();
+		$data["action"] = "";
+		$data["disabled"] = "disabled"; 		
 		$data['voluntario'] = $this->voluntario_model->selectOneVoluntario($dataIn);
-		$this->loadView('voluntario/show_voluntario', $data);
+		$this->loadView('voluntario/modifyShow', $data);
 	}
 
 
@@ -114,93 +117,99 @@ class VoluntarioController extends RN_Controller {
                     	if($firstRow)
                     	{
                     		$firstRow = false;; 
-                    		if($resource[0] !== "Nome")
+                    		if($resource[0] !== "Matricula")
                     		{
-                    			echo "<script> alert('A primeira coluna do csv de voluntario deve ser Nome!');</script>";
+                    			echo "<script> alert('A primeira coluna do csv de voluntario deve ser Matricula!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[1] !== "CPF")
+                    		if($resource[1] !== "Nome")
                     		{
-                    			echo "<script> alert('A segunda coluna do csv de voluntario deve ser CPF');</script>";
+                    			echo "<script> alert('A segunda coluna do csv de voluntario deve ser Nome!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[2] !== "RG")
+                    		if($resource[2] !== "CPF")
                     		{
-                    			echo "<script> alert('A terceira coluna do csv de voluntario deve ser RG');</script>";
+                    			echo "<script> alert('A terceira coluna do csv de voluntario deve ser CPF');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[3] !== "Data de Nascimento")
+                    		if($resource[3] !== "RG")
                     		{
-                    			echo "<script> alert('A quarta coluna do csv de voluntario deve ser Data de Nascimento');</script>";
+                    			echo "<script> alert('A quarta coluna do csv de voluntario deve ser RG');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[4] !== "Naturalidade")
+                    		if($resource[4] !== "Data de Nascimento")
                     		{
-                    			echo "<script> alert('A quinta coluna do csv de voluntario deve ser Naturalidade!');</script>";
+                    			echo "<script> alert('A quinta coluna do csv de voluntario deve ser Data de Nascimento');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[5] !== "Email")
+                    		if($resource[5] !== "Naturalidade")
                     		{
-                    			echo "<script> alert('A sexta coluna do csv de voluntario deve ser Email!');</script>";
+                    			echo "<script> alert('A sexta coluna do csv de voluntario deve ser Naturalidade!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[6] !== "Telefone")
+                    		if($resource[6] !== "Email")
                     		{
-                    			echo "<script> alert('A setima coluna do csv de voluntario deve ser Telefone!');</script>";
+                    			echo "<script> alert('A setima coluna do csv de voluntario deve ser Email!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[7] !== "Celular")
+                    		if($resource[7] !== "Telefone")
                     		{
-                    			echo "<script> alert('A oitava coluna do csv de voluntario deve ser Celular!');</script>";
+                    			echo "<script> alert('A oitava coluna do csv de voluntario deve ser Telefone!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[8] !== "Rua")
+                    		if($resource[8] !== "Celular")
                     		{
-                    			echo "<script> alert('A nona coluna do csv de voluntario deve ser Rua!');</script>";
+                    			echo "<script> alert('A nona coluna do csv de voluntario deve ser Celular!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[9] !== "Numero")
+                    		if($resource[9] !== "Rua")
                     		{
-                    			echo "<script> alert('A decima coluna do csv de voluntario deve ser Numero!');</script>";
+                    			echo "<script> alert('A decima coluna do csv de voluntario deve ser Rua!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[10] !== "Complemento")
+                    		if($resource[10] !== "Numero")
                     		{
-                    			echo "<script> alert('A decima primeira coluna do csv de voluntario deve ser Complemento!');</script>";
+                    			echo "<script> alert('A decima primeira coluna do csv de voluntario deve ser Numero!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[11] !== "Bairro")
+                    		if($resource[11] !== "Complemento")
                     		{
-                    			echo "<script> alert('A decima segunda coluna do csv de voluntario deve ser Bairro!');</script>";
+                    			echo "<script> alert('A decima segunda coluna do csv de voluntario deve ser Complemento!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[12] !== "Cidade")
+                    		if($resource[12] !== "Bairro")
                     		{
-                    			echo "<script> alert('A decima terceira coluna do csv de voluntario deve ser Cidade!');</script>";
+                    			echo "<script> alert('A decima terceira coluna do csv de voluntario deve ser Bairro!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[13] !== "UF")
+                    		if($resource[13] !== "Cidade")
                     		{
-                    			echo "<script> alert('A decima quarta coluna do csv de voluntario deve ser UF!');</script>";
+                    			echo "<script> alert('A decima quarta coluna do csv de voluntario deve ser Cidade!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
-                    		if($resource[14] !== "CEP")
+                    		if($resource[14] !== "UF")
                     		{
-                    			echo "<script> alert('A decima quinta coluna do csv de voluntario deve ser CEP!');</script>";
+                    			echo "<script> alert('A decima quinta coluna do csv de voluntario deve ser UF!');</script>";
+					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
+			                    return;
+                    		}
+                    		if($resource[15] !== "CEP")
+                    		{
+                    			echo "<script> alert('A decima sexta coluna do csv de voluntario deve ser CEP!');</script>";
 					            $this->loadView('voluntario/form_csv', array('error' => ' ' ));
 			                    return;
                     		}
@@ -208,21 +217,22 @@ class VoluntarioController extends RN_Controller {
                     	else
                     	{
                     		$local_data = (object) array(    
-							    "nome" => $resource[0],
-								"cpf" => $resource[1],
-								"rg" => $resource[2],
-								"data_nascimento" => $this->toYYYYMMDD($resource[3]),
-								"naturalidade" => $resource[4],
-								"email" => $resource[5],
-								"telefone" => $resource[6],
-								"celular" => $resource[7],
-								"rua" => $resource[8],
-								"numero" => $resource[9],
-								"complemento" => $resource[10],
-								"bairro" => $resource[11],
-								"cidade" => $resource[12],
-								"uf" => $resource[13],
-								"cep" => $resource[14]
+								"matricula" => $resource[0],
+							    "nome" => $resource[1],
+								"cpf" => $resource[2],
+								"rg" => $resource[3],
+								"data_nascimento" => $this->toYYYYMMDD($resource[4]),
+								"naturalidade" => $resource[5],
+								"email" => $resource[6],
+								"telefone" => $resource[7],
+								"celular" => $resource[8],
+								"rua" => $resource[9],
+								"numero" => $resource[10],
+								"complemento" => $resource[11],
+								"bairro" => $resource[12],
+								"cidade" => $resource[13],
+								"uf" => $resource[14],
+								"cep" => $resource[15]
 							    );
             				$return = $this->voluntario_model->insertNewVoluntario($local_data	);
             				if(!$return)

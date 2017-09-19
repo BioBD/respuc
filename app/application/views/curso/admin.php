@@ -1,8 +1,7 @@
 <div>
     <?php // require_once APPPATH . 'views/include/left_menu.php'
-		if($message !== null){
-			echo "<script>alert("$message")</script>";			
-		} 
+		if(isset($message) && $message !== null)
+			echo "<script>alert(\"{$message}\")</script>";			
 	?>
     <div>
             <a href="<?php echo $this->config->item('base_link').'CursoController/insert' ?>">

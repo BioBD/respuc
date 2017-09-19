@@ -18,54 +18,81 @@
 <div class="col-md-2"></div>
 
 <div class="i-am-centered">
-<div class="row" align="center">
-	<div class="col-md-2" align="center">
-    	<a href = "<?= $this->config->item('url_link'); ?>AlunoController/admin">
-    		<div class="panel panel-default">    	
-       			<div class="panel-body btn btn-primary" style="width: 100%;">         	
-            		<i class="fa fa-wrench" style="color:#fff;"></i>
-            		<span style="color:#fff;"><b>Alunos</b></span>            
-        		</div>
-			</div>
-    	</a>
-	</div>
+	<div class="row" align="center">
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>AlunoController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Alunos</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
 
 
-<div class="row" align="center">
-	<div class="col-md-2" align="center">
-    	<a href = "<?= $this->config->item('url_link'); ?>AprendizController/admin">
-    		<div class="panel panel-default">    	
-       			<div class="panel-body btn btn-primary" style="width: 100%;">         	
-            		<i class="fa fa-wrench" style="color:#fff;"></i>
-            		<span style="color:#fff;"><b>Aprendizes</b></span>            
-        		</div>
-			</div>
-    	</a>
-	</div>
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>AprendizController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Aprendizes</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
 
-<div class="row" align="center">
-	<div class="col-md-2" align="center">
-    	<a href = "<?= $this->config->item('url_link'); ?>AtividadeController/admin">
-    		<div class="panel panel-default">    	
-       			<div class="panel-body btn btn-primary" style="width: 100%;">         	
-            		<i class="fa fa-wrench" style="color:#fff;"></i>
-            		<span style="color:#fff;"><b>Atividades</b></span>            
-        		</div>
-			</div>
-    	</a>
-	</div>
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>AtividadeController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Atividades</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
 
-<div class="row" align="center">
-	<div class="col-md-2" align="center">
-    	<a href = "<?= $this->config->item('url_link'); ?>InstituicaoController/admin">
-    		<div class="panel panel-default">    	
-       			<div class="panel-body btn btn-primary" style="width: 100%;">         	
-            		<i class="fa fa-wrench" style="color:#fff;"></i>
-            		<span style="color:#fff;"><b>Instituições</b></span>            
-        		</div>
-			</div>
-    	</a>
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>InstituicaoController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Instituições</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
-
 <div class="col-md-2"></div>
+
+<div class="i-am-centered">
+
+	<div class="row" align="center">
+
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>VoluntarioController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Voluntarios</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-md-2" align="center">
+			<a href = "<?= $this->config->item('url_link'); ?>FuncionarioController/admin">
+				<div class="panel panel-default">    	
+					<div class="panel-body btn btn-primary" style="width: 100%;">         	
+						<i class="fa fa-wrench" style="color:#fff;"></i>
+						<span style="color:#fff;"><b>Funcionarios</b></span>            
+					</div>
+				</div>
+			</a>
+		</div>
+
+
+	</div>
+</div>

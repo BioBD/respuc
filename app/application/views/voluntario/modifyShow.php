@@ -76,31 +76,44 @@
 </style>
 
 <div class="container"><br>
-  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Inserir Novo Aprendiz <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
+  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Inserir Novo Voluntario <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
     <form method="post" id="theForm" action="<?=$action?>" enctype="multipart/form-data">
-        <?php if (!empty($_POST['old_cpf']) || isset($aprendiz)) 
+        <?php if (!empty($_POST['old_cpf']) || isset($voluntario)) 
             {
         ?>
                 <input type="hidden" name="old_cpf" id="old_cpf" value="<?php
                           if (!empty($_POST['old_cpf']))
                                 echo $_POST['old_cpf'];
-                        else if(isset($aprendiz))
-                                echo $aprendiz->getCpf();
+                        else if(isset($voluntario))
+                                echo $voluntario->getCpf();
                 ?>"/>
         <?php    
             }
         ?>
-      <div class="form-group">
+
+    <div class="form-group">
+          <label for="matricula" class="col-lg-1 control-label"> Matricula: </label><br><br>
+          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite a matricula"
+                  name="matricula" id="matricula" 
+                  value="<?php
+                              if (!empty($_POST['matricula'])) 
+                                  echo $_POST['matricula'];
+                            else if(isset($voluntario))
+                                    echo $voluntario->getMatricula();
+          ?>"/></div> <br>
+
+
+    <div class="form-group">
         <label for="nome" class="col-lg-1">Nome*: </label><br><br>
-        <input type="text" <?php if (isset($disabled)) echo "disabled";?> size="10" class="form-control" placeholder="Digite o nome do aprendiz"
+        <input type="text" <?php if (isset($disabled)) echo "disabled";?> size="10" class="form-control" placeholder="Digite o nome do voluntario"
                   name="nome" onkeypress="return validateLetterInput(event);" required
                   oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
                   oninput="setCustomValidity('')"
                   value="<?php
                           if (!empty($_POST['nome']))
                                 echo $_POST['nome'];
-                        else if(isset($aprendiz))
-                                echo $aprendiz->getNome();
+                        else if(isset($voluntario))
+                                echo $voluntario->getNome();
         ?>"/> </div>
     <div class="form-group">
         <label for="cpf" class="col-lg-1">CPF*: </label><br><br>
@@ -111,8 +124,8 @@
                   value="<?php
                           if (!empty($_POST['cpf']))
                                   echo $_POST['cpf'];
-                        else if(isset($aprendiz))
-                                echo $aprendiz->getCpf();
+                        else if(isset($voluntario))
+                                echo $voluntario->getCpf();
          ?>"/> </div>
 
     <div class="form-group">
@@ -124,8 +137,8 @@
                   value="<?php
                             if (!empty($_POST['rg'])) 
                                   echo $_POST['rg'];
-                        else if(isset($aprendiz))
-                                echo $aprendiz->getRg();
+                        else if(isset($voluntario))
+                                echo $voluntario->getRg();
           ?>"/> </div>
 
     <div class="form-group">   
@@ -137,8 +150,8 @@
                   value="<?php
                               if (!empty($_POST['data_nascimento']))
                                   echo $_POST['data_nascimento'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getDataNascimento();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getDataNascimento();
             ?>"/> </div>
 
 
@@ -151,8 +164,8 @@
                   value="<?php
                               if (!empty($_POST['naturalidade'])) 
                                   echo $_POST['naturalidade'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getNaturalidade();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getNaturalidade();
             ?>"/></div>
 
     <div class="form-group">               
@@ -164,8 +177,8 @@
                   value="<?php
                               if (!empty($_POST['telefone'])) 
                                   echo $_POST['telefone'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getTelefone();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getTelefone();
               ?>"/></div>
 
 
@@ -178,8 +191,8 @@
                   value="<?php
                               if (!empty($_POST['celular'])) 
                                   echo $_POST['celular'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getCelular();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getCelular();
               ?>"/></div>
                     
 
@@ -193,8 +206,8 @@
                               if (!empty($_POST['email'])) {
                                   echo $_POST['email'];
                               }
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getEmail();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getEmail();
               ?>"/><script type="text/javascript"> window.onload = funcExistingEmail();</script> </div>                  
 
 
@@ -207,8 +220,8 @@
                   value="<?php
                               if (!empty($_POST['rua']))
                                   echo $_POST['rua'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getRua();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getRua();
               ?>"/></div>
 
     <div class="form-group">
@@ -221,8 +234,8 @@
                               if (!empty($_POST['numero'])) {
                                   echo $_POST['numero'];
                                 }
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getNumero();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getNumero();
               ?>"/></div>
 
     <div class="form-group">
@@ -235,8 +248,8 @@
                               if (!empty($_POST['complemento'])) {
                                   echo $_POST['complemento'];
                                 }
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getComplemento();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getComplemento();
               ?>"/></div>
 
 
@@ -250,8 +263,8 @@
                               if (!empty($_POST['bairro'])) {
                                   echo $_POST['bairro'];
                                 }
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getBairro();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getBairro();
                   ?>"/></div>
 
     <div class="form-group">
@@ -264,8 +277,8 @@
                               if (!empty($_POST['cidade'])) {
                                   echo $_POST['cidade'];
                                 }
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getCidade();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getCidade();
                     ?>"/></div>
 
     <div class="form-group">
@@ -274,59 +287,59 @@
                   oninvalid="this.setCustomValidity('Favor escolher um item da lista.')"
                   oninput="setCustomValidity('')">
                                 <option value=""> -- Selecione um estado -- </option>
-                                <option value="RJ" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RJ")) || (isset($aprendiz) && $aprendiz->getUf() == "RJ")) 
+                                <option value="RJ" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RJ")) || (isset($voluntario) && $voluntario->getUf() == "RJ")) 
                                                     echo "selected" ?>>RJ</option>
-                                <option value="AC" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AC")) || (isset($aprendiz) && $aprendiz->getUf() == "AC")) 
+                                <option value="AC" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AC")) || (isset($voluntario) && $voluntario->getUf() == "AC")) 
                                                     echo "selected" ?>>AC</option>
-                                <option value="AL" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AL")) || (isset($aprendiz) && $aprendiz->getUf() == "AL")) 
+                                <option value="AL" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AL")) || (isset($voluntario) && $voluntario->getUf() == "AL")) 
                                                     echo "selected" ?>>AL</option>
-                                <option value="AM" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AM")) || (isset($aprendiz) && $aprendiz->getUf() == "AM")) 
+                                <option value="AM" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AM")) || (isset($voluntario) && $voluntario->getUf() == "AM")) 
                                                     echo "selected" ?>>AM</option>
-                                <option value="AP" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AP")) || (isset($aprendiz) && $aprendiz->getUf() == "AP")) 
+                                <option value="AP" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "AP")) || (isset($voluntario) && $voluntario->getUf() == "AP")) 
                                                     echo "selected" ?>>AP</option>
-                                <option value="BA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "BA")) || (isset($aprendiz) && $aprendiz->getUf() == "BA")) 
+                                <option value="BA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "BA")) || (isset($voluntario) && $voluntario->getUf() == "BA")) 
                                                     echo "selected" ?>>BA</option>
-                                <option value="CE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "CE")) || (isset($aprendiz) && $aprendiz->getUf() == "CE")) 
+                                <option value="CE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "CE")) || (isset($voluntario) && $voluntario->getUf() == "CE")) 
                                                     echo "selected" ?>>CE</option>
-                                <option value="DF" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "DF")) || (isset($aprendiz) && $aprendiz->getUf() == "DF")) 
+                                <option value="DF" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "DF")) || (isset($voluntario) && $voluntario->getUf() == "DF")) 
                                                     echo "selected" ?>>DF</option>
-                                <option value="ES" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "ES")) || (isset($aprendiz) && $aprendiz->getUf() == "ES")) 
+                                <option value="ES" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "ES")) || (isset($voluntario) && $voluntario->getUf() == "ES")) 
                                                     echo "selected" ?>>ES</option>
-                                <option value="GO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "GO")) || (isset($aprendiz) && $aprendiz->getUf() == "GO")) 
+                                <option value="GO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "GO")) || (isset($voluntario) && $voluntario->getUf() == "GO")) 
                                                     echo "selected" ?>>GO</option>
-                                <option value="MA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MA")) || (isset($aprendiz) && $aprendiz->getUf() == "MA")) 
+                                <option value="MA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MA")) || (isset($voluntario) && $voluntario->getUf() == "MA")) 
                                                     echo "selected" ?>>MA</option>
-                                <option value="MG" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MG")) || (isset($aprendiz) && $aprendiz->getUf() == "MG")) 
+                                <option value="MG" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MG")) || (isset($voluntario) && $voluntario->getUf() == "MG")) 
                                                     echo "selected" ?>>MG</option>
-                                <option value="MS" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MS")) || (isset($aprendiz) && $aprendiz->getUf() == "MS")) 
+                                <option value="MS" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MS")) || (isset($voluntario) && $voluntario->getUf() == "MS")) 
                                                     echo "selected" ?>>MS</option>
-                                <option value="MT" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MT")) || (isset($aprendiz) && $aprendiz->getUf() == "MT")) 
+                                <option value="MT" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "MT")) || (isset($voluntario) && $voluntario->getUf() == "MT")) 
                                                     echo "selected" ?>>MT</option>
-                                <option value="PA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PA")) || (isset($aprendiz) && $aprendiz->getUf() == "PA")) 
+                                <option value="PA" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PA")) || (isset($voluntario) && $voluntario->getUf() == "PA")) 
                                                     echo "selected" ?>>PA</option>
-                                <option value="PB" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PB")) || (isset($aprendiz) && $aprendiz->getUf() == "PB")) 
+                                <option value="PB" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PB")) || (isset($voluntario) && $voluntario->getUf() == "PB")) 
                                                     echo "selected" ?>>PB</option>
-                                <option value="PE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PE")) || (isset($aprendiz) && $aprendiz->getUf() == "PE")) 
+                                <option value="PE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PE")) || (isset($voluntario) && $voluntario->getUf() == "PE")) 
                                                     echo "selected" ?>>PE</option>
-                                <option value="PI" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PI")) || (isset($aprendiz) && $aprendiz->getUf() == "PI")) 
+                                <option value="PI" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PI")) || (isset($voluntario) && $voluntario->getUf() == "PI")) 
                                                     echo "selected" ?>>PI</option>
-                                <option value="PR" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PR")) || (isset($aprendiz) && $aprendiz->getUf() == "PR")) 
+                                <option value="PR" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "PR")) || (isset($voluntario) && $voluntario->getUf() == "PR")) 
                                                     echo "selected" ?>>PR</option>
-                                <option value="RN" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RN")) || (isset($aprendiz) && $aprendiz->getUf() == "RN")) 
+                                <option value="RN" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RN")) || (isset($voluntario) && $voluntario->getUf() == "RN")) 
                                                     echo "selected" ?>>RN</option>
-                                <option value="RO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RO")) || (isset($aprendiz) && $aprendiz->getUf() == "RO")) 
+                                <option value="RO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RO")) || (isset($voluntario) && $voluntario->getUf() == "RO")) 
                                                     echo "selected" ?>>RO</option>
-                                <option value="RR" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RR")) || (isset($aprendiz) && $aprendiz->getUf() == "RR")) 
+                                <option value="RR" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RR")) || (isset($voluntario) && $voluntario->getUf() == "RR")) 
                                                     echo "selected" ?>>RR</option>
-                                <option value="RS" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RS")) || (isset($aprendiz) && $aprendiz->getUf() == "RS")) 
+                                <option value="RS" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "RS")) || (isset($voluntario) && $voluntario->getUf() == "RS")) 
                                                     echo "selected" ?>>RS</option>
-                                <option value="SC" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SC")) || (isset($aprendiz) && $aprendiz->getUf() == "SC")) 
+                                <option value="SC" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SC")) || (isset($voluntario) && $voluntario->getUf() == "SC")) 
                                                     echo "selected" ?>>SC</option>
-                                <option value="SE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SE")) || (isset($aprendiz) && $aprendiz->getUf() == "SE")) 
+                                <option value="SE" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SE")) || (isset($voluntario) && $voluntario->getUf() == "SE")) 
                                                     echo "selected" ?>>SE</option>
-                                <option value="SP" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SP")) || (isset($aprendiz) && $aprendiz->getUf() == "SP")) 
+                                <option value="SP" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "SP")) || (isset($voluntario) && $voluntario->getUf() == "SP")) 
                                                     echo "selected" ?>>SP</option>
-                                <option value="TO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "TO")) || (isset($aprendiz) && $aprendiz->getUf() == "TO")) 
+                                <option value="TO" <?php if ( (!empty($_POST['uf']) && ($_POST['uf'] == "TO")) || (isset($voluntario) && $voluntario->getUf() == "TO")) 
                                                     echo "selected" ?>>TO</option>
                             </select>
                         </div>
@@ -340,74 +353,9 @@
                   value="<?php
                               if (!empty($_POST['cep'])) 
                                   echo $_POST['cep'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getCep();
+                            else if(isset($voluntario))
+                                    echo $voluntario->getCep();
           ?>"/></div> 
-
-    <div class="form-group">
-          <label for="trabalho" class="col-lg-1 control-label"> Trabalho: </label><br><br>
-          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite o trabalho"
-                  name="trabalho" id="trabalho" 
-                  value="<?php
-                              if (!empty($_POST['trabalho'])) 
-                                  echo $_POST['trabalho'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getTrabalho();
-          ?>"/></div> <br>
-
-
-  <h4><i class="fa fa-cog" aria-hidden="true"></i>  Dados do Responsável <i class="fa fa-cog" aria-hidden="true"></i></h4><br>
-      <div class="form-group">
-          <label for="nome_responsavel" class="col-lg-1 control-label"> Nome: </label><br><br>
-          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite o nome do responsável"
-                  name="nome_responsavel" onkeypress="return validateLetterInput(event);" required
-                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                  oninput="setCustomValidity('')"
-                  value="<?php
-                              if (!empty($_POST['nome_responsavel'])) 
-                                  echo $_POST['nome_responsavel'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getNomeResponsavel();
-          ?>"/> </div>
-
-      <div class="form-group">    
-          <label for="telefone_responsavel" class="col-lg-1 control-label"> Telefone*: </label><br><br>
-          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control phone phone1" placeholder="(XX) XXXX-XXXX"
-                  name="telefone_responsavel" id="telefone_responsavel" maxlength="25" required onkeypress="return validateNumberInput(event);"
-                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                  oninput="setCustomValidity('')"
-                  value="<?php
-                                if (!empty($_POST['telefone_responsavel'])) 
-                                    echo $_POST['telefone_responsavel'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getTelefoneResponsavel();
-          ?>"/></div>
-      
-      <div class="form-group">
-          <label for="profissao_responsavel" class="col-lg-1 control-label"> Profissão: </label><br><br>
-          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="Digite a profissão do responsável"
-                  name="profissao_responsavel" onkeypress="return validateLetterInput(event);" required
-                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                  oninput="setCustomValidity('')"
-                  value="<?php
-                              if (!empty($_POST['profissao_responsavel'])) 
-                                  echo $_POST['profissao_responsavel'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getProfissaoResponsavel();
-          ?>"/></div>
-
-      <div class="form-group">
-          <label for="cpf_responsavel" class="col-lg-1 control-label"> CPF: </label><br><br>
-          <input type="text" <?php if (isset($disabled)) echo "disabled";?> class="form-control" placeholder="XXX.XXX.XXX-XX"
-                  name="cpf_responsavel" id="cpf_responsavel" onkeypress="return validateNumberInput(event);" required
-                  oninvalid="this.setCustomValidity('Este campo não pode ficar vazio.')"
-                  oninput="setCustomValidity('')"
-                  value="<?php
-                                if (!empty($_POST['cpf_responsavel'])) 
-                                    echo $_POST['cpf_responsavel'];
-                            else if(isset($aprendiz))
-                                    echo $aprendiz->getCpfResponsavel();
-          ?>"/></div>
 
     <div class="row">
       <div class="form-group">

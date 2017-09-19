@@ -21,9 +21,10 @@ class Voluntario
 	protected $cidade;
 	protected $uf;
 	protected $cep;
-
+	protected $matricula;
+	
 	public function __construct($nome, $cpf, $rg, $data_nascimento, $naturalidade, $email, $telefone, $celular, $rua, $numero, $complemento, 
-		$bairro, $cidade, $uf, $cep)
+		$bairro, $cidade, $uf, $cep, $matricula)
 	{
 		$this->nome = $nome;
 		$this->cpf = $cpf;
@@ -40,6 +41,7 @@ class Voluntario
 		$this->cidade = $cidade;
 		$this->uf = $uf;
 		$this->cep = $cep;
+		$this->matricula = $matricula;
 	}
 
 	public static function createObjectVoluntario($resultRow)
@@ -53,7 +55,7 @@ class Voluntario
 				$resultRow->rua, $resultRow->numero, 
 				$resultRow->complemento, $resultRow->bairro, 
 				$resultRow->cidade, $resultRow->uf, 
-				$resultRow->cep);
+				$resultRow->cep, $resultRow->matricula);
 		}
 		return null;
 	}
@@ -66,7 +68,7 @@ class Voluntario
 					$this->getEmail(), $this->getTelefone(), $this->getCelular(),
 					$this->getRua(), $this->getNumero(), $this->getComplemento(),
 					$this->getBairro(), $this->getCidade(), $this->getUf(), 
-					$this->getCep());
+					$this->getCep(), $this->getMatricula());
 	}
 
 	public function getSqlToInsert()
@@ -75,7 +77,7 @@ class Voluntario
 									  nome, cpf, rg, data_nascimento, naturalidade,
 									  email, telefone, celular,
 									  rua, numero, complemento, bairro, cidade,
-		                              uf, cep) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+		                              uf, cep, matricula) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
 	}
 
 	public function getSqlToUpdate()
@@ -84,7 +86,7 @@ class Voluntario
 									  nome=?, cpf=?, rg=?, data_nascimento=?, naturalidade=?,
 									  email=?, telefone=?, celular=?,
 									  rua=?, numero=?, complemento=?, bairro=?,
-									  cidade=?, uf=?, cep=?
+									  cidade=?, uf=?, cep=?, matricula=?
 		WHERE cpf=?;';
 	}
 
@@ -253,6 +255,18 @@ class Voluntario
 	{
 		$this->cep = $newCep;
 	}
+
+	public function getMatricula()
+	{
+		return $this->matricula;
+	}
+
+
+	public function setMatricula($newMatricula)
+	{
+		$this->matricula = $newMatricula;
+	}
+
 
 	private static function valida ($data) 
 	{

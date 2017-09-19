@@ -17,12 +17,9 @@ class FuncionarioController extends RN_Controller {
         $this->load->helper(array('form', 'url'));
 	}
 
-	public function insert(){
-		$this->loadView('funcionario/insert');
-	}
-
-	public function search(){
-		$this->loadView('funcionario/search');
+	public function insert($data = array()){
+		$data["action"] = "save"; 
+		$this->loadView('funcionario/modifyShow',$data);
 	}
 
 	public function edit(){
@@ -31,49 +28,66 @@ class FuncionarioController extends RN_Controller {
 			$cpf = $dataIn["cpf"];
 		else
 			$cpf = "";
+		$data["action"] = "update"; 
 		$data['funcionario'] = $this->funcionario_model->selectOneFuncionario($cpf);
-		$this->loadView('funcionario/edit',$data);
+		$this->loadView('funcionario/modifyShow',$data);
 	}
 
 	public function save(){
 		$dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
-        $return = $this->funcionario_model->insertNewFuncionario($dataIn);
-        $data['message'] = "Funcionário cadastrado com sucesso!";
-		$this->loadView('funcionario/admin', $data);
+
+		$return = $this->funcionario_model->insertNewFuncionario($dataIn);
+		if($return)
+			$data['message'] = "Funcionario cadastrado com sucesso!";
+		else
+		{
+			$this->insert($this->input->post);
+			return;
+		}		
+		$this->admin($data);
     }
-    public function update(){
+	
+	public function update(){
         $dataIn = $this->input->post();
         $dataIn = (object) $dataIn;
         $dataIn->data_nascimento = $this->toYYYYMMDD($dataIn->data_nascimento);
-        $return = $this->funcionario_model->updateFuncionario($dataIn);
-        $data['message'] = "Funcionário atualizado com sucesso!";
-		$this->loadView('funcionario/admin');
-    }
-    public function show(){
-        $data['funcionarios'] = $this->funcionario_model->selectAllFuncionario();
-        $this->loadView('funcionario/show_funcionarios', $data);
-    }
-    public function find(){
-        $dataIn = $this->input->post();
-        $data['funcionario'] = $this->funcionario_model->selectOneFuncionario($dataIn);
-        $this->loadView('funcionario/show_funcionario', $data);
-    }
+		$return = $this->funcionario_model->updateFuncionario($dataIn);
+		if($return)
+			$data['message'] = "Funcionario atualizado com sucesso!";
+		else
+		{
+			$this->edit($this->input->post);
+			return;
+		}		
+		$this->admin($data);
+	}
+	
+	public function get(){
+		$dataIn = $this->input->get();
+		$data["action"] = "";
+		$data["disabled"] = "disabled"; 
+		$data['funcionario'] = $this->funcionario_model->selectOneFuncionario($dataIn);
+		$this->loadView('funcionario/modifyShow', $data);
+	}
+
+
     public function delete(){
         $dataIn = $this->input->get();
-        if(isset($dataIn["nome"]))
-            $nome = $dataIn["nome"];
-        else
-            $nome = '';
-        $return = $this->funcionario_model->deleteFuncionario($nome);
-        $data['message'] = "Funcionário excluído com sucesso!";
-		$this->loadView('funcionario/admin', $data);
-    }
-    public function form_csv(){
-		$return = $this->funcionario_model->insertNewFuncionario($dataIn);
-		$this->loadView('funcionario/cadastrosucesso');
+		if(isset($dataIn["cpf"]))
+			$cpf = $dataIn["cpf"];
+		else
+			$cpf = '';
+        $return = $this->funcionario_model->deleteFuncionario($cpf);
+		$data['message'] = "Funcionario excluído com sucesso!";
+		$this->admin($data);
 	}
+	
+	public function form_csv()
+    {
+            $this->loadView('funcionario/form_csv', array('error' => ' ' ));
+    }
 
     public function upload_csv()
     {
@@ -182,7 +196,7 @@ class FuncionarioController extends RN_Controller {
                     }
             	$this->funcionario_model->commitTransaction();
         		echo "<script> alert('Load do csv de funcionario feito com sucesso!');</script>";
-        		$this->show();
+        		$this->admin();
             }
     }
 

@@ -21,10 +21,10 @@
 
 		<table class="table table-bordered table-striped table-min-td-size" style="max-width: 100%;" id="sortable-table">
 							<tr>
-								<th style="width: 100px;">Nome</th>
-								<th style="width: 100px;">Email</th>
-								<th style="width: 150px;">Função</th>
-                                <th colspan="2" style="width: 500px;">Ações</th>
+								<th>Nome</th>
+								<th>Email</th>
+								<th>Função</th>
+                                <th colspan="2">Ações</th>
 							</tr>
 							<tbody id="tablebody">
 								<?php foreach ($funcionarios as $funcionario) { ?> 

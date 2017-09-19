@@ -197,15 +197,21 @@ CREATE TABLE atividade(
 drop table if Exists funcionario;
 
 CREATE TABLE funcionario(
-   CPF INTEGER NOT NULL,
-   RG INTEGER NOT NULL,
-   Naturalidade CHAR(50) NOT NULL,
-   Email VARCHAR(60) NOT NULL,
-   Nome VARCHAR(70) NOT NULL,
-   Data_Nascimento DATE NOT NULL,
-   Telefone INTEGER NOT NULL,
-   Celular INTEGER NOT NULL,
-   CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
+
+    CPF VARCHAR(11) Not Null,
+    RG VARCHAR(12) Not Null,
+    Naturalidade CHAR(50) Not Null,
+    Email VARCHAR(60) Not Null,
+    Nome VARCHAR(70) Not Null,
+    Data_Nascimento DATE Not Null,
+    Telefone VARCHAR(200) Not Null,
+    Celular VARCHAR(200) Not Null,
+    Funcao VARCHAR(200) Not Null,
+
+    CONSTRAINT funcionario_chk_naturalidade CHECK(length(trim(Naturalidade)) > 0),
+    CONSTRAINT funcionario_chk_email CHECK(length(trim(Email)) > 0),
+    CONSTRAINT funcionario_chk_nome CHECK(length(trim(Nome)) > 0),
+    CONSTRAINT pk_funcionario PRIMARY KEY (CPF)
 );
 
 DROP TABLE IF EXISTS aluno_atividade cascade;
